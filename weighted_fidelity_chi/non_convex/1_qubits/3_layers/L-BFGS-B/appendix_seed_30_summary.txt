@@ -1,0 +1,25 @@
+
+Figur of merit = weighted_fidelity_chi
+Problem = non convex
+Number of qubits = 1
+Number of layers = 3
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[-1.5754819   1.24512296  0.85541053]
+  [ 1.4759416  -0.34221954  1.03828359]
+  [ 1.63663223  0.44420565  0.2947859 ]]]
+ALPHA = 
+[[[-1.0571199   0.05408262]
+  [ 2.56067702  1.61039293]
+  [ 0.82533692  0.97461254]]]
+WEIGHTS = 
+[[1.11885377]
+ [1.10910737]]
+chi**2 = 0.06340838715925166
+acc_train = 0.965
+acc_test = 0.955

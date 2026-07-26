@@ -27,7 +27,7 @@ def problem_generator(problem, qubits, layers, chi, qubits_lab=1):
     OUTPUT:
         -theta: set of parameters needed for the circuit. It is an array with shape (qubits, layers, 3)
         -alpha: set of parameters needed for the circuit. It is an array with shape (qubits, layers, dimension of data)
-        -weight: set of parameters needed fot the circuit only if chi == 'weighted_fidelity_chi'. It is an array with shape (classes, qubits)
+        -weight: set of parameters needed for the circuit only if chi == 'weighted_fidelity_chi'. It is an array with shape (classes, qubits)
         -reprs: variable encoding the label states of the different classes
     """
     chi = chi.lower()

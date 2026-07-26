@@ -1,0 +1,23 @@
+
+Figur of merit = fidelity_chi
+Problem = wavy lines
+Number of qubits = 2
+Entanglement = n
+Number of layers = 1
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[-0.53317052  0.51031449  0.85541112]]
+
+ [[-1.53523532  0.1110682   0.30347433]]]
+ALPHA = 
+[[[2.5678346  0.44420664]]
+
+ [[2.38114285 0.07953413]]]
+chi**2 = -0.6554463870267786
+acc_train = 0.6
+acc_test = 0.522

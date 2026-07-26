@@ -1,0 +1,25 @@
+
+Figur of merit = weighted_fidelity_chi
+Problem = sphere
+Number of qubits = 1
+Number of layers = 3
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[ 1.57866905 -0.21234982  0.09299097]
+  [ 0.02001296 -0.10817673  0.20019977]
+  [ 1.58024047  0.64436541  0.0942997 ]]]
+ALPHA = 
+[[[ 0.51082711 -0.13605068  0.73147827]
+  [ 1.02478598 -0.1369234   1.11696562]
+  [ 0.51118111  0.70175489  1.11520963]]]
+WEIGHTS = 
+[[1.00237552]
+ [1.12079565]]
+chi**2 = 0.14010017243919723
+acc_train = 0.802
+acc_test = 0.78075

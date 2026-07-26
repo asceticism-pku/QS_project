@@ -1,0 +1,27 @@
+
+Figur of merit = fidelity_chi
+Problem = squares
+Number of qubits = 2
+Entanglement = n
+Number of layers = 2
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[ 1.57079211  0.94532469  0.85540993]
+  [-1.57079968  0.11107142  0.73848409]]
+
+ [[ 1.43985532 -0.16970979  0.74807546]
+  [ 0.06035061  0.52558498  0.16976204]]]
+ALPHA = 
+[[[ 1.66359265e-05  2.30763143e+00]
+  [ 1.33648210e-05  2.35338813e-01]]
+
+ [[ 1.69795993e+00 -1.81762153e-05]
+  [ 6.59099051e-01  9.73276987e-01]]]
+chi**2 = -0.865785191425037
+acc_train = 0.965
+acc_test = 0.96325

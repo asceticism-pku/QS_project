@@ -1,0 +1,23 @@
+
+Figur of merit = weighted_fidelity_chi
+Problem = wavy lines
+Number of qubits = 1
+Number of layers = 1
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[-0.78658777 -0.04681397  0.85541088]]]
+ALPHA = 
+[[[ 1.38651799 -1.14356375]]]
+WEIGHTS = 
+[[0.73186522]
+ [1.63217059]
+ [0.88726921]
+ [1.06273526]]
+chi**2 = 0.09072186852463174
+acc_train = 0.785
+acc_test = 0.757

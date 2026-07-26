@@ -1,0 +1,27 @@
+
+Figur of merit = fidelity_chi
+Problem = crown
+Number of qubits = 2
+Entanglement = y
+Number of layers = 2
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[ 1.63882616  1.67425183  0.85541104]
+  [-0.06039872  0.11107123  1.46741939]]
+
+ [[ 1.68577659  1.40105622  0.74807114]
+  [ 1.63026215  0.52558109  1.74052719]]]
+ALPHA = 
+[[[-2.76317493e-02 -3.44830748e-05]
+  [-1.62709118e+00  2.35331064e-01]]
+
+ [[ 6.78120877e-01 -1.35439269e-04]
+  [ 1.60597065e+00  9.73274610e-01]]]
+chi**2 = -0.7240284796484844
+acc_train = 0.52
+acc_test = 0.51375

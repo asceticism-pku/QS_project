@@ -1,0 +1,30 @@
+
+Figur of merit = weighted_fidelity_chi
+Problem = crown
+Number of qubits = 2
+Entanglement = n
+Number of layers = 2
+Minimization method = L-BFGS-B
+Random seed = 30
+
+BEST RESULT
+
+
+THETA = 
+[[[ 2.57646249  0.25116642  0.85537662]
+  [-0.48102864  0.11105717  0.04426422]]
+
+ [[ 0.87715498  1.39771026  0.7481005 ]
+  [-2.22876693  0.52556768  1.73715617]]]
+ALPHA = 
+[[[ 2.77557898  0.01405081]
+  [-2.77906126  0.2353168 ]]
+
+ [[-0.42400443  0.39676157]
+  [-0.09775331  0.97320698]]]
+WEIGHTS = 
+[[  0.78605869  19.45292018]
+ [-23.1121834   17.94458649]]
+chi**2 = 0.19304322817451788
+acc_train = 0.715
+acc_test = 0.719
