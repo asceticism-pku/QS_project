@@ -1,0 +1,459 @@
+\documentclass[a4paper]{ctexart}
+
+\usepackage{packages}
+\usepackage{mathstyle}
+\usepackage{reportstyle}
+
+\setinfo{基于数据重上传的通用量子分类器复现}
+{崔正平 \q 张译夫 \q 张扬皓}
+
+\newtheorem{theorem}{定理}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+本文拟复现 Pérez-Salinas 等人提出的数据重上传量子分类器. 该模型研究在量子比特数极少的条件下, 参数化量子电路能否完成高维、非线性及多类别监督分类任务. 其核心思想是在量子电路的不同位置反复编码同一组经典数据, 并在相邻编码之间插入可训练旋转. 多次数据依赖旋转及其非对易复合能够产生丰富的三角函数和频率组合, 从而提高量子电路的函数表达能力.
+\end{abstract}
+
+\section{引言}
+
+近年来, 量子机器学习试图利用量子态空间、量子叠加和纠缠等结构完成分类、回归和生成建模等任务. 在当前含噪中等规模量子计算阶段, 具有较少量子比特和较短电路深度的变分量子算法尤其受到关注. 这类算法通常由参数化量子电路和经典优化器共同组成: 量子电路负责生成依赖输入和参数的量子态, 经典计算机负责计算损失函数并更新电路参数.
+
+量子机器学习中的首要问题之一是如何将经典数据编码到量子电路中. 一些方法将数据写入量子态振幅, 但一般状态制备可能需要大量量子门, 并依赖尚不成熟的量子随机存取存储器. 另一些方法把经典数据直接写入旋转门的角度, 从而避免复杂的振幅制备. 然而, 对于单量子比特而言, 如果只在电路开始时编码一次数据, 后续与输入无关的单量子比特门仅相当于对所有输出状态进行相同的 Bloch 球旋转, 表达能力较为有限.
+
+Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重新编码同一输入解决这一问题~\cite{paper}. 其基本结构与单隐层神经网络具有形式上的相似性: 神经网络的每个隐藏神经元都会重新读取输入, 而数据重上传电路的每一层也会重新读取同一组经典数据. 各层使用不同的数据权重和旋转偏置, 多层旋转的三角函数结构以及不同旋转轴之间的非对易性共同产生复杂的非线性特征.
+
+\section{单量子比特的数学基础}
+
+\subsection{纯态与状态向量}
+
+计算基定义为
+\begin{align}
+    \ket{0}=\begin{pNiceMatrix}
+        1 \\
+        0
+    \end{pNiceMatrix},\q \ket{1}=\begin{pNiceMatrix}
+        0 \\
+        1
+    \end{pNiceMatrix}.
+\end{align}
+任意单量子比特纯态都可以写成
+\begin{align}
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1},\q \abs{\alpha}^2+\abs{\beta}^2=1.
+\end{align}
+其中 $\alpha,\beta\in\C$ 为概率振幅. 在计算基中测量时, $\Pr(0)=\abs{\alpha}^2$, $\Pr(1)=\abs{\beta}^2$. 去除不影响物理结果的整体相位后, 纯态可进一步参数化为
+\begin{align}
+    \ket{\psi}=\cos\frac{\theta}{2}\ket{0}+\e^{\i\varphi}\sin\frac{\theta}{2}\ket{1}.
+\end{align}
+这里 $\theta\in[0,\pi]$, $\varphi\in[0,2\pi)$, 恰好对应球面上的极角和方位角.
+
+\subsection{混合态与密度矩阵}
+
+纯态 $\ket{\psi}$ 对应密度矩阵
+\begin{align}
+    \rho=\ket{\psi}\bra{\psi}=\begin{pNiceMatrix}
+        \abs{\alpha}^2 & \alpha\beta^\ast\\
+        \alpha^\ast\beta & \abs{\beta}^2
+    \end{pNiceMatrix}.
+\end{align}
+对角元表示计算基测量概率, 非对角元保存 $\ket{0}$ 与 $\ket{1}$ 之间的相位相干信息.
+
+若系统以概率 $p_j$ 被制备在纯态 $\ket{\psi_j}$, 则整体由混合态描述:
+\begin{align}
+    \rho=\sum_j p_j\ket{\psi_j}\bra{\psi_j}, \q p_j\ge 0, \q \sum_j p_j=1.
+\end{align}
+对任意测量算符 $M$, 测量结果的总概率为
+\begin{align}
+    P(M)=\sum_j p_j \bra{\psi_j}M\ket{\psi_j}=\tr\left(\rho M\right).
+\end{align}
+
+\subsection{Pauli 矩阵及其代数}
+
+三个 Pauli 矩阵为
+\begin{align}
+    \sigma_x=\begin{pNiceMatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pNiceMatrix},\q \sigma_y=\begin{pNiceMatrix}
+        0 & -\i \\
+        \i & 0
+    \end{pNiceMatrix},\q \sigma_z=\begin{pNiceMatrix}
+        1 & 0 \\
+        0 & -1
+    \end{pNiceMatrix}.
+    \label{eq:pauli}
+\end{align}
+它们既是单量子比特的基本可观测量, 也是 $\te{SU}(2)$ 旋转的生成元. Pauli 矩阵满足
+\begin{align}
+    \sigma_i\sigma_j=\delta_{ij}I+\i\sum_k\eps_{ijk}\sigma_k.
+\end{align}
+当 $i=j$ 时, $\sigma_i^2=I$; 当 $i\neq j$ 时,
+\begin{align}
+    \sigma_x\sigma_y=\i\sigma_z,\q \sigma_y\sigma_z=\i\sigma_x, \q \sigma_z\sigma_x=\i\sigma_y,
+\end{align}
+交换乘法顺序会改变符号. 因此
+\begin{align}
+    \{\sigma_i,\sigma_j\}=2\delta_{ij}I,\q[\sigma_i,\sigma_j]=2\i\sum_k\eps_{ijk}\sigma_k.
+\end{align}
+进一步可得向量恒等式
+\begin{align}
+    (\bm{a}\cdot\bm{\sigma})(\bm{b}\cdot\bm{\sigma})=(\bm{a}\cdot\bm{b})I+\i(\bm{a}\times\bm{b})\cdot\bm{\sigma}.
+    \label{eq:pauli-vector-product}
+\end{align}
+
+\subsection{Bloch 球表示}
+
+由于 $I,\sigma_x,\sigma_y,\sigma_z$ 构成 $2\times2$ 厄米矩阵空间的一组基, 任意单量子比特密度矩阵都可以唯一写成
+\begin{align}
+    \rho=\frac{1}{2}\left(I+\bm{r}\cdot\bm{\sigma}\right), \q \bm{r}=(r_x,r_y,r_z).
+\end{align}
+其中
+\begin{align}
+    r_x=\tr(\rho\sigma_x),\q r_y=\tr(\rho\sigma_y), \q r_z=\tr(\rho\sigma_z).
+\end{align}
+因此 Bloch 向量的三个分量正是三个 Pauli 测量的期望值.
+
+\subsection{单量子比特旋转}
+
+绕单位方向 $\bm{n}$ 旋转角度 $\phi$ 的量子门写成
+\begin{align}
+    R_{\bm{n}}(\phi)=\e^{-\frac{1}{2}\i\phi\bm{n}\cdot\bm{\sigma}}.
+\end{align}
+特别地,
+\begin{align}
+    R_y(\phi)=\begin{pNiceMatrix}
+        \cos(\phi/2) & -\sin(\phi/2) \\
+        \sin(\phi/2) & \cos(\phi/2)
+    \end{pNiceMatrix},\q R_z(\phi)=\begin{pNiceMatrix}
+        \e^{-\i\phi/2} & 0 \\
+        0 & \e^{\i\phi/2}
+    \end{pNiceMatrix}.
+\end{align}
+忽略整体相位后, 任意单量子比特酉门属于 $\te{SU}(2)$, 可以由三个 Euler 角参数化. 我们采用显式形式
+\begin{align}
+    U(\bm{\phi})=\begin{pNiceMatrix}
+        \cos\frac{\phi_1}{2}\e^{\i(\phi_2+\phi_3)/2} & \sin\frac{\phi_1}{2}\e^{-\i(\phi_2-\phi_3)/2} \\
+        \sin\frac{\phi_1}{2}\e^{\i(\phi_2-\phi_3)/2} & \cos\frac{\phi_1}{2}\e^{-\i(\phi_2+\phi_3)/2}
+    \end{pNiceMatrix}.
+    \label{eq:su2-euler}
+\end{align}
+
+\section{数据重上传单量子比特分类器}
+
+\subsection{原始数据重上传结构}
+
+单量子比特分类器从初态 $\ket{0}$ 出发. 将第 $i$ 层定义为
+\begin{align}
+    L(i)=U(\bm{\phi}_i)U(\bm{x}),
+\end{align}
+其中 $U(\bm{x})$ 负责数据编码, $U(\bm{\phi}_i)$ 为可训练旋转. 具有 $N$ 层的总电路为
+\begin{align}
+    \mathcal U(\bm{\phi},\bm{x})=L(N)L(N-1)\cdots L(1),
+\end{align}
+输出态为
+\begin{align}
+    \ket{\psi(\bm{x})}=\mathcal U(\bm{\phi},\bm{x})\ket{0}.
+\end{align}
+同一输入 $\bm{x}$ 在电路中被重复使用, 因而称为数据重上传.
+
+\subsection{数据与训练参数共同控制旋转}
+
+为减少每层所需门数, 论文提出压缩参数化
+\begin{align}
+    L_i(\bm{x})=U(\bm{\theta}_i+\bm{w}_i\circ\bm{x}).
+\end{align}
+其中 $\bm{w}_i\circ\bm{x}=(w_i^1x^1,w_i^2x^2,w_i^3x^3)$ 为逐元素乘积. 旋转角 $\phi_i^j(\bm{x})=\theta_i^j+w_i^j x^j$ 由输入数据与可训练参数共同决定. $\bm{w}_i$ 类似神经网络中的输入权重, $\bm{\theta}_i$ 类似偏置.
+
+\subsection{重上传产生非线性的机制}
+
+即使旋转角只线性依赖输入, 量子门矩阵中仍包含
+\begin{align}
+    \sin\frac{\theta+wx}{2},\q \cos\frac{\theta+wx}{2},
+\end{align}
+因此输出对数据是非线性的. 多个绕不同轴的旋转进一步产生三角函数乘积.
+
+考虑简化的一维电路
+\begin{align}
+    \ket{\psi(x)}=R_y(C(x)) R_z(B(x))R_y(A(x))\ket{0},
+\end{align}
+其中 $A,B,C$ 均为 $x$ 的仿射函数. 对应 Bloch 向量的 $z$ 分量为
+\begin{align}
+    r_z(x)=\cos C(x)\cos A(x)-\sin C(x)\sin A(x)\cos B(x).
+\end{align}
+利用积化和差公式, 这些乘积可以转换为 $A\pm C$, $A\pm B\pm C$ 等组合频率. 因此增加重上传层数会扩大模型可以表示的 Fourier 频率集合, 使决策边界逐步复杂化. 若所有层均绕同一轴旋转, 多层旋转可以合并, 表达能力不会显著提高; 所以不同轴旋转及其非对易性是数据重上传发挥作用的关键.
+
+\subsection{高维数据编码}
+
+一般单量子比特旋转有三个自由参数, 因而一次最多自然编码三个实数. 对于 $d>3$ 的输入, 可将
+\begin{align}
+    \bm{x}=(\bm{x}^{(1)},\ldots,\bm{x}^{(K)}),\q K=\left\lceil\frac{d}{3}\right\rceil
+\end{align}
+分成若干个不超过三维的子向量. 第 $i$ 个重上传层写成
+\begin{align}
+    L_i(\bm{x})=U(\bm{\theta}_i^{(K)}+\bm{w}_i^{(K)}\circ\bm{x}^{(K)})\cdots U(\bm{\theta}_i^{(1)}+\bm{w}_i^{(1)}\circ\bm{x}^{(1)}).
+\end{align}
+所以输入维数不必等于量子比特数, 但高维数据会增加门数、参数量和电路深度. 对于 $d\le3$, 单量子比特 $N$ 层电路约有 $P=(3+d)N$ 个电路参数. 对于一般 $d$, 参数数目约为 $P=(3K+d)N$.
+
+\section{测量策略与类别标签态}
+
+\subsection{二分类}
+
+二分类可以把两个类别分别对应到正交态 $\ket{0}$ 和 $\ket{1}$. 若输出态为 $\ket{\psi(\bm{x})}$, 则
+\begin{align}
+    \Pr(0|\bm{x})=\abs{\braket{0 | \psi(\bm{x})}}^2,\q \Pr(1|\bm{x})=\abs{\braket{1 | \psi(\bm{x})}}^2.
+\end{align}
+按照最大概率分类.
+
+\subsection{多分类与 Bloch 球标签点}
+
+二维 Hilbert 空间最多只能容纳两个两两正交的纯态, 因此单量子比特无法为三个以上类别分配完全正交的标签态, 从而改为在 Bloch 球上选择尽可能均匀分离的方向.
+
+对于四分类, 可使用正四面体顶点
+\begin{align}
+    \bm{s}_1=\frac{1}{\sqrt{3}}(1,1,1),\q \bm{s}_2=\frac{1}{\sqrt{3}}(1,-1,-1),\q \bm{s}_3=\frac{1}{\sqrt{3}}(-1,1,-1),\q \bm{s}_4=\frac{1}{\sqrt{3}}(-1,-1,1).
+\end{align}
+任意两个不同顶点满足
+\begin{align}
+    \bm{s}_c\cdot\bm{s}_{c'}=-\frac{1}{3}.
+    \label{eq:tetrahedron-dot}
+\end{align}
+
+\subsection{保真度的 Bloch 球表示}
+
+对于标签纯态 $\ket{\widetilde{\psi}_c}$ 和输出纯态 $\ket{\psi(\bm{x})}$, 定义
+\begin{align}
+    F_c(\bm{x})=\abs{\braket{\widetilde{\psi}_c|\psi(\bm{x})}}^2.
+\end{align}
+设对应 Bloch 向量分别为 $\bm{s}_c$ 和 $\bm{r}(\bm{x})$, 则
+\begin{align}
+    \rho_c=\frac{1}{2}(I+\bm{s}_c\cdot\bm{\sigma}),\q \rho(\bm{x})=\frac{1}{2}(I+\bm{r}(\bm{x})\cdot\bm{\sigma}).
+\end{align}
+利用 $\tr(\sigma_i)=0$ 和 $\tr(\sigma_i\sigma_j)=2\delta_{ij}$,
+\begin{align}
+    F_c(\bm{x})=\tr[\rho_c\rho(\bm{x})]=\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
+\end{align}
+因此最大化保真度等价于让输出 Bloch 向量接近相应类别标签方向. 对四面体标签态, \eqref{eq:tetrahedron-dot} 给出不同标签态之间的保真度 $F_{cc'}=\frac{1}{2}(1-\frac{1}{3})=\frac{1}{3}$. 所以一个属于类别 $c$ 的理想四分类输出对应目标保真度向量 $(1,\frac{1}{3},\frac{1}{3},\frac{1}{3})$, 其中 $1$ 位于正确类别的位置.
+
+\section{损失函数}
+
+\subsection{普通保真度损失}
+
+设训练集为 $\mathcal D=\{(\bm{x}_\mu,s_\mu)\}_{\mu=1}^M$, 其中 $s_\mu$ 是样本 $\bm{x}_\mu$ 的正确类别. 定义
+\begin{align}
+    \chi_f^2(\bm{\theta},\bm{w})=\sum_{\mu=1}^M\left[1-\abs{\braket{\widetilde{\psi}_{s_\mu}|\psi(\bm{x}_\mu)}}^2\right].
+\end{align}
+最小化该损失等价于最大化输出态与正确标签态的平均保真度.
+
+\subsection{加权保真度损失}
+
+令 $Y_c(\bm{x}_\mu)$ 表示样本 $\bm{x}_\mu$ 与第 $c$ 个标签态之间的理想保真度. 对四面体四分类, 正确类别的目标值为 $1$, 其他类别为 $1/3$. 定义
+\begin{align}
+    \chi_{wf}^2(\bm{\alpha},\bm{\theta},\bm{w})=\frac{1}{2}\sum_{\mu=1}^M \sum_{c=1}^{\mathcal C}\left[\alpha_c F_c(\bm{x}_\mu)-Y_c(\bm{x}_\mu)\right]^2.
+\end{align}
+其中 $\alpha_c$ 为额外的可训练类别权重. 普通保真度损失只把输出态拉向正确标签态, 加权保真度损失则同时控制输出态与所有标签态之间的相对位置. 后者通常具有更好的分类效果, 但需要更多经典参数和更多保真度计算.
+
+\section{单量子比特分类器的通用性论证}
+
+\subsection{经典通用逼近定理}
+
+\begin{theorem}[通用逼近定理]
+设 $I_m=[0,1]^m$, $f\in C(I_m)$, 且 $\varphi:\R\to\R$ 为非常数、有界、连续函数. 对任意 $\eps>0$, 存在正整数 $N$ 及参数 $\alpha_i,b_i\in\R$, $\bm{w}_i\in\R^m$, 使
+\begin{align}
+    h(\bm{x})=\sum_{i=1}^N\alpha_i\varphi(\bm{w}_i\cdot\bm{x}+b_i)
+\end{align}
+满足 $\abs{h(\bm{x})-f(\bm{x})}<\eps,\fo \bm{x}\in I_m$.
+\end{theorem}
+
+该定理说明单隐层神经网络只要包含足够多隐藏神经元, 就能够逼近紧致区域上的连续函数.
+
+\subsection{SU(2) 的轴角表示}
+
+任意 $\te{SU}(2)$ 矩阵均可写成 $U=a_0 I+\i\bm{a}\cdot\bm{\sigma}$, 其中 $a_0^2+\abs{\bm{a}}^2=1$. 令 $a_0=\cos d$, $\bm{a}=\sin d\,\widehat{\bm{n}}$, 则
+\begin{align}
+    U=\cos d\,I+\i\sin d\,\widehat{\bm{n}}\cdot\bm{\sigma}=\e^{\i d\widehat{\bm{n}}\cdot\bm{\sigma}}.
+\end{align}
+因此
+\begin{align}
+    U(\bm{\phi})=\e^{\i\bm{\omega}(\bm{\phi})\cdot\bm{\sigma}}, \q\bm{\omega}=d\widehat{\bm{n}}.
+    \label{eq:axis-angle-su2}
+\end{align}
+
+对于 Euler 角, 可以取
+\begin{align}
+    \omega_1(\bm{\phi})&=d\mathcal{N}\sin\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
+    \omega_2(\bm{\phi})&=d\mathcal{N}\cos\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
+    \omega_3(\bm{\phi})&=d\mathcal{N}\sin\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},
+\end{align}
+其中
+\begin{align}
+    \cos d=\cos\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},\q \mathcal{N}=\frac{1}{\sqrt{1-\cos^2 d}}.
+\end{align}
+这些分量由正弦和余弦构成, 因而本质上是输入角度的有界连续三角函数.
+
+\subsection{Baker-Campbell-Hausdorff 展开}
+
+将数据编码 $\bm{\phi}_i(\bm{x})=\bm{\theta}_i+\bm{w}_i\circ\bm{x}$ 代入 \eqref{eq:axis-angle-su2}, 总电路变成
+\begin{align}
+    \mathcal{U}(\bm{x})=\prod_{i=1}^N\e^{\i\bm{\omega}_i(\bm{x})\cdot\bm{\sigma}}.
+\end{align}
+Baker-Campbell-Hausdorff 公式为
+\begin{align}
+    \e^A\e^B=\exp\left(A+B+\frac{1}{2}[A,B]+\frac{1}{12}[A,[A,B]]+\frac{1}{12}[B,[B,A]]+\cdots\right).
+\end{align}
+对 $A=\i\bm{a}\cdot\bm{\sigma}$, $B=\i\bm{b}\cdot\bm{\sigma}$, 利用 \eqref{eq:pauli-vector-product}, 得到 $[A,B]=-2\i(\bm{a}\times\bm{b})\cdot\bm{\sigma}$. 所有更高阶嵌套对易子仍是 Pauli 矩阵的线性组合, 所以总电路仍可写成
+\begin{align}
+    \mathcal{U}(\bm{x})=\e^{\i\bm{\xi}(\bm{x})\cdot\bm{\sigma}}.
+\end{align}
+有效函数 $\bm{\xi}(\bm{x})$ 包含各层三角函数的叠加、叉积以及更高阶交互项. 这说明非对易旋转会在不同层的输入特征之间产生复杂耦合.
+
+\subsection{与神经网络的对应及理论边界}
+
+经典神经网络与数据重上传电路具有如下形式对应:
+\begin{center}
+\begin{tabular}{c|c}
+\hline
+单隐层神经网络 & 数据重上传量子电路\\
+\hline
+输入权重 $\bm{w}_i$ & 数据缩放参数 $\bm{w}_i$\\
+偏置 $b_i$ & 旋转偏置 $\bm{\theta}_i$\\
+激活函数 $\varphi$ & 旋转产生的三角函数 $\bm{\omega}$\\
+隐藏神经元数 $N$ & 数据重上传层数 $N$\\
+输出组合权重 $\alpha_i$ & 测量及加权损失参数\\
+\hline
+\end{tabular}
+\end{center}
+
+这一对应解释了为什么需要在每一层重新输入数据, 以及为什么层数增加能够提高表达能力.
+
+\section{多量子比特推广}
+
+\subsection{无纠缠与含纠缠电路}
+
+对于 $Q$ 个量子比特, 第 $i$ 层可在各量子比特上并行执行数据重上传:
+\begin{align}
+    V_i(\bm{x})=\bigotimes_{q=1}^Q U_{i,q}(\bm{\theta}_{i,q}+\bm{w}_{i,q}\circ\bm{x}).
+\end{align}
+无纠缠模型为
+\begin{align}
+    \ket{\Psi(\bm{x})}=V_N(\bm{x})\cdots V_1(\bm{x})\ket{0}^{\otimes Q}.
+\end{align}
+由于各量子比特间没有纠缠, 输出保持直积形式, 可以理解为多个单量子比特特征提取器并行工作.
+
+含纠缠模型在相邻重上传层之间插入纠缠门 $E_i$:
+\begin{align}
+    \ket{\Psi(\bm{x})}=V_N(\bm{x})E_{N-1}V_{N-1}(\bm{x})\cdots E_1 V_1(\bm{x})\ket{0}^{\otimes Q}.
+\end{align}
+论文采用 CZ 门作为纠缠门. 两量子比特电路在相邻旋转层之间施加 CZ; 四量子比特电路则交替连接 $(1,2),(3,4)$ 和 $(2,3),(1,4)$. 纠缠使一个量子比特的局部输出依赖其他量子比特上的编码和旋转, 从而引入多体相关结构.
+
+\subsection{多量子比特测量}
+
+第一种测量策略是把完整输出态与多量子比特标签态比较:
+\begin{align}
+    F_c(\bm{x})=\abs{\braket{\widetilde{\Psi}_c|\Psi(\bm{x})}}^2.
+\end{align}
+计算基提供最多 $2^Q$ 个两两正交标签态, 但完整状态层析的测量开销随量子比特数指数增长.
+
+第二种策略只测量某个量子比特的约化态:
+\begin{align}
+    \rho_q(\bm{x})=\tr_{\ov q}\left[\ket{\Psi(\bm{x})}\bra{\Psi(\bm{x})}\right],
+\end{align}
+并定义
+\begin{align}
+    F_{c,q}(\bm{x})=\bra{\widetilde{\psi}_c}\rho_q(\bm{x})\ket{\widetilde{\psi}_c}.
+\end{align}
+相应加权损失可写成
+\begin{align}
+    \chi_{wf}^2=\frac{1}{2}\sum_{\mu=1}^M\sum_{c=1}^{\mathcal C}\sum_{q=1}^Q[\alpha_{c,q}F_{c,q}(\bm{x}_\mu)-Y_c(\bm{x}_\mu)]^2.
+\end{align}
+
+\section{经典优化方法}
+
+\subsection{优化问题}
+
+将所有旋转偏置、数据权重和类别权重展平为参数向量 $\bm{p}=(\bm{\theta},\bm{w},\bm{\alpha})$, 训练过程就是求解
+\begin{align}
+    \bm{p}^\ast=\argmin_{\bm{p}}\chi^2(\bm{p}).
+\end{align}
+由于损失函数由大量三角函数及其乘积构成, 参数空间一般是非凸的, 具有周期性和多个局部极小值. 所以增加层数虽然提高表达能力, 也会增加优化难度.
+
+\subsection{L-BFGS-B 方法}
+
+实验主要采用 SciPy 实现的 L-BFGS-B 算法. BFGS 属于拟 Newton 方法. Newton 方法使用 Hessian 逆矩阵给出方向
+\begin{align}
+    \bm{d}_k=-[\nabla^2\chi^2(\bm{p}_k)]^{-1}\nabla\chi^2(\bm{p}_k),
+\end{align}
+但直接计算和存储 Hessian 代价较高. BFGS 根据连续两步的参数和梯度变化
+\begin{align}
+    \bm{s}_k=\bm{p}_{k+1}-\bm{p}_k,\q \bm{y}_k=\nabla\chi^2(\bm{p}_{k+1})-\nabla\chi^2(\bm{p}_k)
+\end{align}
+逐步近似逆 Hessian. 若 $H_k$ 表示逆 Hessian 近似, 令 $\rho_k=1/\bm{y}_k^\T\bm{s}_k$, 则 BFGS 更新为
+\begin{align}
+    H_{k+1}=(I-\rho_k\bm{s}_k\bm{y}_k^\T)H_k(I-\rho_k\bm{y}_k\bm{s}_k^\T)+\rho_k\bm{s}_k\bm{s}_k^\T.
+\end{align}
+搜索方向为 $\bm{d}_k=-H_k\nabla\chi^2(\bm{p}_k)$, 步长由线搜索确定.
+
+L-BFGS 中的 L 表示有限内存. 它不显式保存完整的 $P\times P$ 逆 Hessian 近似, 而只保存最近 $m$ 组 $(\bm{s}_k,\bm{y}_k)$, 将内存开销从 $\O(P^2)$ 降低到 $\O(mP)$. 最后的 B 表示可以处理边界约束 $\ell_j\le p_j \le u_j$.
+
+L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟给出的损失平滑且无有限测量次数噪声, 因而每一步使用完整训练集并估计曲率是可行的.
+
+\section{损失函数梯度与随机梯度下降}
+
+\subsection{前向状态与反向状态}
+
+下面对普通保真度损失推导了类似神经网络反向传播的梯度. 定义第 $\ell$ 层后的前向状态
+\begin{align}
+    \ket{\psi_\ell}=L_\ell L_{\ell-1}\cdots L_1\ket{0}, \q \ket{\psi_0}=\ket{0}.
+\end{align}
+从正确标签态反向定义
+\begin{align}
+    \bra{\Delta_\ell}=\bra{\widetilde{\psi}_c}L_N L_{N-1}\cdots L_{\ell+1},\q\bra{\Delta_N}=\bra{\widetilde{\psi}_c}.
+\end{align}
+于是最终重叠可以在任意一层切开:
+\begin{align}
+    \braket{\widetilde{\psi}_c|\psi_N}=\braket{\Delta_\ell|\psi_\ell}=\bra{\Delta_l}L_\ell\ket{\psi_{\ell-1}}.
+\end{align}
+
+\subsection{梯度推导}
+
+对单个样本, 令
+\begin{align}
+    z=\bra{\Delta_\ell}L_\ell\ket{\psi_{\ell-1}}, \q \chi_f^2=1-\abs{z}^2.
+\end{align}
+因为
+\begin{align}
+    \frac{\p\abs{z}^2}{\p\theta_\ell^j}=2\Re\left[\frac{\p z}{\p\theta_\ell^j}z^\ast\right],
+\end{align}
+所以
+\begin{align}
+    \frac{\p\chi_f^2}{\p\theta_\ell^j}=-2\Re\left[\left(\bra{\Delta_\ell}\frac{\p L_\ell}{\p\theta_\ell^j}\ket{\psi_{\ell-1}}\right)\braket{\psi_\ell|\Delta_\ell}\right].
+    \label{eq:loss-gradient}
+\end{align}
+由于 $\phi_\ell^j=\theta_\ell^j+w_\ell^j x^j$, 链式法则给出
+\begin{align}
+    \frac{\p L_\ell}{\p w_\ell^j}=x^j\frac{\p L_\ell}{\p\theta_\ell^j}.
+\end{align}
+对 \eqref{eq:su2-euler} 的参数化, 利用
+\begin{align}
+    \frac{\p L_\ell}{\p\theta_\ell^j}=\frac{1}{2} U\left(\bm{\phi}_\ell+\pi\bm{e}_j\right),
+\end{align}
+其中 $\bm{e}_j$ 只有第 $j$ 个分量为 $1$. 参数更新为
+\begin{align}
+    \theta_\ell^j \leftarrow \theta_\ell^j-\eta \frac{\p\chi_f^2}{\p\theta_\ell^j},\q w_\ell^j\leftarrow w_\ell^j-\eta \frac{\p\chi_f^2}{\p w_\ell^j}.
+\end{align}
+
+\subsection{批量 SGD 与理论局限}
+
+若每处理一个样本就更新一次参数, 梯度波动较大; 若每次对完整训练集梯度取平均, 又可能在小数据集上较早停留于局部区域. 我们采用小批量思想, 将训练集划分为若干批次, 对每个批次的平均梯度进行更新, 每轮重新打乱数据. 然而 \eqref{eq:loss-gradient} 需要访问中间前向状态 $\ket{\psi_\ell}$ 和反向状态 $\bra{\Delta_\ell}$, 在经典状态向量模拟中容易实现, 在真实量子硬件上则不够直接. 数值结果比较表明, 对其规模较小的训练集, L-BFGS-B 比 SGD 更准确且更快, 因而实验最终采用 L-BFGS-B.
+
+\begin{thebibliography}{9}
+
+\bibitem{paper}
+A. Pérez-Salinas, A. Cervera-Lierta, E. Gil-Fuster, and J. I. Latorre,
+\textit{Data re-uploading for a universal quantum classifier},
+Quantum \textbf{4}, 226 (2020).
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,60 @@
+\documentclass[a4paper]{ctexart}
+
+\usepackage{packages}
+\usepackage{mathstyle}
+\usepackage{reportstyle}
+
+\setinfo{基于数据重上传的量子分类器复现开题报告}
+{崔正平 \q 张译夫 \q 张扬皓}
+
+\begin{document}
+
+\maketitle
+\section{课题背景与研究问题}
+
+本次大作业拟基本复现 Pérez-Salinas 等人在论文 \textit{Data re-uploading for a universal quantum classifier} 中提出的数据重上传量子分类器~\cite{paper}. 论文关注的核心问题是: 在经典优化子程序辅助下, 完成一般监督分类任务所需的量子资源(包括量子比特数、量子操作数以及待优化参数数目等)最低可以压缩到什么程度; 特别地, 能否通过增加数据重上传次数和电路深度, 以较少的量子比特处理多维、非线性及多类别的监督分类任务. 普通单量子比特电路若只在起始位置编码一次数据, 后续操作仅相当于 Bloch 球上的整体旋转, 难以形成复杂决策边界. 论文据此提出在计算过程中多次重新编码同一组经典数据, 并在相邻编码之间插入可训练旋转, 以量子电路深度换取模型表达能力.
+
+对输入 $\bm{x}$, 单量子比特分类器由 $N$ 个重上传层组成:
+\begin{align*}
+    \ket{\psi(\bm{x})}=L_N(\bm{x})\cdots L_1(\bm{x})\ket{0},\q L_i(\bm{x})=U\left(\bm{\theta}_i+\bm{w}_i\circ\bm{x}\right),
+\end{align*}
+其中 $U\in\te{SU}(2)$ 为一般单量子比特旋转, $\bm{\theta}_i$ 和 $\bm{w}_i$ 分别类似神经网络中的偏置与权重, $\circ$ 表示向量的逐元素乘积. 输出态与预设类别标签态之间的保真度
+\begin{align*}
+    F_c(\bm{x})=\abs{\braket{\widetilde{\psi}_c}{\psi(\bm{x})}}^2
+\end{align*}
+用于构造损失函数并完成分类. 重复出现的数据依赖旋转会产生丰富的三角函数组合, 使单量子比特电路能够随着重上传层数增加, 逐步逼近圆、环和非凸曲线等复杂决策边界. 论文还讨论了多量子比特、CZ 纠缠门及多类别标签态.
+
+\section{研究目标与主要内容}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item 推导单量子比特旋转、Bloch 向量、保真度及两类损失函数, 说明重上传层数与模型表达能力的关系;
+    \item 用 Python 实现状态向量模拟、参数优化和预测流程, 基本复现论文的圆形二分类实验;
+    \item 以三类同心环任务作为主要扩展实验, 比较不同层数和损失函数的准确率与决策边界;
+    \item 在完成上述核心任务的基础上, 实现两量子比特无纠缠和含 CZ 纠缠电路, 并与单量子比特模型以及支持向量分类器、单隐层神经网络等经典模型进行比较.
+\end{enumerate}
+
+\section{实验方案与技术路线}
+
+程序采用 NumPy 表示量子态和门矩阵, 使用 SciPy 的 L-BFGS-B 算法优化参数, 必要时用有限差分或参数移位方法检查梯度. 首先固定随机种子, 在 $[-1,1]^d$ 中生成训练集与独立测试集; 圆形任务按 $x_1^2+x_2^2<2/\pi$ 标注, 扩展任务按照论文给出的区域边界标注. 随后完成如下流程:
+\begin{align*}
+    \te{数据生成}\longrightarrow \te{重上传电路前向模拟}\longrightarrow \te{保真度损失计算}\longrightarrow \te{经典优化}\longrightarrow \te{测试与可视化}.
+\end{align*}
+
+二维任务初步采用 200 个训练样本和 4000 个独立测试样本, 与论文的实验规模保持一致. 实验取 $N=1,2,4,6,8,10$ 等层数, 分别使用普通保真度损失和加权保真度损失. 对每种电路设置采用多个固定随机种子进行重复实验, 记录测试准确率, 同时绘制二维决策区域. 核心复现目标是观察到一层近似线性分割、两层开始形成圆形、增加层数后边界逐步细化的现象.
+
+\section{分工与预期成果}
+
+崔正平同学负责数学公式推导与论文撰写, 包括推导量子分类器的电路结构和损失函数、整理理论背景、撰写与统稿, 以及制作汇报材料.
+
+张译夫、张扬皓同学共同负责代码编写、程序测试与数据整理, 包括实现单量子比特及多量子比特模拟、优化器接口、数据生成、实验批处理和结果可视化, 并完成单元测试、实验结果整理与可复现性检查.
+
+预期交付包括一套可运行的 Python 程序、实验配置与数据表、决策边界图, 以及一份包含理论推导、实验结果和局限分析的课程大作业论文.
+
+\begin{thebibliography}{9}
+\bibitem{paper}
+A. Pérez-Salinas, A. Cervera-Lierta, E. Gil-Fuster, and J. I. Latorre,
+\textit{Data re-uploading for a universal quantum classifier},
+Quantum \textbf{4}, 226 (2020).
+\end{thebibliography}
+
+\end{document}
