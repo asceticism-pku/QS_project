@@ -14,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-本文拟复现 Pérez-Salinas 等人提出的数据重上传量子分类器. 该模型研究在量子比特数极少的条件下, 参数化量子电路能否完成高维、非线性及多类别监督分类任务. 其核心思想是在量子电路的不同位置反复编码同一组经典数据, 并在相邻编码之间插入可训练旋转. 多次数据依赖旋转及其非对易复合能够产生丰富的三角函数和频率组合, 从而提高量子电路的函数表达能力.
+    本文拟复现 Pérez-Salinas 等人提出的数据重上传量子分类器. 该模型研究在量子比特数极少的条件下, 参数化量子电路能否完成高维、非线性及多类别监督分类任务. 其核心思想是在量子电路的不同位置反复编码同一组经典数据, 并在相邻编码之间插入可训练旋转. 多次数据依赖旋转及其非对易复合能够产生丰富的三角函数和频率组合, 从而提高量子电路的函数表达能力.
 \end{abstract}
 
 \section{引言}
@@ -25,19 +25,21 @@
 
 Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重新编码同一输入解决这一问题~\cite{paper}. 其基本结构与单隐层神经网络具有形式上的相似性: 神经网络的每个隐藏神经元都会重新读取输入, 而数据重上传电路的每一层也会重新读取同一组经典数据. 各层使用不同的数据权重和旋转偏置, 多层旋转的三角函数结构以及不同旋转轴之间的非对易性共同产生复杂的非线性特征.
 
-\section{单量子比特的数学基础}
+\section{单量子比特基础知识}
 
+\subsection{量子比特的定义}
+具有量子特性的系统（如自旋 $1/2$ 粒子），选定两个相互正交的本征态，分别以 $\ket{0}$ 和 $\ket{1}$ 代表。
 \subsection{纯态与状态向量}
 
 计算基定义为
 \begin{align}
     \ket{0}=\begin{pNiceMatrix}
-        1 \\
-        0
-    \end{pNiceMatrix},\q \ket{1}=\begin{pNiceMatrix}
-        0 \\
-        1
-    \end{pNiceMatrix}.
+                1 \\
+                0
+            \end{pNiceMatrix},\q \ket{1}=\begin{pNiceMatrix}
+                                             0 \\
+                                             1
+                                         \end{pNiceMatrix}.
 \end{align}
 任意单量子比特纯态都可以写成
 \begin{align}
@@ -54,9 +56,9 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 纯态 $\ket{\psi}$ 对应密度矩阵
 \begin{align}
     \rho=\ket{\psi}\bra{\psi}=\begin{pNiceMatrix}
-        \abs{\alpha}^2 & \alpha\beta^\ast\\
-        \alpha^\ast\beta & \abs{\beta}^2
-    \end{pNiceMatrix}.
+                                  \abs{\alpha}^2   & \alpha\beta^\ast \\
+                                  \alpha^\ast\beta & \abs{\beta}^2
+                              \end{pNiceMatrix}.
 \end{align}
 对角元表示计算基测量概率, 非对角元保存 $\ket{0}$ 与 $\ket{1}$ 之间的相位相干信息.
 
@@ -64,25 +66,41 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \begin{align}
     \rho=\sum_j p_j\ket{\psi_j}\bra{\psi_j}, \q p_j\ge 0, \q \sum_j p_j=1.
 \end{align}
-对任意测量算符 $M$, 测量结果的总概率为
-\begin{align}
-    P(M)=\sum_j p_j \bra{\psi_j}M\ket{\psi_j}=\tr\left(\rho M\right).
-\end{align}
+根据量子力学的基本假设，系统的任意物理可观测量均由态矢空间（希尔伯特空间）上的一个线性厄米算符$M$描述，根据数学知识， $M$ 可以被对角化，即存在一组正交归一的本征态基底 $\{\ket{m_k}\}$ 及其对应的实数本征值 $m_k$，使得：
+\begin{equation}
+    M = \sum_k m_k \ket{m_k}\bra{m_k}
+\end{equation}
+
+根据 Born 规则，对处于 $\ket{\psi_j}$ 的系统进行测量，得到结果 $m_k$ 的概率为：
+\begin{equation}
+    P(m_k | \psi_j) = \abs{\bra{m_k}\ket{\psi_j}}^2 = \bra{\psi_j}\ket{m_k}\bra{m_k}\ket{\psi_j}
+\end{equation}
+
+因此可观测量 $M$ 在纯态 $\ket{\psi_j}$ 下的期望值为：
+\begin{equation}
+    \langle M \rangle_{\psi_j} = \sum_k m_k P(m_k | \psi_j) = \sum_k m_k \bra{\psi_j}\ket{m_k}\bra{m_k}\ket{\psi_j}=\bra{\psi_j}M\ket{\psi_j}
+\end{equation}
+
+再把$\rho$的定义带入，得：
+\begin{equation}
+    \langle M \rangle = \sum_j p_j \langle M \rangle_{\psi_j} = \sum_j p_j \bra{\psi_j}M\ket{\psi_j}=\sum_j p_j\tr\left(\ket{\psi_j}\bra{\psi_j} M\right) =\tr\left(\rho M\right)
+\end{equation}
+
 
 \subsection{Pauli 矩阵及其代数}
 
 三个 Pauli 矩阵为
 \begin{align}
     \sigma_x=\begin{pNiceMatrix}
-        0 & 1 \\
-        1 & 0
-    \end{pNiceMatrix},\q \sigma_y=\begin{pNiceMatrix}
-        0 & -\i \\
-        \i & 0
-    \end{pNiceMatrix},\q \sigma_z=\begin{pNiceMatrix}
-        1 & 0 \\
-        0 & -1
-    \end{pNiceMatrix}.
+                 0 & 1 \\
+                 1 & 0
+             \end{pNiceMatrix},\q \sigma_y=\begin{pNiceMatrix}
+                                               0  & -\i \\
+                                               \i & 0
+                                           \end{pNiceMatrix},\q \sigma_z=\begin{pNiceMatrix}
+                                                                             1 & 0  \\
+                                                                             0 & -1
+                                                                         \end{pNiceMatrix}.
     \label{eq:pauli}
 \end{align}
 它们既是单量子比特的基本可观测量, 也是 $\te{SU}(2)$ 旋转的生成元. Pauli 矩阵满足
@@ -94,7 +112,7 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
     \sigma_x\sigma_y=\i\sigma_z,\q \sigma_y\sigma_z=\i\sigma_x, \q \sigma_z\sigma_x=\i\sigma_y,
 \end{align}
 交换乘法顺序会改变符号. 因此
-\begin{align}
+\begin{align} \label{eq:pauli_algebra}
     \{\sigma_i,\sigma_j\}=2\delta_{ij}I,\q[\sigma_i,\sigma_j]=2\i\sum_k\eps_{ijk}\sigma_k.
 \end{align}
 进一步可得向量恒等式
@@ -105,38 +123,54 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 
 \subsection{Bloch 球表示}
 
-由于 $I,\sigma_x,\sigma_y,\sigma_z$ 构成 $2\times2$ 厄米矩阵空间的一组基, 任意单量子比特密度矩阵都可以唯一写成
+任意$2\times2$ 厄米矩阵 H 都可以唯一写成\begin{align}
+    \begin{pNiceMatrix}
+        a    & c-di \\
+        c+di & b
+    \end{pNiceMatrix} \q a,b,c,d \in \mathbf{R} \end{align}
+
+而 $I,\sigma_x,\sigma_y,\sigma_z$ 构成 $2\times2$ 厄米矩阵空间的一组基, 因此任意单量子比特密度矩阵都可以唯一写成
 \begin{align}
-    \rho=\frac{1}{2}\left(I+\bm{r}\cdot\bm{\sigma}\right), \q \bm{r}=(r_x,r_y,r_z).
+    \rho=a_0I+a_x\sigma_x+a_y\sigma_y+a_z\sigma_z.
 \end{align}
-其中
+
+又因为密度矩阵满足归一化条件$\tr(\rho)=1$,所以$a_0=\frac{1}{2}$,
+\begin{align}
+    \rho=\frac{1}{2}\left(I+\bm{r}\cdot\bm{\sigma}\right), \q \bm{r}=(r_x,r_y,r_z),\q r_x=2a_x,r_y=2a_y,r_z=2a_z.
+\end{align}
+
+通过计算可得
 \begin{align}
     r_x=\tr(\rho\sigma_x),\q r_y=\tr(\rho\sigma_y), \q r_z=\tr(\rho\sigma_z).
 \end{align}
+
 因此 Bloch 向量的三个分量正是三个 Pauli 测量的期望值.
 
 \subsection{单量子比特旋转}
 
 绕单位方向 $\bm{n}$ 旋转角度 $\phi$ 的量子门写成
-\begin{align}
+\begin{align}\label{eq:rotation_op}
     R_{\bm{n}}(\phi)=\e^{-\frac{1}{2}\i\phi\bm{n}\cdot\bm{\sigma}}.
 \end{align}
+
+关于等式 \eqref{eq:rotation_op} 的详细证明过程，请参见附录~\ref{app:proof_rotation}。
+
 特别地,
 \begin{align}
     R_y(\phi)=\begin{pNiceMatrix}
-        \cos(\phi/2) & -\sin(\phi/2) \\
-        \sin(\phi/2) & \cos(\phi/2)
-    \end{pNiceMatrix},\q R_z(\phi)=\begin{pNiceMatrix}
-        \e^{-\i\phi/2} & 0 \\
-        0 & \e^{\i\phi/2}
-    \end{pNiceMatrix}.
+                  \cos(\phi/2) & -\sin(\phi/2) \\
+                  \sin(\phi/2) & \cos(\phi/2)
+              \end{pNiceMatrix},\q R_z(\phi)=\begin{pNiceMatrix}
+                                                 \e^{-\i\phi/2} & 0             \\
+                                                 0              & \e^{\i\phi/2}
+                                             \end{pNiceMatrix}.
 \end{align}
 忽略整体相位后, 任意单量子比特酉门属于 $\te{SU}(2)$, 可以由三个 Euler 角参数化. 我们采用显式形式
 \begin{align}
     U(\bm{\phi})=\begin{pNiceMatrix}
-        \cos\frac{\phi_1}{2}\e^{\i(\phi_2+\phi_3)/2} & \sin\frac{\phi_1}{2}\e^{-\i(\phi_2-\phi_3)/2} \\
-        \sin\frac{\phi_1}{2}\e^{\i(\phi_2-\phi_3)/2} & \cos\frac{\phi_1}{2}\e^{-\i(\phi_2+\phi_3)/2}
-    \end{pNiceMatrix}.
+                     \cos\frac{\phi_1}{2}\e^{\i(\phi_2+\phi_3)/2} & \sin\frac{\phi_1}{2}\e^{-\i(\phi_2-\phi_3)/2} \\
+                     \sin\frac{\phi_1}{2}\e^{\i(\phi_2-\phi_3)/2} & \cos\frac{\phi_1}{2}\e^{-\i(\phi_2+\phi_3)/2}
+                 \end{pNiceMatrix}.
     \label{eq:su2-euler}
 \end{align}
 
@@ -158,7 +192,7 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \end{align}
 同一输入 $\bm{x}$ 在电路中被重复使用, 因而称为数据重上传.
 
-\subsection{数据与训练参数共同控制旋转}
+\subsection{压缩参数}
 
 为减少每层所需门数, 论文提出压缩参数化
 \begin{align}
@@ -259,11 +293,11 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \subsection{经典通用逼近定理}
 
 \begin{theorem}[通用逼近定理]
-设 $I_m=[0,1]^m$, $f\in C(I_m)$, 且 $\varphi:\R\to\R$ 为非常数、有界、连续函数. 对任意 $\eps>0$, 存在正整数 $N$ 及参数 $\alpha_i,b_i\in\R$, $\bm{w}_i\in\R^m$, 使
-\begin{align}
-    h(\bm{x})=\sum_{i=1}^N\alpha_i\varphi(\bm{w}_i\cdot\bm{x}+b_i)
-\end{align}
-满足 $\abs{h(\bm{x})-f(\bm{x})}<\eps,\fo \bm{x}\in I_m$.
+    设 $I_m=[0,1]^m$, $f\in C(I_m)$, 且 $\varphi:\R\to\R$ 为非常数、有界、连续函数. 对任意 $\eps>0$, 存在正整数 $N$ 及参数 $\alpha_i,b_i\in\R$, $\bm{w}_i\in\R^m$, 使
+    \begin{align}
+        h(\bm{x})=\sum_{i=1}^N\alpha_i\varphi(\bm{w}_i\cdot\bm{x}+b_i)
+    \end{align}
+    满足 $\abs{h(\bm{x})-f(\bm{x})}<\eps,\fo \bm{x}\in I_m$.
 \end{theorem}
 
 该定理说明单隐层神经网络只要包含足够多隐藏神经元, 就能够逼近紧致区域上的连续函数.
@@ -282,9 +316,9 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 
 对于 Euler 角, 可以取
 \begin{align}
-    \omega_1(\bm{\phi})&=d\mathcal{N}\sin\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
-    \omega_2(\bm{\phi})&=d\mathcal{N}\cos\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
-    \omega_3(\bm{\phi})&=d\mathcal{N}\sin\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},
+    \omega_1(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
+    \omega_2(\bm{\phi}) & =d\mathcal{N}\cos\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
+    \omega_3(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},
 \end{align}
 其中
 \begin{align}
@@ -308,21 +342,26 @@ Baker-Campbell-Hausdorff 公式为
 \end{align}
 有效函数 $\bm{\xi}(\bm{x})$ 包含各层三角函数的叠加、叉积以及更高阶交互项. 这说明非对易旋转会在不同层的输入特征之间产生复杂耦合.
 
+同时，从这里也可以看出由于 Pauli 矩阵互不对易，$[A,B] \neq 0$，可知\begin{equation}
+    \mathcal{U}(\bm{\theta}_i)\mathcal{U}(\bm{w}_i\circ\bm{x}) \neq \mathcal{U}(\bm{\theta}_i+\bm{w}_i\circ\bm{x})
+\end{equation}
+因此在真实的量子电路中，顺序作用 $L(i)=U(\bm{\theta}_i)U(\bm{w}_i\circ\bm{x})$与论文中的压缩参数 $L_i(\bm{x})=U(\bm{\theta}_i+\bm{w}_i\circ\bm{x})$ 对量子态的影响实际上是不相等的。
+
 \subsection{与神经网络的对应及理论边界}
 
 经典神经网络与数据重上传电路具有如下形式对应:
 \begin{center}
-\begin{tabular}{c|c}
-\hline
-单隐层神经网络 & 数据重上传量子电路\\
-\hline
-输入权重 $\bm{w}_i$ & 数据缩放参数 $\bm{w}_i$\\
-偏置 $b_i$ & 旋转偏置 $\bm{\theta}_i$\\
-激活函数 $\varphi$ & 旋转产生的三角函数 $\bm{\omega}$\\
-隐藏神经元数 $N$ & 数据重上传层数 $N$\\
-输出组合权重 $\alpha_i$ & 测量及加权损失参数\\
-\hline
-\end{tabular}
+    \begin{tabular}{c|c}
+        \hline
+        单隐层神经网络           & 数据重上传量子电路               \\
+        \hline
+        输入权重 $\bm{w}_i$   & 数据缩放参数 $\bm{w}_i$       \\
+        偏置 $b_i$          & 旋转偏置 $\bm{\theta}_i$    \\
+        激活函数 $\varphi$    & 旋转产生的三角函数 $\bm{\omega}$ \\
+        隐藏神经元数 $N$        & 数据重上传层数 $N$             \\
+        输出组合权重 $\alpha_i$ & 测量及加权损失参数               \\
+        \hline
+    \end{tabular}
 \end{center}
 
 这一对应解释了为什么需要在每一层重新输入数据, 以及为什么层数增加能够提高表达能力.
@@ -449,11 +488,141 @@ L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟�
 
 \begin{thebibliography}{9}
 
-\bibitem{paper}
-A. Pérez-Salinas, A. Cervera-Lierta, E. Gil-Fuster, and J. I. Latorre,
-\textit{Data re-uploading for a universal quantum classifier},
-Quantum \textbf{4}, 226 (2020).
+    \bibitem{paper}
+    A. Pérez-Salinas, A. Cervera-Lierta, E. Gil-Fuster, and J. I. Latorre,
+    \textit{Data re-uploading for a universal quantum classifier},
+    Quantum \textbf{4}, 226 (2020).
+
+    \bibitem{zhao2008quantum}
+    赵凯华, 罗蔚茵,
+    \textit{新概念物理教程：量子物理} (第二版),
+    高等教育出版社, 2008.
 
 \end{thebibliography}
+
+\appendix
+
+\section{正文中等式 \eqref{eq:rotation_op} 的证明} \label{app:proof_rotation}
+
+假设 $\bm{n}$ 为三维空间中的单位向量，且 $\bm{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ 为 Pauli 矩阵，则有：
+\begin{equation*}
+    R_{\bm{n}}(\phi) = \e^{-\frac{1}{2}\i\phi\bm{n}\cdot\bm{\sigma}}. \tag{\ref{eq:rotation_op}}
+\end{equation*}
+
+我们希望证明 $R_{\bm{n}}$确实是对于 Bloch 球绕单位方向 $\bm{n}$ 旋转角度 $\phi$
+
+\begin{proof}
+    利用式~\eqref{eq:pauli-vector-product} 可得
+    \begin{align}
+        (\bm{n}\cdot\bm{\sigma})^2
+         & = (\bm{n}\cdot\bm{n})I
+        +\i(\bm{n}\times\bm{n})\cdot\bm{\sigma}
+        = I.
+    \end{align}
+
+    因此
+    \begin{align}
+        (\bm{n}\cdot\bm{\sigma})^{2k}=I,\qquad
+        (\bm{n}\cdot\bm{\sigma})^{2k+1}
+        =\bm{n}\cdot\bm{\sigma}.
+    \end{align}
+
+    将矩阵指数展开为幂级数，并分别对偶数次幂与奇数次幂求和，有
+    \begin{align}
+        R_{\bm{n}}(\phi)
+         & =\exp\left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right) \\
+         & =\sum_{m=0}^{\infty}
+        \frac{1}{m!}
+        \left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right)^m       \\
+         & =\sum_{k=0}^{\infty}
+        \frac{(-1)^k}{(2k)!}
+        \left(\frac{\phi}{2}\right)^{2k}I
+        -\i
+        \sum_{k=0}^{\infty}
+        \frac{(-1)^k}{(2k+1)!}
+        \left(\frac{\phi}{2}\right)^{2k+1}
+        \bm{n}\cdot\bm{\sigma}                                       \\
+         & =\cos\frac{\phi}{2}\,I
+        -\i\sin\frac{\phi}{2}\,\bm{n}\cdot\bm{\sigma}.
+    \end{align}
+
+    我们考虑 Bloch 向量为 $\bm r$ 的单量子比特状态
+    \begin{align}
+        \rho=\frac{1}{2}\left(I+\bm r\cdot\bm\sigma\right).
+    \end{align}
+
+    经过旋转算符
+    \begin{align}
+        U=R_{\bm n}(\phi)
+        =\cos\frac{\phi}{2}I
+        -\i\sin\frac{\phi}{2}\bm n\cdot\bm\sigma
+    \end{align}
+
+    作用后，密度矩阵变为
+    \begin{align}
+        \rho'=U\rho U^\dagger.
+    \end{align}
+
+    显然$U I U^\dagger  = I $，而
+    \begin{align}
+        U(\bm r\cdot\bm\sigma)U^\dagger
+         & =(\cos\frac{\phi}{2}I-\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\cos\frac{\phi}{2}I+\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma) \\
+         & =(\cos\frac{\phi}{2})^2\bm r\cdot\bm\sigma
+        +\i \cos\frac{\phi}{2}\sin\frac{\phi}{2}\left[
+            (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma
+            -\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)
+            \right]
+        +(\sin\frac{\phi}{2})^2(\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma).
+    \end{align}
+
+    利用式~\eqref{eq:pauli-vector-product} 可得
+    \begin{align}
+        (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma
+        -\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)
+        =-2\i(\bm n\times\bm r)\cdot\bm\sigma, \\
+        (\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma)
+        =
+        \left[
+            2(\bm n\cdot\bm r)\bm n-\bm r
+            \right]\cdot\bm\sigma.
+    \end{align}
+
+    因此
+    \begin{align}
+        U(\bm r\cdot\bm\sigma)U^\dagger
+         & =
+        \Big[
+            ((\cos\frac{\phi}{2})^2-(\sin\frac{\phi}{2})^2)\bm r
+            +2\cos\frac{\phi}{2}\sin\frac{\phi}{2}(\bm n\times\bm r)
+            +2(\sin\frac{\phi}{2})^2(\bm n\cdot\bm r)\bm n
+        \Big]\cdot\bm\sigma.                                 \\
+         & =\Big[\bm r\cos\phi
+            +(\bm n\times\bm r)\sin\phi
+        +\bm n(\bm n\cdot\bm r)(1-\cos\phi)]\cdot\bm\sigma . \\
+         & = \bm r'\cdot\bm\sigma
+    \end{align}
+
+    其中
+    \begin{align}
+        \bm r'
+        =
+        \bm r\cos\phi
+        +(\bm n\times\bm r)\sin\phi
+        +\bm n(\bm n\cdot\bm r)(1-\cos\phi).
+        \label{eq:bloch-rotation}
+    \end{align}
+
+    于是旋转后的密度矩阵为
+    \begin{align}
+        \rho'
+        =\frac{1}{2}\left(I+\bm r'\cdot\bm\sigma\right).
+    \end{align}
+    式~\eqref{eq:bloch-rotation} 正是三维空间中绕单位轴 $\bm n$ 旋转角度 $\phi$ 的 Rodrigues 旋转公式。因此，
+    \begin{align}
+        R_{\bm n}(\phi)
+        =\e^{-\frac{1}{2}\i\phi\bm n\cdot\bm\sigma}
+    \end{align}
+    确实使量子态对应的 Bloch 向量绕 $\bm n$ 轴旋转角度 $\phi$。
+\end{proof}
 
 \end{document}
