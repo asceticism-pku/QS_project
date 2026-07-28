@@ -4,3 +4,17 @@ __pycache__/
 
 # Local experiment environment
 .venv/
+
+
+
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fmt
+*.fot
+*.cb
+*.cb2
+
+
