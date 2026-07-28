@@ -1,0 +1,5 @@
+{"best_objective": 0.5304649357232808, "elapsed_seconds": 0.005038750008679926, "nfev_observed": 1, "objective": 0.5304649357232808}
+{"best_objective": 0.2625741562815942, "elapsed_seconds": 0.44371508300537243, "nfev_observed": 100, "objective": 0.2625741562815942}
+{"best_objective": 0.21961155445333233, "elapsed_seconds": 0.8015940830227919, "nfev_observed": 200, "objective": 0.21961155485426204}
+{"best_objective": 0.1986039862766409, "elapsed_seconds": 1.1358585830021184, "nfev_observed": 300, "objective": 0.19860398627881096}
+{"best_objective": 0.19470795069830313, "elapsed_seconds": 1.4701449160056654, "nfev_observed": 400, "objective": 0.19470795070342517}

@@ -1,0 +1,4173 @@
+{
+  "M4_audit": {
+    "candidate_count": 1,
+    "candidates": [
+      {
+        "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/result.json",
+        "sha256": "01f37cc4a6faedff38b309f367f7e1adcf1d933bbe7eb06db3d214a96e35c114",
+        "verification": "artifacts-verified"
+      }
+    ],
+    "checkpoint_count": 10,
+    "checkpoint_reuse_verified": true,
+    "issues": [],
+    "nfev": 0,
+    "optimizer_runs": 0,
+    "passed": true,
+    "selected_result": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/result.json",
+    "selected_result_sha256": "01f37cc4a6faedff38b309f367f7e1adcf1d933bbe7eb06db3d214a96e35c114",
+    "verification": "artifacts-verified"
+  },
+  "checks": {
+    "M2_compile_artifacts_verified": true,
+    "M3_compile_artifacts_verified": true,
+    "M4_frozen_checkpoint_evaluation_verified": true,
+    "known_l8_maxfun_nonconvergence_preserved": true,
+    "optimizer_matrix_exactly_45": true
+  },
+  "code_revision": {
+    "branch": "main",
+    "dirty": true,
+    "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+    "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+    "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd",
+    "verifier_sha256": "12c4c8da37ff1ba7576224c283c2a966b52cd077f88a61f78b8c973831750d85"
+  },
+  "command": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/.venv/bin/python experiments/verify_project.py",
+  "compile_audits": {
+    "M2": {
+      "actual_row_count": 4000,
+      "all_label_parity": true,
+      "all_probability_parity": false,
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/compile-audit/seed-2026/20260728T120338.803889Z-166b441a5c/result.json",
+          "sha256": "8a0d6d75c31c5962b87611b97da53df311ab96fc9c0dc26fac35f616c1b3bf86",
+          "verification": "parity-failed"
+        }
+      ],
+      "checkpoint_count": 20,
+      "checkpoint_reuse_verified": true,
+      "issues": [],
+      "max_probability_error": 4.6520326479893015e-10,
+      "passed": true,
+      "point_count_per_checkpoint": 100,
+      "row_count": 4000,
+      "scientific_findings": [
+        {
+          "affects_artifact_integrity": false,
+          "classification": "preserved-scientific-negative-result",
+          "expected_for_stage": true,
+          "finding": "probability-parity-failed",
+          "max_probability_error": 4.6520326479893015e-10,
+          "observed": true,
+          "tolerance": 1e-10
+        }
+      ],
+      "selected_result": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/compile-audit/seed-2026/20260728T120338.803889Z-166b441a5c/result.json",
+      "selected_result_sha256": "8a0d6d75c31c5962b87611b97da53df311ab96fc9c0dc26fac35f616c1b3bf86",
+      "verification": "parity-failed"
+    },
+    "M3": {
+      "actual_row_count": 4000,
+      "all_label_parity": true,
+      "all_probability_parity": true,
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/compile-audit/seed-2026/20260728T121403.795920Z-ab974fbaf8/result.json",
+          "sha256": "c6842754b65b20e99d55581fa413004a5be0407e185d6290d6a9731c2ca51b11",
+          "verification": "artifacts-verified"
+        }
+      ],
+      "checkpoint_count": 20,
+      "checkpoint_reuse_verified": true,
+      "issues": [],
+      "max_probability_error": 2.4424906541753444e-15,
+      "passed": true,
+      "point_count_per_checkpoint": 100,
+      "row_count": 4000,
+      "scientific_findings": [],
+      "selected_result": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/compile-audit/seed-2026/20260728T121403.795920Z-ab974fbaf8/result.json",
+      "selected_result_sha256": "c6842754b65b20e99d55581fa413004a5be0407e185d6290d6a9731c2ca51b11",
+      "verification": "artifacts-verified"
+    }
+  },
+  "dataset_hash": "d163876f916dd70372aa75291f99cafd4d1ce14aa4e08f911714055b3ffe3a12",
+  "generated_at_utc": "2026-07-28T12:31:08.740513+00:00",
+  "input_count": 246,
+  "inputs": [
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/datasets/circle-seed-30-d163876f916dd703.npz",
+      "roles": [
+        "M4-dataset_artifact",
+        "optimizer-dataset:M1/1q-l4-legacy_amplitude/30",
+        "optimizer-dataset:M1/1q-l4-legacy_amplitude/31",
+        "optimizer-dataset:M1/1q-l4-legacy_amplitude/32",
+        "optimizer-dataset:M1/1q-l4-legacy_amplitude/33",
+        "optimizer-dataset:M1/1q-l4-legacy_amplitude/34",
+        "optimizer-dataset:M1/1q-l4-paper_squared/30",
+        "optimizer-dataset:M1/1q-l4-paper_squared/31",
+        "optimizer-dataset:M1/1q-l4-paper_squared/32",
+        "optimizer-dataset:M1/1q-l4-paper_squared/33",
+        "optimizer-dataset:M1/1q-l4-paper_squared/34",
+        "optimizer-dataset:M1/author-amplitude-1q-l4/30",
+        "optimizer-dataset:M1/author-weighted-1q-l1/30",
+        "optimizer-dataset:M1/author-weighted-1q-l2/30",
+        "optimizer-dataset:M1/author-weighted-1q-l4/30",
+        "optimizer-dataset:M1/author-weighted-1q-l8/30",
+        "optimizer-dataset:M2/1q-l2-paper_squared/30",
+        "optimizer-dataset:M2/1q-l2-paper_squared/31",
+        "optimizer-dataset:M2/1q-l2-paper_squared/32",
+        "optimizer-dataset:M2/1q-l2-paper_squared/33",
+        "optimizer-dataset:M2/1q-l2-paper_squared/34",
+        "optimizer-dataset:M2/2q-l2-cz-paper_squared/30",
+        "optimizer-dataset:M2/2q-l2-cz-paper_squared/31",
+        "optimizer-dataset:M2/2q-l2-cz-paper_squared/32",
+        "optimizer-dataset:M2/2q-l2-cz-paper_squared/33",
+        "optimizer-dataset:M2/2q-l2-cz-paper_squared/34",
+        "optimizer-dataset:M2/2q-l2-separable-paper_squared/30",
+        "optimizer-dataset:M2/2q-l2-separable-paper_squared/31",
+        "optimizer-dataset:M2/2q-l2-separable-paper_squared/32",
+        "optimizer-dataset:M2/2q-l2-separable-paper_squared/33",
+        "optimizer-dataset:M2/2q-l2-separable-paper_squared/34",
+        "optimizer-dataset:M3/l3-scratch/30",
+        "optimizer-dataset:M3/l3-scratch/31",
+        "optimizer-dataset:M3/l3-scratch/32",
+        "optimizer-dataset:M3/l3-scratch/33",
+        "optimizer-dataset:M3/l3-scratch/34",
+        "optimizer-dataset:M3/l4-to-l3-pruned/30",
+        "optimizer-dataset:M3/l4-to-l3-pruned/31",
+        "optimizer-dataset:M3/l4-to-l3-pruned/32",
+        "optimizer-dataset:M3/l4-to-l3-pruned/33",
+        "optimizer-dataset:M3/l4-to-l3-pruned/34",
+        "optimizer-dataset:M3/l4-truncate-last/30",
+        "optimizer-dataset:M3/l4-truncate-last/31",
+        "optimizer-dataset:M3/l4-truncate-last/32",
+        "optimizer-dataset:M3/l4-truncate-last/33",
+        "optimizer-dataset:M3/l4-truncate-last/34"
+      ],
+      "sha256": "84e97b6c733e1899dfaed678cef16eda2c336cfa1193a3fc033cb1bb0f787e57"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "compile_module_sha256": "af065a7ad26e28a055767f6f1f0a1126ebcfab447882d7e86cc73a26aeba7f79",
+          "compile_runner_sha256": "d168e254c4ea19ca8110d31eac324330240aef8101b7bc7daabe8c1e31df68d1",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        },
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/indices/compile_indices.json",
+      "roles": [
+        "M2-compile-compile_indices",
+        "M3-compile-compile_indices"
+      ],
+      "sha256": "d401aa81af43b44584f82122aa628c23f310e5d532c8d62be2319abc36e7a719"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/indices/eval_indices.json",
+      "roles": [
+        "M4-eval_indices"
+      ],
+      "sha256": "667083a84c28b9b22a95af197150c2258db78aa5503ddb17f012d2f8e8af7b5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-30/20260728T115846.198558Z-d0abf0c215/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-legacy_amplitude/30"
+      ],
+      "sha256": "b3b37c4cdb054682400d5c79973665652fb2b17c15ee94f72dd3cd4421212003"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-30/20260728T115846.198558Z-d0abf0c215/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-legacy_amplitude/30"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-30/20260728T115846.198558Z-d0abf0c215/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-legacy_amplitude/30"
+      ],
+      "sha256": "1f755a7b2fde70e8d4cbfcc93447c67be2d068034d15671ead7d73d917b0e4f4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-30/20260728T115846.198558Z-d0abf0c215/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-legacy_amplitude/30"
+      ],
+      "sha256": "f5e3431b385a853e4e41cfd38b4d8adf8dbe81c9b4cabd7001d9b6bf335712ab"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-30/20260728T115846.198558Z-d0abf0c215/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-legacy_amplitude/30"
+      ],
+      "sha256": "f531e38f0394e89ec1e04ccfde4ad9a9f6927df7ae8da8c5bb7659fba2770301"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-31/20260728T115913.255460Z-b3d45ea8fd/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-legacy_amplitude/31"
+      ],
+      "sha256": "528029c723127fce0da9c319390f31b47c894956a810bf30746e6b7406b718ed"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-31/20260728T115913.255460Z-b3d45ea8fd/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-legacy_amplitude/31"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-31/20260728T115913.255460Z-b3d45ea8fd/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-legacy_amplitude/31"
+      ],
+      "sha256": "c7dd66375190e8ded0b8b095bf006c8dabeda69a058ce11c185a3b5b7bac14e1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-31/20260728T115913.255460Z-b3d45ea8fd/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-legacy_amplitude/31"
+      ],
+      "sha256": "7ccd985970aeacbeaf0e943dab58ccbaf04a152ae69fe10919aab94f0600ade7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-31/20260728T115913.255460Z-b3d45ea8fd/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-legacy_amplitude/31"
+      ],
+      "sha256": "1f942ab9f9844b1ebbcb2cc2a6950b274e06e483ce18afc2b5e43c1a632fe0f5"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-32/20260728T115937.547843Z-bb05e5c19d/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-legacy_amplitude/32"
+      ],
+      "sha256": "1e7498cf8343449db5e594bc9c464c6f0327c47119175ed8ad0967f042a8ba44"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-32/20260728T115937.547843Z-bb05e5c19d/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-legacy_amplitude/32"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-32/20260728T115937.547843Z-bb05e5c19d/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-legacy_amplitude/32"
+      ],
+      "sha256": "f1be9e372f95b5b296f6eb6baf782e524485f37cca5b03332ef9268d520faa69"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-32/20260728T115937.547843Z-bb05e5c19d/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-legacy_amplitude/32"
+      ],
+      "sha256": "560d82bd16fdbe6cd8fac5fc55a669c200096b47bbcea06a2378b3cbaeabaeab"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-32/20260728T115937.547843Z-bb05e5c19d/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-legacy_amplitude/32"
+      ],
+      "sha256": "2725b5c4077c985f40948e6987cd5249e34c20d2ac32a9c1d7eec915a49d36d3"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-33/20260728T115958.586574Z-a182d57da3/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-legacy_amplitude/33"
+      ],
+      "sha256": "b39c222e1479432e3a71fdab250daa4c38a74b934880691bebcec8f2e0a501d4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-33/20260728T115958.586574Z-a182d57da3/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-legacy_amplitude/33"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-33/20260728T115958.586574Z-a182d57da3/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-legacy_amplitude/33"
+      ],
+      "sha256": "da9cd40dc6a39cc0d1436c8af128583d395504a63b851c11facde3cf5f560a34"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-33/20260728T115958.586574Z-a182d57da3/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-legacy_amplitude/33"
+      ],
+      "sha256": "6a611d969faae92131f9f93f22dc0301dfea7f0ea59b9ebe6a52b90f376480ca"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-33/20260728T115958.586574Z-a182d57da3/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-legacy_amplitude/33"
+      ],
+      "sha256": "4a000d2e10acacf3cf1736d58440c69e926a62ea4fb7ee728eb279d3e9be1f55"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-34/20260728T120024.308412Z-8da583cc51/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-legacy_amplitude/34"
+      ],
+      "sha256": "db8ced08bbd058c2dfb17848377c4516c1c6576f1fceba88298ddc5c38c6eb8e"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-34/20260728T120024.308412Z-8da583cc51/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-legacy_amplitude/34"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-34/20260728T120024.308412Z-8da583cc51/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-legacy_amplitude/34"
+      ],
+      "sha256": "5db3d8d8686ccbc12c470c7c193ffb87b56ebe4dce1839e92026de23c5cb4be3"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-34/20260728T120024.308412Z-8da583cc51/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-legacy_amplitude/34"
+      ],
+      "sha256": "f5c930deace01f8cc5aa4403e8e3399cef2551542ba4e57175400a1ae2d89f47"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-legacy_amplitude/seed-34/20260728T120024.308412Z-8da583cc51/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-legacy_amplitude/34"
+      ],
+      "sha256": "00a584601027a2a71c9d7d95f65212735e63c63959a5f6bdcf0afc5164111913"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-30/20260728T115856.037957Z-3f5107c4eb/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-paper_squared/30"
+      ],
+      "sha256": "9eda0340bb887554338544c46552eedeaa2970151f7c2d48e4a36e2d47c76f33"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-30/20260728T115856.037957Z-3f5107c4eb/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-paper_squared/30"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-30/20260728T115856.037957Z-3f5107c4eb/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-paper_squared/30"
+      ],
+      "sha256": "72e8c4423cf9db5a82f50e649fd338057d22c708ed41750565ec35b3b70ed5f9"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-30/20260728T115856.037957Z-3f5107c4eb/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-paper_squared/30"
+      ],
+      "sha256": "f5e3431b385a853e4e41cfd38b4d8adf8dbe81c9b4cabd7001d9b6bf335712ab"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-30/20260728T115856.037957Z-3f5107c4eb/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-paper_squared/30"
+      ],
+      "sha256": "1db9c5a03939d9106a5467746a7bb5290a23f7ef5020bc1ed4ff45e5813f456b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-31/20260728T115928.068378Z-3e28e9a70e/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-paper_squared/31"
+      ],
+      "sha256": "257b0b28358166388b968d6a3ee6a413b96424934a44b90409e70ecc25803b6b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-31/20260728T115928.068378Z-3e28e9a70e/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-paper_squared/31"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-31/20260728T115928.068378Z-3e28e9a70e/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-paper_squared/31"
+      ],
+      "sha256": "4663538d8b7da396ea3b72945b5f8327bd576da6901073c4b2a626ece6926057"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-31/20260728T115928.068378Z-3e28e9a70e/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-paper_squared/31"
+      ],
+      "sha256": "7ccd985970aeacbeaf0e943dab58ccbaf04a152ae69fe10919aab94f0600ade7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-31/20260728T115928.068378Z-3e28e9a70e/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-paper_squared/31"
+      ],
+      "sha256": "aec98344acc657b45723aff10962590ab6d9f439896322b17dd7c9a4ccfac82d"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-32/20260728T115950.999802Z-49d8a88f18/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-paper_squared/32"
+      ],
+      "sha256": "3b44636da4af463139e059f378615b23dca9f0eb80a88932778b1ad961ffaedc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-32/20260728T115950.999802Z-49d8a88f18/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-paper_squared/32"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-32/20260728T115950.999802Z-49d8a88f18/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-paper_squared/32"
+      ],
+      "sha256": "0ae2a203a7f613709c7f292f08bb482cc3a9a776dd122025554bef93adb8befc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-32/20260728T115950.999802Z-49d8a88f18/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-paper_squared/32"
+      ],
+      "sha256": "560d82bd16fdbe6cd8fac5fc55a669c200096b47bbcea06a2378b3cbaeabaeab"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-32/20260728T115950.999802Z-49d8a88f18/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-paper_squared/32"
+      ],
+      "sha256": "af8d92288525e11b6350690b7138bb0d3dce620ea4cad91ff1faebc8c4fb4359"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-33/20260728T120009.302246Z-02dd522f96/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-paper_squared/33"
+      ],
+      "sha256": "84277dd1284c4652ec6485d05c8ca33eb167284ad33e1075cd943b46b129e61f"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-33/20260728T120009.302246Z-02dd522f96/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-paper_squared/33"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-33/20260728T120009.302246Z-02dd522f96/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-paper_squared/33"
+      ],
+      "sha256": "b02f765af29fd001a2ea0767da649d023a3a73f92ad6f84164962a43517fe312"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-33/20260728T120009.302246Z-02dd522f96/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-paper_squared/33"
+      ],
+      "sha256": "6a611d969faae92131f9f93f22dc0301dfea7f0ea59b9ebe6a52b90f376480ca"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-33/20260728T120009.302246Z-02dd522f96/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-paper_squared/33"
+      ],
+      "sha256": "aee5683de3129de7809153bd4080447b4dde80c0a44915c221aa92ae3f404378"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-34/20260728T120028.841816Z-857625ef03/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/1q-l4-paper_squared/34"
+      ],
+      "sha256": "aa49e7585474b8ca87bb8c73c75dafc61fe63a02d012f66cd24f8ccd03f4f0fc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-34/20260728T120028.841816Z-857625ef03/command.txt",
+      "roles": [
+        "optimizer-command:M1/1q-l4-paper_squared/34"
+      ],
+      "sha256": "38efc3a6c69da3195b2a9cab54b00b903a2f6a1cfdaf15bba5c00fd6de86a83a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-34/20260728T120028.841816Z-857625ef03/config.json",
+      "roles": [
+        "optimizer-config:M1/1q-l4-paper_squared/34"
+      ],
+      "sha256": "70f1194254c77c1dd70a6d0bd519db053086a95e9388981c055b50b891987a3d"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-34/20260728T120028.841816Z-857625ef03/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/1q-l4-paper_squared/34"
+      ],
+      "sha256": "f5c930deace01f8cc5aa4403e8e3399cef2551542ba4e57175400a1ae2d89f47"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-34/20260728T120028.841816Z-857625ef03/result.json",
+      "roles": [
+        "optimizer-result:M1/1q-l4-paper_squared/34"
+      ],
+      "sha256": "9e59f781edc0a40ef2e0981b39ab1ef463dc9885865dd2ecbc9ac7c36cdad933"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-amplitude-1q-l4/seed-30/20260728T115748.700033Z-1a7b7781a1/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/author-amplitude-1q-l4/30"
+      ],
+      "sha256": "3c0bd6792cc09dc5a2a29774a441f894233fd2ba56006386f644fc04911965f9"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-amplitude-1q-l4/seed-30/20260728T115748.700033Z-1a7b7781a1/command.txt",
+      "roles": [
+        "optimizer-command:M1/author-amplitude-1q-l4/30"
+      ],
+      "sha256": "c939d4086f77b2759390f9d0371afb0ea05d8aabfba09be20b2459cd76835649"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-amplitude-1q-l4/seed-30/20260728T115748.700033Z-1a7b7781a1/config.json",
+      "roles": [
+        "optimizer-config:M1/author-amplitude-1q-l4/30"
+      ],
+      "sha256": "60e5cf1c013e20c7227d4bda0bafe6991f688c80eef20e8a932f021462d3c842"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-amplitude-1q-l4/seed-30/20260728T115748.700033Z-1a7b7781a1/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/author-amplitude-1q-l4/30"
+      ],
+      "sha256": "02be3149d67d29b140c573cda2daae9444b516e135d847c88d24b6d13e94f566"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-amplitude-1q-l4/seed-30/20260728T115748.700033Z-1a7b7781a1/result.json",
+      "roles": [
+        "optimizer-result:M1/author-amplitude-1q-l4/30"
+      ],
+      "sha256": "c734e27dd303e5a49b4a599f45768781f3fb53f52a1fa1a4b54f2b4a2a582792"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l1/seed-30/20260728T115412.335325Z-0cad8002af/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/author-weighted-1q-l1/30"
+      ],
+      "sha256": "df2afee05a3b9de1ed046abfbfaa5465bc5c6601b16b5c08bc792c6dab70c305"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l1/seed-30/20260728T115412.335325Z-0cad8002af/command.txt",
+      "roles": [
+        "optimizer-command:M1/author-weighted-1q-l1/30"
+      ],
+      "sha256": "90ee30ebe81ebdbdba3836553f65f8b223c2814e4b7eca708401666800dad6a7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l1/seed-30/20260728T115412.335325Z-0cad8002af/config.json",
+      "roles": [
+        "optimizer-config:M1/author-weighted-1q-l1/30"
+      ],
+      "sha256": "44b273934bd5fafddc659eb488b92e47d9e1424e7b58da2f243d1b8c80e10596"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l1/seed-30/20260728T115412.335325Z-0cad8002af/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/author-weighted-1q-l1/30"
+      ],
+      "sha256": "fd07aeec8eafa5e1e3b4f3f26837657cf1e11955566a41d6dc400bfc4834badd"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l1/seed-30/20260728T115412.335325Z-0cad8002af/result.json",
+      "roles": [
+        "optimizer-result:M1/author-weighted-1q-l1/30"
+      ],
+      "sha256": "91322359169321e9d834f240df4e3f445df3ffb112682c7d874760e52b001fe2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l2/seed-30/20260728T115413.629426Z-292364067e/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/author-weighted-1q-l2/30"
+      ],
+      "sha256": "f883b6967a526a24e601c01fa0cb6ba5ca5ab65e9635847b65aca11624ee0c28"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l2/seed-30/20260728T115413.629426Z-292364067e/command.txt",
+      "roles": [
+        "optimizer-command:M1/author-weighted-1q-l2/30"
+      ],
+      "sha256": "90ee30ebe81ebdbdba3836553f65f8b223c2814e4b7eca708401666800dad6a7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l2/seed-30/20260728T115413.629426Z-292364067e/config.json",
+      "roles": [
+        "optimizer-config:M1/author-weighted-1q-l2/30"
+      ],
+      "sha256": "ca5aa00bc939b9142814f421e1ea2e287005378faf695a997f52d3ddc2f4fda7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l2/seed-30/20260728T115413.629426Z-292364067e/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/author-weighted-1q-l2/30"
+      ],
+      "sha256": "de61b00ef83b6569e32a4465ef4ed682dfd708b67e814b4e733881baec4009ed"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l2/seed-30/20260728T115413.629426Z-292364067e/result.json",
+      "roles": [
+        "optimizer-result:M1/author-weighted-1q-l2/30"
+      ],
+      "sha256": "a080243b66f5c80b9e6d5db61ae19b208a2af7e9d7fb9977118532b7f0c029b6"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l4/seed-30/20260728T115417.422036Z-5df5ff9179/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/author-weighted-1q-l4/30"
+      ],
+      "sha256": "0f0a2cf0fbe48c486359da9feb520f73a853783a669df9d024dbe697f5ee44b1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l4/seed-30/20260728T115417.422036Z-5df5ff9179/command.txt",
+      "roles": [
+        "optimizer-command:M1/author-weighted-1q-l4/30"
+      ],
+      "sha256": "90ee30ebe81ebdbdba3836553f65f8b223c2814e4b7eca708401666800dad6a7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l4/seed-30/20260728T115417.422036Z-5df5ff9179/config.json",
+      "roles": [
+        "optimizer-config:M1/author-weighted-1q-l4/30"
+      ],
+      "sha256": "05bd26c7adcea9c6abcf836d9b8b4a5fc636b1bb4925807d71b738f3a1102faf"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l4/seed-30/20260728T115417.422036Z-5df5ff9179/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/author-weighted-1q-l4/30"
+      ],
+      "sha256": "cc7e6a7fc7392a8f57cb1067720e47e24f46d4572646e5bef043b7d4f2a536a1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l4/seed-30/20260728T115417.422036Z-5df5ff9179/result.json",
+      "roles": [
+        "optimizer-result:M1/author-weighted-1q-l4/30"
+      ],
+      "sha256": "569eeb258df914a6243fa1311985dab532502af5213fe55f42e8d8cfd423665b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M1/author-weighted-1q-l8/30"
+      ],
+      "sha256": "0eb7bb5dd0c4dbe95c42329945cc75a9135b2f6fe8abb52b6a4e1163bdabc8bc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66/command.txt",
+      "roles": [
+        "optimizer-command:M1/author-weighted-1q-l8/30"
+      ],
+      "sha256": "90ee30ebe81ebdbdba3836553f65f8b223c2814e4b7eca708401666800dad6a7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66/config.json",
+      "roles": [
+        "optimizer-config:M1/author-weighted-1q-l8/30"
+      ],
+      "sha256": "8a123386107b64d2c4b13fceeb8d97e04506a5f3df79664fba9ff981b1e30206"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M1/author-weighted-1q-l8/30"
+      ],
+      "sha256": "23960586e49c016fcbcb5a69dc97b68906417b9309c8ac28adf2f99d33aed0a5"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66/result.json",
+      "roles": [
+        "optimizer-result:M1/author-weighted-1q-l8/30"
+      ],
+      "sha256": "b01ed7fc10c70c2882c6bebd2a2677eb65ad8ca01f30d3ebc378aa349208b532"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-30/20260728T120155.302704Z-786eacac22/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/1q-l2-paper_squared/30"
+      ],
+      "sha256": "e9f014713394d69c330093755327e9b2715fdd1a673eb100ff05dd13f2191dfb"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-30/20260728T120155.302704Z-786eacac22/command.txt",
+      "roles": [
+        "optimizer-command:M2/1q-l2-paper_squared/30"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-30/20260728T120155.302704Z-786eacac22/config.json",
+      "roles": [
+        "optimizer-config:M2/1q-l2-paper_squared/30"
+      ],
+      "sha256": "ce85611c23c91fd3d6e259aa5d0dc34e56620798f11cb87499e2eb265be9e1a1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-30/20260728T120155.302704Z-786eacac22/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/1q-l2-paper_squared/30"
+      ],
+      "sha256": "addbaccfcc724921ef92d6c4788954cce52fad90de967566ae77089ac30332b8"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-30/20260728T120155.302704Z-786eacac22/result.json",
+      "roles": [
+        "optimizer-result:M2/1q-l2-paper_squared/30"
+      ],
+      "sha256": "c53d4b2f8e067c01cbcc80e8d6b76750b4cd8987b6f495f9084405c3ea68de90"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-31/20260728T120200.208096Z-0a7f6d42ab/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/1q-l2-paper_squared/31"
+      ],
+      "sha256": "fca9266a39145be5ee8f3a892d537351fdf70aaa8262b7b0cf491004b877edc4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-31/20260728T120200.208096Z-0a7f6d42ab/command.txt",
+      "roles": [
+        "optimizer-command:M2/1q-l2-paper_squared/31"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-31/20260728T120200.208096Z-0a7f6d42ab/config.json",
+      "roles": [
+        "optimizer-config:M2/1q-l2-paper_squared/31"
+      ],
+      "sha256": "0c92df1510b5daf60f11da015078472917469fa0e033c227b90c7fdb14be734c"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-31/20260728T120200.208096Z-0a7f6d42ab/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/1q-l2-paper_squared/31"
+      ],
+      "sha256": "087395d22862e92546b84a3e6f02099bcd966c4f447b376154663c3d267e61a2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-31/20260728T120200.208096Z-0a7f6d42ab/result.json",
+      "roles": [
+        "optimizer-result:M2/1q-l2-paper_squared/31"
+      ],
+      "sha256": "9f40f6610c9d408149f786a81dc70f427b6a9b5ab183253f1f5a7c212b94bb5f"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-32/20260728T120210.628323Z-54b0de087e/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/1q-l2-paper_squared/32"
+      ],
+      "sha256": "d4f471fd293de7023d891b424737f1d68c8bf93401f304e3a65305eb3cb2d6a5"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-32/20260728T120210.628323Z-54b0de087e/command.txt",
+      "roles": [
+        "optimizer-command:M2/1q-l2-paper_squared/32"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-32/20260728T120210.628323Z-54b0de087e/config.json",
+      "roles": [
+        "optimizer-config:M2/1q-l2-paper_squared/32"
+      ],
+      "sha256": "12022e7b98e1fd3f0c4d2162b416aa332587b741d26d21859265bd2c2b41f390"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-32/20260728T120210.628323Z-54b0de087e/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/1q-l2-paper_squared/32"
+      ],
+      "sha256": "000ed62ab317e7442a1d4efa0f187cc48433a6d11231230ede48ba917b04baf1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-32/20260728T120210.628323Z-54b0de087e/result.json",
+      "roles": [
+        "optimizer-result:M2/1q-l2-paper_squared/32"
+      ],
+      "sha256": "72bbaaccc5dd1c1ed9c14938b087cff1573107f1083c74fe7ae5b738aef95ae4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-33/20260728T120220.729583Z-371848ab1e/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/1q-l2-paper_squared/33"
+      ],
+      "sha256": "4c3b881277e87deed6c88b235ed08bb6029359ab7bc285735b082bf1581d3cf2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-33/20260728T120220.729583Z-371848ab1e/command.txt",
+      "roles": [
+        "optimizer-command:M2/1q-l2-paper_squared/33"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-33/20260728T120220.729583Z-371848ab1e/config.json",
+      "roles": [
+        "optimizer-config:M2/1q-l2-paper_squared/33"
+      ],
+      "sha256": "a8db14b43518d6b41c241da3204689547be3fd4e6e12f48816a0196882f7c59e"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-33/20260728T120220.729583Z-371848ab1e/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/1q-l2-paper_squared/33"
+      ],
+      "sha256": "7d69ab6bf7a6e07ab1a6aab34c2c5c9e3b74b70250b8aa1a61323accbe9a8f51"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-33/20260728T120220.729583Z-371848ab1e/result.json",
+      "roles": [
+        "optimizer-result:M2/1q-l2-paper_squared/33"
+      ],
+      "sha256": "20c74bf3b934abc25297ee90232b8dd317c0aace4b3b71d6d5b54d791e436d57"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-34/20260728T120225.143420Z-432afdcd39/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/1q-l2-paper_squared/34"
+      ],
+      "sha256": "90301f052454a9bbb088cec63aef03a46d8445d9a4e664224fe42c733a23b877"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-34/20260728T120225.143420Z-432afdcd39/command.txt",
+      "roles": [
+        "optimizer-command:M2/1q-l2-paper_squared/34"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-34/20260728T120225.143420Z-432afdcd39/config.json",
+      "roles": [
+        "optimizer-config:M2/1q-l2-paper_squared/34"
+      ],
+      "sha256": "3527dc53f6fe11f5b3dfac01ed5919e1a63262691944bca45601c89d8ab75d46"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-34/20260728T120225.143420Z-432afdcd39/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/1q-l2-paper_squared/34"
+      ],
+      "sha256": "907e821ebeeab38bee7940dd784efff3424bc7be1df632b497027bef10ea9660"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/1q-l2-paper_squared/seed-34/20260728T120225.143420Z-432afdcd39/result.json",
+      "roles": [
+        "optimizer-result:M2/1q-l2-paper_squared/34"
+      ],
+      "sha256": "c0cbc637714f41a82ea547c0701fb3f42b995476b2971b4ed44026f1585b6dac"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-30/20260728T120158.583074Z-0542316714/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-cz-paper_squared/30"
+      ],
+      "sha256": "b52b7491c5f709b215fec0eabd0eb4a1c6a8d29f7de19fc611e230c737f4fb1e"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-30/20260728T120158.583074Z-0542316714/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-cz-paper_squared/30"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-30/20260728T120158.583074Z-0542316714/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-cz-paper_squared/30"
+      ],
+      "sha256": "b29edc4847f1ec8026db5c4a70982466988c39576e54ee78bf9383da258c1fdb"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-30/20260728T120158.583074Z-0542316714/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-cz-paper_squared/30"
+      ],
+      "sha256": "96da851a5a661cd7885728a96ef2594fe944e6981e211940b75f663bde44a6e4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-30/20260728T120158.583074Z-0542316714/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-cz-paper_squared/30"
+      ],
+      "sha256": "0c7b156d0bebd305a9af84566a6d972ad3a952a033d60527663994fb66ee1eb7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-31/20260728T120202.831674Z-f5c44499f1/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-cz-paper_squared/31"
+      ],
+      "sha256": "1c6a07e60131ec4f63dfbd36a2edc2d0d197a17722e4c5b532c49dbe23c783a3"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-31/20260728T120202.831674Z-f5c44499f1/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-cz-paper_squared/31"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-31/20260728T120202.831674Z-f5c44499f1/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-cz-paper_squared/31"
+      ],
+      "sha256": "9eb40b029c91bfe0272651aa80906790ac3340868857dde951c5e53ceed24e01"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-31/20260728T120202.831674Z-f5c44499f1/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-cz-paper_squared/31"
+      ],
+      "sha256": "0124664aa48f6f1df80aa7451b562989ac450a5f2c762722efef9a46868c26c7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-31/20260728T120202.831674Z-f5c44499f1/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-cz-paper_squared/31"
+      ],
+      "sha256": "ff7ad71227576b9db9b0262a0697fb609c0647ec1ce16f0e9e87d3a1cfcfb629"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-32/20260728T120213.203134Z-b5e1b1d505/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-cz-paper_squared/32"
+      ],
+      "sha256": "c291f1253125b7e29edaac2b2a904ed2414d082d2a2192a40f5a6b2f6717ec99"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-32/20260728T120213.203134Z-b5e1b1d505/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-cz-paper_squared/32"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-32/20260728T120213.203134Z-b5e1b1d505/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-cz-paper_squared/32"
+      ],
+      "sha256": "6bc0c4e54c150dc4ca271672a9de34166330b94888922cf5fc5b875d6b264008"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-32/20260728T120213.203134Z-b5e1b1d505/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-cz-paper_squared/32"
+      ],
+      "sha256": "747be65f320aee3cbf5e2153b00b4385c26073b485995cebccdddc19dbce59c2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-32/20260728T120213.203134Z-b5e1b1d505/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-cz-paper_squared/32"
+      ],
+      "sha256": "118a4d0f171c61995bb6d6dd7155d5ff1d6aaba5147686b3350d8f7edb70e855"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-33/20260728T120223.517422Z-bd5f8067ad/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-cz-paper_squared/33"
+      ],
+      "sha256": "6fa2fd0b111a532953b1f1a5c02d11ff7d70d27b2e6a4a04cc0231ea996181fc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-33/20260728T120223.517422Z-bd5f8067ad/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-cz-paper_squared/33"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-33/20260728T120223.517422Z-bd5f8067ad/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-cz-paper_squared/33"
+      ],
+      "sha256": "2a0e31bdc3f6e8e47afaa4b6fda82c944f463d261127900286d2bada14f2609b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-33/20260728T120223.517422Z-bd5f8067ad/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-cz-paper_squared/33"
+      ],
+      "sha256": "2c4c93bfd65d4f810a9b293113249f29a3739af1afdd0df99a059ae2be3ac205"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-33/20260728T120223.517422Z-bd5f8067ad/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-cz-paper_squared/33"
+      ],
+      "sha256": "b012980729a986eeaef59d819ae338a4f08d695711b04dea4c46c84c3e672f9d"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-34/20260728T120230.735096Z-5d7645eed0/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-cz-paper_squared/34"
+      ],
+      "sha256": "139e01a0a4c61c56f075c1801c7408690902fbbc8a23b4b4501bb4dfc7388088"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-34/20260728T120230.735096Z-5d7645eed0/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-cz-paper_squared/34"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-34/20260728T120230.735096Z-5d7645eed0/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-cz-paper_squared/34"
+      ],
+      "sha256": "40752937bac2fcc3f7e20d2d7a09f26e1549d49ccea74870777b9461eef1d1a7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-34/20260728T120230.735096Z-5d7645eed0/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-cz-paper_squared/34"
+      ],
+      "sha256": "028147ed9911949dbb2901bdee8c75833acbecdf4b70093fbf5c3df6962cb6af"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-cz-paper_squared/seed-34/20260728T120230.735096Z-5d7645eed0/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-cz-paper_squared/34"
+      ],
+      "sha256": "a1d118e26208567cb238f2118c2e9afb1ab3c0711359b53d0677b2edd3e6b65f"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-30/20260728T120156.860028Z-a4f1c77e8e/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-separable-paper_squared/30"
+      ],
+      "sha256": "e07553b7f3f984dcc2da03360cae9e167ddf096f95e752c52c54c246206f7ad6"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-30/20260728T120156.860028Z-a4f1c77e8e/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-separable-paper_squared/30"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-30/20260728T120156.860028Z-a4f1c77e8e/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-separable-paper_squared/30"
+      ],
+      "sha256": "f23b56ee18b632bf2791689810c8e8dbfdc1c148441157a7cfbbb508d7d0f926"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-30/20260728T120156.860028Z-a4f1c77e8e/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-separable-paper_squared/30"
+      ],
+      "sha256": "96da851a5a661cd7885728a96ef2594fe944e6981e211940b75f663bde44a6e4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-30/20260728T120156.860028Z-a4f1c77e8e/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-separable-paper_squared/30"
+      ],
+      "sha256": "9cb4b44e1a5adb5e00bae89498ed291dc524238976781a340d3f45a3d39f5943"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-31/20260728T120200.923610Z-742a59aac5/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-separable-paper_squared/31"
+      ],
+      "sha256": "62a6831a7732086f82e75dc0a7094ed8755e62c0a76dbe15fdf40690c570db4c"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-31/20260728T120200.923610Z-742a59aac5/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-separable-paper_squared/31"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-31/20260728T120200.923610Z-742a59aac5/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-separable-paper_squared/31"
+      ],
+      "sha256": "7ea6814264a84f064d4e57a5378e8811e03f00cfc03929e110252502f5b34909"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-31/20260728T120200.923610Z-742a59aac5/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-separable-paper_squared/31"
+      ],
+      "sha256": "0124664aa48f6f1df80aa7451b562989ac450a5f2c762722efef9a46868c26c7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-31/20260728T120200.923610Z-742a59aac5/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-separable-paper_squared/31"
+      ],
+      "sha256": "6102806f5ca50946da53174189a17811858912425f7a7c387a70e5beab165676"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-32/20260728T120211.504305Z-c0b497fcc6/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-separable-paper_squared/32"
+      ],
+      "sha256": "1dec2f782d124dd655804767b288092c0e298f7110b8871c03f086e0803a9cfe"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-32/20260728T120211.504305Z-c0b497fcc6/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-separable-paper_squared/32"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-32/20260728T120211.504305Z-c0b497fcc6/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-separable-paper_squared/32"
+      ],
+      "sha256": "4ee2eafb2bce60269ec302839f8d7cf5048f0aa818056ff0e53141fd1b572ae3"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-32/20260728T120211.504305Z-c0b497fcc6/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-separable-paper_squared/32"
+      ],
+      "sha256": "747be65f320aee3cbf5e2153b00b4385c26073b485995cebccdddc19dbce59c2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-32/20260728T120211.504305Z-c0b497fcc6/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-separable-paper_squared/32"
+      ],
+      "sha256": "fdc223ef499da5159aea5a01ab545af0bce961213a741bfe2b34aa1d372a3f11"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-33/20260728T120221.820114Z-55fc3fe049/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-separable-paper_squared/33"
+      ],
+      "sha256": "abb27036728c88fe011879a8cf1683bf82ec20747b2f2765e93510a7de3d94e8"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-33/20260728T120221.820114Z-55fc3fe049/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-separable-paper_squared/33"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-33/20260728T120221.820114Z-55fc3fe049/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-separable-paper_squared/33"
+      ],
+      "sha256": "4ee7fa71f60d316d7a72950039fd0b3c8c3d7f4e7a95511f2b8e041f4df45d49"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-33/20260728T120221.820114Z-55fc3fe049/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-separable-paper_squared/33"
+      ],
+      "sha256": "2c4c93bfd65d4f810a9b293113249f29a3739af1afdd0df99a059ae2be3ac205"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-33/20260728T120221.820114Z-55fc3fe049/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-separable-paper_squared/33"
+      ],
+      "sha256": "c888fbb7d97c6b5eac613143f4f20a53f15bd5859ee9674bef1567e38754e9e6"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-34/20260728T120227.740905Z-3d2ecfbc6d/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M2/2q-l2-separable-paper_squared/34"
+      ],
+      "sha256": "ca51f56ab1c0f17fcd9f3a79d11acc7db59abfab31d904b385a293008e6ded39"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-34/20260728T120227.740905Z-3d2ecfbc6d/command.txt",
+      "roles": [
+        "optimizer-command:M2/2q-l2-separable-paper_squared/34"
+      ],
+      "sha256": "ad4babf028007e4ee4393ec6d6b3ded847656c35b3c5ab5b48a27755a5c32d5b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-34/20260728T120227.740905Z-3d2ecfbc6d/config.json",
+      "roles": [
+        "optimizer-config:M2/2q-l2-separable-paper_squared/34"
+      ],
+      "sha256": "dd46cd39c2c2e5eab09717a039576d1fff58f5bfd4df09141eff52f5950e3860"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-34/20260728T120227.740905Z-3d2ecfbc6d/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M2/2q-l2-separable-paper_squared/34"
+      ],
+      "sha256": "028147ed9911949dbb2901bdee8c75833acbecdf4b70093fbf5c3df6962cb6af"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/2q-l2-separable-paper_squared/seed-34/20260728T120227.740905Z-3d2ecfbc6d/result.json",
+      "roles": [
+        "optimizer-result:M2/2q-l2-separable-paper_squared/34"
+      ],
+      "sha256": "783a89fce83fde9b38c3bd2e0c278d197e5daa4493abc2d27a27365834072c47"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/compile-audit/seed-2026/20260728T120338.803889Z-166b441a5c/checkpoint_records.json",
+      "roles": [
+        "M2-compile-checkpoint_records"
+      ],
+      "sha256": "79f79e902ed03e85817ee1e422e844fa843f91269c01e2e91b9777c37efa9514"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/compile-audit/seed-2026/20260728T120338.803889Z-166b441a5c/compile_rows.jsonl",
+      "roles": [
+        "M2-compile-rows"
+      ],
+      "sha256": "117db729b137d2392e9c09dc3af53879c44737889198b33150dd0af888df367c"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/compile-audit/seed-2026/20260728T120338.803889Z-166b441a5c/compile_summary.json",
+      "roles": [
+        "M2-compile-summary"
+      ],
+      "sha256": "91ca8d063c65d6c460f1beaf3a878ae42726d912d6289e0b743bbe2be30a8f8b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M2/compile-audit/seed-2026/20260728T120338.803889Z-166b441a5c/result.json",
+      "roles": [
+        "M2-compile-result"
+      ],
+      "sha256": "8a0d6d75c31c5962b87611b97da53df311ab96fc9c0dc26fac35f616c1b3bf86"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "compile_module_sha256": "af065a7ad26e28a055767f6f1f0a1126ebcfab447882d7e86cc73a26aeba7f79",
+          "compile_runner_sha256": "d168e254c4ea19ca8110d31eac324330240aef8101b7bc7daabe8c1e31df68d1",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/compile-audit/seed-2026/20260728T121403.795920Z-ab974fbaf8/checkpoint_records.json",
+      "roles": [
+        "M3-compile-checkpoint_records"
+      ],
+      "sha256": "123ebef33fc9afb30a803280546e9ef2a223ecfe63d0a2455e7c8a4df24698cc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "compile_module_sha256": "af065a7ad26e28a055767f6f1f0a1126ebcfab447882d7e86cc73a26aeba7f79",
+          "compile_runner_sha256": "d168e254c4ea19ca8110d31eac324330240aef8101b7bc7daabe8c1e31df68d1",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/compile-audit/seed-2026/20260728T121403.795920Z-ab974fbaf8/compile_rows.jsonl",
+      "roles": [
+        "M3-compile-rows"
+      ],
+      "sha256": "911f19db355eb547da7153df56ef996b34a292f28d4eaa65f261fef7354137f8"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "compile_module_sha256": "af065a7ad26e28a055767f6f1f0a1126ebcfab447882d7e86cc73a26aeba7f79",
+          "compile_runner_sha256": "d168e254c4ea19ca8110d31eac324330240aef8101b7bc7daabe8c1e31df68d1",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/compile-audit/seed-2026/20260728T121403.795920Z-ab974fbaf8/compile_summary.json",
+      "roles": [
+        "M3-compile-summary"
+      ],
+      "sha256": "1f117bd06d20a6f3b353240c595b12644eb4c1861d62e38373330608e9bfcd2e"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "compile_module_sha256": "af065a7ad26e28a055767f6f1f0a1126ebcfab447882d7e86cc73a26aeba7f79",
+          "compile_runner_sha256": "d168e254c4ea19ca8110d31eac324330240aef8101b7bc7daabe8c1e31df68d1",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/compile-audit/seed-2026/20260728T121403.795920Z-ab974fbaf8/result.json",
+      "roles": [
+        "M3-compile-result"
+      ],
+      "sha256": "c6842754b65b20e99d55581fa413004a5be0407e185d6290d6a9731c2ca51b11"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-30/20260728T120928.417794Z-d2887e7d45/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l3-scratch/30"
+      ],
+      "sha256": "035cbaa55db088b4c0a781f13cde775f776e0abfb3fabfc4136474512cabe26f"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-30/20260728T120928.417794Z-d2887e7d45/command.txt",
+      "roles": [
+        "optimizer-command:M3/l3-scratch/30"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-30/20260728T120928.417794Z-d2887e7d45/config.json",
+      "roles": [
+        "optimizer-config:M3/l3-scratch/30"
+      ],
+      "sha256": "6f05766235a50671f242e8e29cfe52c669d67729f083bf2e57522870f509c4c0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-30/20260728T120928.417794Z-d2887e7d45/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l3-scratch/30"
+      ],
+      "sha256": "c929fc7b597fffa91227c6dfd7c4327913afb4a27c3f8662b5c3e17d15958a8e"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-30/20260728T120928.417794Z-d2887e7d45/result.json",
+      "roles": [
+        "optimizer-result:M3/l3-scratch/30"
+      ],
+      "sha256": "138ba1a739499227d525079bbb2cee0883a3ca37659e40b92ecfc7d6c2f3c7ab"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-31/20260728T120936.842635Z-6efff2e090/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l3-scratch/31"
+      ],
+      "sha256": "6d8e7f10a0306b54a5e00b793d9dd1b5acda438de51fb90f665d4d5bb3ea50df"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-31/20260728T120936.842635Z-6efff2e090/command.txt",
+      "roles": [
+        "optimizer-command:M3/l3-scratch/31"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-31/20260728T120936.842635Z-6efff2e090/config.json",
+      "roles": [
+        "optimizer-config:M3/l3-scratch/31"
+      ],
+      "sha256": "fe46682372d5bd71b64f87d3e6759940d43e9a8fde857aa3571aacc26c005937"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-31/20260728T120936.842635Z-6efff2e090/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l3-scratch/31"
+      ],
+      "sha256": "9461459c9989d92625f13e4e8624ea672166b0768736568a19af1caa9fe9fd66"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-31/20260728T120936.842635Z-6efff2e090/result.json",
+      "roles": [
+        "optimizer-result:M3/l3-scratch/31"
+      ],
+      "sha256": "7eef738df138a995a92bfd878a45600419c362bc44c16830e8af50a4a1c8ead6"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-32/20260728T120946.665433Z-19b4e28d7f/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l3-scratch/32"
+      ],
+      "sha256": "79087373fd8305e86508a852b7182750474aa7186a4e35f31802904b283354dd"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-32/20260728T120946.665433Z-19b4e28d7f/command.txt",
+      "roles": [
+        "optimizer-command:M3/l3-scratch/32"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-32/20260728T120946.665433Z-19b4e28d7f/config.json",
+      "roles": [
+        "optimizer-config:M3/l3-scratch/32"
+      ],
+      "sha256": "19a9576b907cb50ccab57acb26823bf14fb02b88bef3fbf4d876b62b986c9409"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-32/20260728T120946.665433Z-19b4e28d7f/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l3-scratch/32"
+      ],
+      "sha256": "1846fd7848ff06163381515ebfa3b187654da04d5653e58ffce97b4d99cc4a9a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-32/20260728T120946.665433Z-19b4e28d7f/result.json",
+      "roles": [
+        "optimizer-result:M3/l3-scratch/32"
+      ],
+      "sha256": "fb1f3dc21f94cbe264a1e5a0e3b71845d66bf38cfd718eede4d55de33dcba874"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-33/20260728T120954.509085Z-f6e2b8fcfe/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l3-scratch/33"
+      ],
+      "sha256": "5f5dea81f46c5c04eaec4990f49c757c3fd3f727c3f53b2496aa87ae6dd51ad0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-33/20260728T120954.509085Z-f6e2b8fcfe/command.txt",
+      "roles": [
+        "optimizer-command:M3/l3-scratch/33"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-33/20260728T120954.509085Z-f6e2b8fcfe/config.json",
+      "roles": [
+        "optimizer-config:M3/l3-scratch/33"
+      ],
+      "sha256": "33365b8bc9c4d55fa001ec513ecb31a20bfb037784915de1fe282a4979666859"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-33/20260728T120954.509085Z-f6e2b8fcfe/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l3-scratch/33"
+      ],
+      "sha256": "87e6cab93327dbe11c7aff8ff240825c8215e7b705474d0a461f72ad801e8d42"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-33/20260728T120954.509085Z-f6e2b8fcfe/result.json",
+      "roles": [
+        "optimizer-result:M3/l3-scratch/33"
+      ],
+      "sha256": "868649ee688f91720b2023860765d359f37495e81b33083f89fb6ce4bd11c914"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-34/20260728T121005.762181Z-abeb519e7f/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l3-scratch/34"
+      ],
+      "sha256": "b00e5ce947426ccff75eec27ae2d298f1582d5c5f7a520d42ecacb0fe916255a"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-34/20260728T121005.762181Z-abeb519e7f/command.txt",
+      "roles": [
+        "optimizer-command:M3/l3-scratch/34"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-34/20260728T121005.762181Z-abeb519e7f/config.json",
+      "roles": [
+        "optimizer-config:M3/l3-scratch/34"
+      ],
+      "sha256": "a10ecfafb6e3414cf24917cdeaf23064eb607b232a2a2fe5b1c844e8c73b0ca7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-34/20260728T121005.762181Z-abeb519e7f/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l3-scratch/34"
+      ],
+      "sha256": "92fc163d255cd49f69bc461d2c6c8a00304313ecfba89d6b809adce21982a820"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l3-scratch/seed-34/20260728T121005.762181Z-abeb519e7f/result.json",
+      "roles": [
+        "optimizer-result:M3/l3-scratch/34"
+      ],
+      "sha256": "2c37141a217fac8e7b55e7b71ed87c247aa18c299ab25a28f6e88a1831548aa2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-30/20260728T120924.614692Z-567961a57b/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-to-l3-pruned/30"
+      ],
+      "sha256": "00b9e3df4ef269c4d0ce87e75e6e30b0dbdae7d5d25f9db13c141b120de636ba"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-30/20260728T120924.614692Z-567961a57b/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-to-l3-pruned/30"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-30/20260728T120924.614692Z-567961a57b/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-to-l3-pruned/30"
+      ],
+      "sha256": "0452ea5756c9cb1e1a824ed1dae5d88c76c05522c0bc7ad17e6c335cbb33e4be"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-30/20260728T120924.614692Z-567961a57b/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-to-l3-pruned/30"
+      ],
+      "sha256": "28834cec2665cd2df465c49615568641924359bf9f1e80e1fe69f0ca84509a95"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-30/20260728T120924.614692Z-567961a57b/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-to-l3-pruned/30"
+      ],
+      "sha256": "eb486c571cbcbd6ee231f84ad8eeb7350753e57d54a0f883e851c540d2af97b8"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-31/20260728T120931.947242Z-4ae93c1d9b/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-to-l3-pruned/31"
+      ],
+      "sha256": "2a19c34707627836c1bbfc841e1c8e03b445d4d7be5506bb2c0aa2e96d0fcf89"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-31/20260728T120931.947242Z-4ae93c1d9b/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-to-l3-pruned/31"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-31/20260728T120931.947242Z-4ae93c1d9b/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-to-l3-pruned/31"
+      ],
+      "sha256": "919d702069f63666db70733b56310b47e8175d6bdc680a484e6ab6daf0f01bd9"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-31/20260728T120931.947242Z-4ae93c1d9b/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-to-l3-pruned/31"
+      ],
+      "sha256": "213e08760d377c296099b3e5cbd87947baba632b1924335aa761977579f27d87"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-31/20260728T120931.947242Z-4ae93c1d9b/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-to-l3-pruned/31"
+      ],
+      "sha256": "976aa9e3d16b84e796fd80338a70acec019fb5877509787a5d0b3a193a89553e"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-32/20260728T120941.763238Z-e777323387/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-to-l3-pruned/32"
+      ],
+      "sha256": "af344cf97b6b69e327747256bc37f2e4dfdfb03ea339fa8bd0edbea1349ce6cd"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-32/20260728T120941.763238Z-e777323387/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-to-l3-pruned/32"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-32/20260728T120941.763238Z-e777323387/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-to-l3-pruned/32"
+      ],
+      "sha256": "49b1c9365313b683998cadeabb224725eb6c5490f7de6439d347f1198cf32de4"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-32/20260728T120941.763238Z-e777323387/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-to-l3-pruned/32"
+      ],
+      "sha256": "4ad7318e9b6928d2cac718c4742653810eb39ef6506a286406c8f01abecd23bc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-32/20260728T120941.763238Z-e777323387/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-to-l3-pruned/32"
+      ],
+      "sha256": "723a3a16bfeee756922ce56542ae7a3597ceafffeb89e141d3d13baa4c2a5c0f"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-33/20260728T120949.041701Z-58d96d55fd/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-to-l3-pruned/33"
+      ],
+      "sha256": "96af2cabb35ccea499945677ffddf4a0d06c2c17ce9001b0a839507140c9b648"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-33/20260728T120949.041701Z-58d96d55fd/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-to-l3-pruned/33"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-33/20260728T120949.041701Z-58d96d55fd/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-to-l3-pruned/33"
+      ],
+      "sha256": "5bbf4eafb318e895cc47e5f1357ef00d46636fb109c7bbdfdadf4d625315eaaf"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-33/20260728T120949.041701Z-58d96d55fd/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-to-l3-pruned/33"
+      ],
+      "sha256": "dbcc4891c4048499452018771922458d0e80db0b87ca4adec6b7bc8d8d12b9ff"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-33/20260728T120949.041701Z-58d96d55fd/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-to-l3-pruned/33"
+      ],
+      "sha256": "dee3e443e07b35e847d677068d414fa9096502a6b1eea08a92d140e1dd2dc947"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-34/20260728T120959.501439Z-e6df1b4082/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-to-l3-pruned/34"
+      ],
+      "sha256": "84c21292cd8471fbaafdf9cb3c872dbf4192b3ff527c4fc4aa0782c7793b7d7d"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-34/20260728T120959.501439Z-e6df1b4082/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-to-l3-pruned/34"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-34/20260728T120959.501439Z-e6df1b4082/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-to-l3-pruned/34"
+      ],
+      "sha256": "d8b26e2493bc63a93d0e07685009e826fc8b34c19c9c0133ced96ff2b26a8d69"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-34/20260728T120959.501439Z-e6df1b4082/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-to-l3-pruned/34"
+      ],
+      "sha256": "dc97a36ec7fed7dc4c3368f7430b6f3250f5520c29ac20b3d2397975fe29cfe8"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-34/20260728T120959.501439Z-e6df1b4082/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-to-l3-pruned/34"
+      ],
+      "sha256": "fdbe74384ba86d4253f820d99c946931adad3cbce4b3a98f483ff33e31355174"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-30/20260728T120926.487524Z-84c1654084/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-truncate-last/30"
+      ],
+      "sha256": "0d9e6a512b5bce4dc49cd36f1a5e282bedfe13b7cc6c8f2d1ace1c06bae58d52"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-30/20260728T120926.487524Z-84c1654084/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-truncate-last/30"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-30/20260728T120926.487524Z-84c1654084/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-truncate-last/30"
+      ],
+      "sha256": "8dee737a7c9d6234933feefb41c3f7669d7fa49e6143482af7813fd8508e6523"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-30/20260728T120926.487524Z-84c1654084/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-truncate-last/30"
+      ],
+      "sha256": "364d8cea68c7abd0d18f222dca923b42d9e44ba40f77df2daef304e1ea8038ec"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-30/20260728T120926.487524Z-84c1654084/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-truncate-last/30"
+      ],
+      "sha256": "54d3ebe27ab7c2441cf1babfcc96f98231f7b6e16c9174a9abf7944c4d66d2e6"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-31/20260728T120933.277785Z-993500ef88/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-truncate-last/31"
+      ],
+      "sha256": "2c458330716f39920d75c74ae1ebb3259361895a9deebf186f5f94c163e94e5f"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-31/20260728T120933.277785Z-993500ef88/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-truncate-last/31"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-31/20260728T120933.277785Z-993500ef88/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-truncate-last/31"
+      ],
+      "sha256": "1b6c53e37c8b2f122053d62f68fa35bc2b7c760a8fb0929c25014cd804828c14"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-31/20260728T120933.277785Z-993500ef88/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-truncate-last/31"
+      ],
+      "sha256": "303cc4fcfc51d751f0e596e6c1687f0f92ae26df4a71f3b3121c300284592fee"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-31/20260728T120933.277785Z-993500ef88/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-truncate-last/31"
+      ],
+      "sha256": "67d9d9864dc232e56896930db37ade1f65eb9e9f161e811e930222495fa528a1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-32/20260728T120944.650841Z-e08fdeea24/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-truncate-last/32"
+      ],
+      "sha256": "17e2bf495cbfd68279b2081f6daed6d48eefc5666ca211ce0398bb04da30a5bc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-32/20260728T120944.650841Z-e08fdeea24/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-truncate-last/32"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-32/20260728T120944.650841Z-e08fdeea24/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-truncate-last/32"
+      ],
+      "sha256": "8882d882f4efeb825a092407c6a8798b3877082a327f7ed758ba97007507fb37"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-32/20260728T120944.650841Z-e08fdeea24/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-truncate-last/32"
+      ],
+      "sha256": "02e362ee0d46198d5eb19cf34d5d3059a638069b7de8a8e71357fbd1e550147c"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-32/20260728T120944.650841Z-e08fdeea24/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-truncate-last/32"
+      ],
+      "sha256": "3f214f3968e156b7a286ac235c9e720365b786feda386b21331370872e537d44"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-33/20260728T120951.792743Z-cda05af681/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-truncate-last/33"
+      ],
+      "sha256": "96af2cabb35ccea499945677ffddf4a0d06c2c17ce9001b0a839507140c9b648"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-33/20260728T120951.792743Z-cda05af681/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-truncate-last/33"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-33/20260728T120951.792743Z-cda05af681/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-truncate-last/33"
+      ],
+      "sha256": "42b9f8ba17841b8633982395b753c4b248ec65bf0cceb49ef3feceac052e27f1"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-33/20260728T120951.792743Z-cda05af681/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-truncate-last/33"
+      ],
+      "sha256": "dbcc4891c4048499452018771922458d0e80db0b87ca4adec6b7bc8d8d12b9ff"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-33/20260728T120951.792743Z-cda05af681/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-truncate-last/33"
+      ],
+      "sha256": "9859361a004c83ae29740a2d59be2dd8b5a7102e9c2c3b3ca8a5478cabace4e7"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-34/20260728T121001.846579Z-54817ff7fb/checkpoint.npz",
+      "roles": [
+        "optimizer-checkpoint:M3/l4-truncate-last/34"
+      ],
+      "sha256": "3623a5d7ef4b690ba7cca11590f1ba39bdab4c014770df4a68a49f8660feeeeb"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-34/20260728T121001.846579Z-54817ff7fb/command.txt",
+      "roles": [
+        "optimizer-command:M3/l4-truncate-last/34"
+      ],
+      "sha256": "079d3a16946abc1cb27a85fc6202e0751adfd4535ba8cf3362518dc161e7c9d0"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-34/20260728T121001.846579Z-54817ff7fb/config.json",
+      "roles": [
+        "optimizer-config:M3/l4-truncate-last/34"
+      ],
+      "sha256": "b8538aca7e83e9d9e8b8f56737fda3140e2631e0956910c5fdc4ecc8be214abc"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-34/20260728T121001.846579Z-54817ff7fb/initial_checkpoint.npz",
+      "roles": [
+        "optimizer-initial-checkpoint:M3/l4-truncate-last/34"
+      ],
+      "sha256": "5b2b3911f9cfe4a8a2d45f1261ccd4f358a952b5e9a08b00670351c00a4afe77"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-truncate-last/seed-34/20260728T121001.846579Z-54817ff7fb/result.json",
+      "roles": [
+        "optimizer-result:M3/l4-truncate-last/34"
+      ],
+      "sha256": "d54bc15721d02c04ce6ca8b5f8881029a9067be64721124fd8a70ca841fb8b28"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/campaign_metrics.csv",
+      "roles": [
+        "M4-campaign_metrics_csv"
+      ],
+      "sha256": "e9260132ced29a4d41fdd435b37457d67a927393c740540abc8c4d0d7de2bbd8"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/campaign_metrics.json",
+      "roles": [
+        "M4-campaign_metrics_json"
+      ],
+      "sha256": "e8b25d96bf9e1c861f4f616a3e26f6f21eb13305ae503f3afb934fb91b5de995"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/campaign_metrics.jsonl",
+      "roles": [
+        "M4-campaign_metrics_jsonl"
+      ],
+      "sha256": "5c8def78ed63143eee545c4c24622057439d4a1d0e7c3f10a076f692a14a4a8b"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/checkpoint_records.json",
+      "roles": [
+        "M4-checkpoint_records"
+      ],
+      "sha256": "9bc36e1a4a6a54a494f01890d8039938fb69d85f672dc41a2904c3761edf328d"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/command.txt",
+      "roles": [
+        "M4-command"
+      ],
+      "sha256": "13512bef704d2895d191ef56b030e9fb22cd04e6ef0af845c132a6ef615e7dd2"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/config.json",
+      "roles": [
+        "M4-config"
+      ],
+      "sha256": "0d826af38f44eee1233d9545c0df9c9504bb8e6a7f83867fb97b937f9dee4e52"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/environment.json",
+      "roles": [
+        "M4-environment"
+      ],
+      "sha256": "4a443a1049da5e68319a14bff78d5b2f93c14d179b53cf7787775256e26dfe49"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/exact_probabilities.npz",
+      "roles": [
+        "M4-exact_probabilities"
+      ],
+      "sha256": "84adb9afaa54c02dd5d2626e0b584ff723ec56f7a28669ecdabbf95bcf9b5525"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/metrics.json",
+      "roles": [
+        "M4-metrics"
+      ],
+      "sha256": "2e9e415f85de58d64eb9b24c7601c5e4aa45f3664544eeb282a84243227525bd"
+    },
+    {
+      "code_revisions": [
+        {
+          "branch": "main",
+          "dirty": true,
+          "head": "0d647b0e8019d3b0ea59baf1af82b51a08bb6448",
+          "tracked_diff_sha256": "01a5e47a5356db6a81048744aa6172f12cf471ea6baced3da35a971ef5737eee",
+          "training_source_sha256": "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+        }
+      ],
+      "path": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M4/fixed-adaptive-shots/seed-2026/20260728T121645.130907Z-219b2f7622/result.json",
+      "roles": [
+        "M4-result"
+      ],
+      "sha256": "01f37cc4a6faedff38b309f367f7e1adcf1d933bbe7eb06db3d214a96e35c114"
+    }
+  ],
+  "issues": [],
+  "matrix_contract": {
+    "excluded_from_optimizer_count": [
+      "P0",
+      "M1/loss-unit-audit",
+      "M3/pruning-selection",
+      "M2/compile-audit",
+      "M3/compile-audit",
+      "M4"
+    ],
+    "expected_by_stage": {
+      "M1": 15,
+      "M2": 15,
+      "M3": 15
+    },
+    "expected_optimizer_runs": 45
+  },
+  "optimizer_audit": {
+    "actual_count": 45,
+    "actual_stage_counts": {
+      "M1": 15,
+      "M2": 15,
+      "M3": 15
+    },
+    "exact_identity_once": true,
+    "expected_count": 45,
+    "expected_stage_counts": {
+      "M1": 15,
+      "M2": 15,
+      "M3": 15
+    },
+    "issues": [],
+    "known_l8_nonconvergence_preserved": true,
+    "known_nonconverged_runs": [
+      {
+        "identity": [
+          "M1",
+          "author-weighted-1q-l8",
+          30
+        ],
+        "maxfun": 15000,
+        "message": "STOP: TOTAL NO. OF F,G EVALUATIONS EXCEEDS LIMIT",
+        "nfev": 15007,
+        "result": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66/result.json",
+        "status": 1
+      }
+    ],
+    "passed": true
+  },
+  "outputs": {
+    "final_audit": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/summary/project/20260728T123108.528816Z/final_audit.json",
+    "optimizer_runs_csv": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/summary/project/20260728T123108.528816Z/optimizer_runs.csv",
+    "optimizer_runs_csv_sha256": "16258622e07eaea8414ac6e5cd2bfa42482e816f20a4cd19b5a64b419e6b1a9c",
+    "sha256_manifest": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/summary/project/20260728T123108.528816Z/SHA256SUMS"
+  },
+  "passed": true,
+  "schema_version": 1,
+  "scientific_findings": {
+    "M2_compile": [
+      {
+        "affects_artifact_integrity": false,
+        "classification": "preserved-scientific-negative-result",
+        "expected_for_stage": true,
+        "finding": "probability-parity-failed",
+        "max_probability_error": 4.6520326479893015e-10,
+        "observed": true,
+        "tolerance": 1e-10
+      }
+    ],
+    "M3_compile": []
+  },
+  "verification": "artifacts-verified"
+}

@@ -1,0 +1,6 @@
+{"best_objective": 0.3150830706863793, "elapsed_seconds": 0.003495000011753291, "nfev_observed": 1, "objective": 0.3150830706863793}
+{"best_objective": 0.2531672048432811, "elapsed_seconds": 0.5069358750188258, "nfev_observed": 100, "objective": 0.2531672048432811}
+{"best_objective": 0.25299459218054615, "elapsed_seconds": 0.9615235420060344, "nfev_observed": 200, "objective": 0.2529945921841818}
+{"best_objective": 0.2529788368142823, "elapsed_seconds": 1.369609749992378, "nfev_observed": 300, "objective": 0.25297883681744027}
+{"best_objective": 0.2529729151640067, "elapsed_seconds": 1.7851263339980505, "nfev_observed": 400, "objective": 0.25297291516406956}
+{"best_objective": 0.25297282013093897, "elapsed_seconds": 2.341344999993453, "nfev_observed": 500, "objective": 0.25297282013119454}

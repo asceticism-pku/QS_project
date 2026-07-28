@@ -1,0 +1,100 @@
+{
+  "all_controlled_dataset_hashes_equal": true,
+  "all_controlled_source_hashes_equal": true,
+  "all_paired_initial_parameters_equal": true,
+  "author_amplitude_reference": {
+    "final_loss": -0.8882056883372508,
+    "nfev": 2163,
+    "raw_result_path": "/Users/kuroneko/Documents/\u8bfe\u7a0b/Homework/\u91cf\u5b50/QS_project/results/raw/M1/author-amplitude-1q-l4/seed-30/20260728T115748.700033Z-1a7b7781a1",
+    "status": 0,
+    "success": true,
+    "test_accuracy": 0.896
+  },
+  "author_layer_trend": [
+    {
+      "config_id": "author-weighted-1q-l1",
+      "final_loss": 0.24281558307387233,
+      "nfev": 184,
+      "raw_result_path": "/Users/kuroneko/Documents/\u8bfe\u7a0b/Homework/\u91cf\u5b50/QS_project/results/raw/M1/author-weighted-1q-l1/seed-30/20260728T115412.335325Z-0cad8002af",
+      "status": 0,
+      "success": true,
+      "test_accuracy": 0.50325
+    },
+    {
+      "config_id": "author-weighted-1q-l2",
+      "final_loss": 0.08846327532282242,
+      "nfev": 676,
+      "raw_result_path": "/Users/kuroneko/Documents/\u8bfe\u7a0b/Homework/\u91cf\u5b50/QS_project/results/raw/M1/author-weighted-1q-l2/seed-30/20260728T115413.629426Z-292364067e",
+      "status": 0,
+      "success": true,
+      "test_accuracy": 0.935
+    },
+    {
+      "config_id": "author-weighted-1q-l4",
+      "final_loss": 0.06738795464176638,
+      "nfev": 4945,
+      "raw_result_path": "/Users/kuroneko/Documents/\u8bfe\u7a0b/Homework/\u91cf\u5b50/QS_project/results/raw/M1/author-weighted-1q-l4/seed-30/20260728T115417.422036Z-5df5ff9179",
+      "status": 0,
+      "success": true,
+      "test_accuracy": 0.9445
+    },
+    {
+      "config_id": "author-weighted-1q-l8",
+      "final_loss": 0.025925632967628936,
+      "nfev": 15007,
+      "raw_result_path": "/Users/kuroneko/Documents/\u8bfe\u7a0b/Homework/\u91cf\u5b50/QS_project/results/raw/M1/author-weighted-1q-l8/seed-30/20260728T115453.235299Z-6218b18c66",
+      "status": 1,
+      "success": false,
+      "test_accuracy": 0.9675
+    }
+  ],
+  "controlled": {
+    "legacy_amplitude": {
+      "converged_count": 5,
+      "nfev": {
+        "mean": 2520.0,
+        "sample_sd": 978.0230058643815
+      },
+      "test_accuracy": {
+        "mean": 0.8844000000000001,
+        "sample_sd": 0.02786664673045542
+      }
+    },
+    "paper_squared": {
+      "converged_count": 5,
+      "nfev": {
+        "mean": 3045.0,
+        "sample_sd": 986.3295595286597
+      },
+      "test_accuracy": {
+        "mean": 0.8363,
+        "sample_sd": 0.0326488897207853
+      }
+    }
+  },
+  "dataset_hashes": [
+    "d163876f916dd70372aa75291f99cafd4d1ce14aa4e08f911714055b3ffe3a12"
+  ],
+  "paired_initial_parameter_parity": {
+    "30": true,
+    "31": true,
+    "32": true,
+    "33": true,
+    "34": true
+  },
+  "paired_test_accuracy_delta_squared_minus_amplitude": {
+    "mean": -0.04810000000000003,
+    "sample_sd": 0.045367458050898146
+  },
+  "practical_effect": true,
+  "practical_effect_threshold": 0.005,
+  "schema_version": 1,
+  "source_files": {
+    "controlled_runs.csv": "8e4e75b0e75c0144e0af2819294abcefea88d7abe3baa479d62ae145f289ad24",
+    "paired_loss_comparison.csv": "3b39c476978ef7fa443f8c664219743231b72f64db34d41096bcf78181ccfc9b"
+  },
+  "stage": "M1",
+  "training_source_hashes": [
+    "142f05a903f7bceb79f71ef9803988fb92a4e9679989e11e7619b54fcbfaa6bd"
+  ]
+}

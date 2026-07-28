@@ -1,0 +1,13 @@
+scope,model_id,training_seed,fixed_methods_dominating_adaptive,not_dominated_by_any_fixed,adaptive_mean_shots,mean_shots_below_2048,adaptive_accuracy_minus_fixed_2048,accuracy_drop_within_0_005,seed_threshold_pass_count,at_least_four_seeds_pass,passes_both_thresholds,adaptive_criteria_pass
+model,l4-base,,,True,315.227648,True,-4.4000000000044004e-05,True,5,True,,True
+training-seed,l4-base,30,,,303.5648,True,-2.0000000000020002e-05,True,,,True,
+training-seed,l4-base,31,,,330.17984,True,-4.999999999999449e-05,True,,,True,
+training-seed,l4-base,32,,,332.04608,True,-5.999999999994898e-05,True,,,True,
+training-seed,l4-base,33,,,280.30976,True,2.0000000000020002e-05,True,,,True,
+training-seed,l4-base,34,,,330.03776,True,-0.0001100000000000545,True,,,True,
+model,l4-to-l3-pruned,,,True,329.777408,True,1.399999999995849e-05,True,5,True,,True
+training-seed,l4-to-l3-pruned,30,,,319.232,True,2.999999999997449e-05,True,,,True,
+training-seed,l4-to-l3-pruned,31,,,333.22496,True,5.999999999994898e-05,True,,,True,
+training-seed,l4-to-l3-pruned,32,,,332.35328,True,4.999999999999449e-05,True,,,True,
+training-seed,l4-to-l3-pruned,33,,,331.06304,True,1.0000000000065512e-05,True,,,True,
+training-seed,l4-to-l3-pruned,34,,,333.01376,True,-8.000000000008001e-05,True,,,True,
