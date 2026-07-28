@@ -1,0 +1,3274 @@
+{
+  "adaptive_assessment": [
+    {
+      "accuracy_drop_within_0_005": true,
+      "adaptive_accuracy_minus_fixed_2048": -4.4000000000044004e-05,
+      "adaptive_criteria_pass": true,
+      "adaptive_mean_shots": 315.227648,
+      "at_least_four_seeds_pass": true,
+      "fixed_methods_dominating_adaptive": [],
+      "mean_shots_below_2048": true,
+      "model_id": "l4-base",
+      "not_dominated_by_any_fixed": true,
+      "per_training_seed": [
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": -2.0000000000020002e-05,
+          "adaptive_mean_shots": 303.5648,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 30
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": -4.999999999999449e-05,
+          "adaptive_mean_shots": 330.17984,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 31
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": -5.999999999994898e-05,
+          "adaptive_mean_shots": 332.04608,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 32
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": 2.0000000000020002e-05,
+          "adaptive_mean_shots": 280.30976,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 33
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": -0.0001100000000000545,
+          "adaptive_mean_shots": 330.03776,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 34
+        }
+      ],
+      "seed_threshold_pass_count": 5
+    },
+    {
+      "accuracy_drop_within_0_005": true,
+      "adaptive_accuracy_minus_fixed_2048": 1.399999999995849e-05,
+      "adaptive_criteria_pass": true,
+      "adaptive_mean_shots": 329.777408,
+      "at_least_four_seeds_pass": true,
+      "fixed_methods_dominating_adaptive": [],
+      "mean_shots_below_2048": true,
+      "model_id": "l4-to-l3-pruned",
+      "not_dominated_by_any_fixed": true,
+      "per_training_seed": [
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": 2.999999999997449e-05,
+          "adaptive_mean_shots": 319.232,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 30
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": 5.999999999994898e-05,
+          "adaptive_mean_shots": 333.22496,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 31
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": 4.999999999999449e-05,
+          "adaptive_mean_shots": 332.35328,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 32
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": 1.0000000000065512e-05,
+          "adaptive_mean_shots": 331.06304,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 33
+        },
+        {
+          "accuracy_drop_within_0_005": true,
+          "adaptive_accuracy_minus_fixed_2048": -8.000000000008001e-05,
+          "adaptive_mean_shots": 333.01376,
+          "passes_both_thresholds": true,
+          "shots_below_2048": true,
+          "training_seed": 34
+        }
+      ],
+      "seed_threshold_pass_count": 5
+    }
+  ],
+  "adaptive_thresholds": {
+    "max_accuracy_drop_vs_fixed_2048": 0.005,
+    "mean_shots_strictly_below": 2048,
+    "minimum_passing_training_seeds": 4,
+    "must_not_be_dominated_by_any_fixed": true
+  },
+  "aggregation_order": "mean over 100 campaigns within each training seed, then mean and sample SD over five training seeds",
+  "campaign_count": 1000,
+  "campaign_metric_fields": [
+    "accuracy",
+    "exact_label_flip_rate",
+    "mean_shots",
+    "median_shots",
+    "p90_shots",
+    "p95_shots",
+    "stop_fraction_128",
+    "stop_fraction_512",
+    "stop_fraction_2048",
+    "cap_hit",
+    "cap_hit_fraction",
+    "total_shots"
+  ],
+  "campaign_metric_row_count": 4000,
+  "config_id": "fixed-adaptive-shots",
+  "dataset_hash": "d163876f916dd70372aa75291f99cafd4d1ce14aa4e08f911714055b3ffe3a12",
+  "eval_indices_file_sha256": "667083a84c28b9b22a95af197150c2258db78aa5503ddb17f012d2f8e8af7b5b",
+  "exact_checkpoint_metrics": [
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-30/20260728T115856.037957Z-3f5107c4eb/checkpoint.npz",
+      "checkpoint_sha256": "9eda0340bb887554338544c46552eedeaa2970151f7c2d48e4a36e2d47c76f33",
+      "exact_accuracy": 0.851,
+      "max_probability_normalization_error": 1.1102230246251565e-15,
+      "model_code": 0,
+      "model_id": "l4-base",
+      "point_count": 1000,
+      "training_seed": 30
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-31/20260728T115928.068378Z-3e28e9a70e/checkpoint.npz",
+      "checkpoint_sha256": "257b0b28358166388b968d6a3ee6a413b96424934a44b90409e70ecc25803b6b",
+      "exact_accuracy": 0.799,
+      "max_probability_normalization_error": 1.1102230246251565e-15,
+      "model_code": 0,
+      "model_id": "l4-base",
+      "point_count": 1000,
+      "training_seed": 31
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-32/20260728T115950.999802Z-49d8a88f18/checkpoint.npz",
+      "checkpoint_sha256": "3b44636da4af463139e059f378615b23dca9f0eb80a88932778b1ad961ffaedc",
+      "exact_accuracy": 0.798,
+      "max_probability_normalization_error": 1.1102230246251565e-15,
+      "model_code": 0,
+      "model_id": "l4-base",
+      "point_count": 1000,
+      "training_seed": 32
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-33/20260728T120009.302246Z-02dd522f96/checkpoint.npz",
+      "checkpoint_sha256": "84277dd1284c4652ec6485d05c8ca33eb167284ad33e1075cd943b46b129e61f",
+      "exact_accuracy": 0.867,
+      "max_probability_normalization_error": 1.1102230246251565e-15,
+      "model_code": 0,
+      "model_id": "l4-base",
+      "point_count": 1000,
+      "training_seed": 33
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M1/1q-l4-paper_squared/seed-34/20260728T120028.841816Z-857625ef03/checkpoint.npz",
+      "checkpoint_sha256": "aa49e7585474b8ca87bb8c73c75dafc61fe63a02d012f66cd24f8ccd03f4f0fc",
+      "exact_accuracy": 0.799,
+      "max_probability_normalization_error": 1.2212453270876722e-15,
+      "model_code": 0,
+      "model_id": "l4-base",
+      "point_count": 1000,
+      "training_seed": 34
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-30/20260728T120924.614692Z-567961a57b/checkpoint.npz",
+      "checkpoint_sha256": "00b9e3df4ef269c4d0ce87e75e6e30b0dbdae7d5d25f9db13c141b120de636ba",
+      "exact_accuracy": 0.849,
+      "max_probability_normalization_error": 8.881784197001252e-16,
+      "model_code": 1,
+      "model_id": "l4-to-l3-pruned",
+      "point_count": 1000,
+      "training_seed": 30
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-31/20260728T120931.947242Z-4ae93c1d9b/checkpoint.npz",
+      "checkpoint_sha256": "2a19c34707627836c1bbfc841e1c8e03b445d4d7be5506bb2c0aa2e96d0fcf89",
+      "exact_accuracy": 0.795,
+      "max_probability_normalization_error": 8.881784197001252e-16,
+      "model_code": 1,
+      "model_id": "l4-to-l3-pruned",
+      "point_count": 1000,
+      "training_seed": 31
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-32/20260728T120941.763238Z-e777323387/checkpoint.npz",
+      "checkpoint_sha256": "af344cf97b6b69e327747256bc37f2e4dfdfb03ea339fa8bd0edbea1349ce6cd",
+      "exact_accuracy": 0.795,
+      "max_probability_normalization_error": 1.1102230246251565e-15,
+      "model_code": 1,
+      "model_id": "l4-to-l3-pruned",
+      "point_count": 1000,
+      "training_seed": 32
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-33/20260728T120949.041701Z-58d96d55fd/checkpoint.npz",
+      "checkpoint_sha256": "96af2cabb35ccea499945677ffddf4a0d06c2c17ce9001b0a839507140c9b648",
+      "exact_accuracy": 0.795,
+      "max_probability_normalization_error": 8.881784197001252e-16,
+      "model_code": 1,
+      "model_id": "l4-to-l3-pruned",
+      "point_count": 1000,
+      "training_seed": 33
+    },
+    {
+      "checkpoint": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/results/raw/M3/l4-to-l3-pruned/seed-34/20260728T120959.501439Z-e6df1b4082/checkpoint.npz",
+      "checkpoint_sha256": "84c21292cd8471fbaafdf9cb3c872dbf4192b3ff527c4fc4aa0782c7793b7d7d",
+      "exact_accuracy": 0.795,
+      "max_probability_normalization_error": 8.881784197001252e-16,
+      "model_code": 1,
+      "model_id": "l4-to-l3-pruned",
+      "point_count": 1000,
+      "training_seed": 34
+    }
+  ],
+  "experiment_id": "M4",
+  "paired_accuracy_deltas": [
+    {
+      "across_training_seeds": {
+        "mean": 0.002408000000000002,
+        "sample_sd": 0.0008078799415754801
+      },
+      "aggregation": "paired within campaign; mean over repeats within seed; then mean and sample SD over training-seed means",
+      "comparison": "adaptive-minus-fixed-128",
+      "model_id": "l4-base",
+      "training_seed_delta": [
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.002090000000000002,
+            "sample_sd": 0.004733493381843861
+          },
+          "repeat_count": 100,
+          "training_seed": 30
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.002480000000000002,
+            "sample_sd": 0.004766211039889832
+          },
+          "repeat_count": 100,
+          "training_seed": 31
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0028500000000000027,
+            "sample_sd": 0.0038726573237861848
+          },
+          "repeat_count": 100,
+          "training_seed": 32
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.001240000000000001,
+            "sample_sd": 0.003962246072544456
+          },
+          "repeat_count": 100,
+          "training_seed": 33
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.003380000000000003,
+            "sample_sd": 0.004951848955774815
+          },
+          "repeat_count": 100,
+          "training_seed": 34
+        }
+      ]
+    },
+    {
+      "across_training_seeds": {
+        "mean": 0.0007380000000000006,
+        "sample_sd": 0.0004867442860476129
+      },
+      "aggregation": "paired within campaign; mean over repeats within seed; then mean and sample SD over training-seed means",
+      "comparison": "adaptive-minus-fixed-512",
+      "model_id": "l4-base",
+      "training_seed_delta": [
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0003700000000000003,
+            "sample_sd": 0.002890789972769845
+          },
+          "repeat_count": 100,
+          "training_seed": 30
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0006900000000000006,
+            "sample_sd": 0.003463212148257511
+          },
+          "repeat_count": 100,
+          "training_seed": 31
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0014500000000000012,
+            "sample_sd": 0.0030989571396738244
+          },
+          "repeat_count": 100,
+          "training_seed": 32
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0002300000000000002,
+            "sample_sd": 0.002666117367668166
+          },
+          "repeat_count": 100,
+          "training_seed": 33
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0009500000000000009,
+            "sample_sd": 0.0035742485259495525
+          },
+          "repeat_count": 100,
+          "training_seed": 34
+        }
+      ]
+    },
+    {
+      "across_training_seeds": {
+        "mean": -4.400000000000004e-05,
+        "sample_sd": 4.8270073544588724e-05
+      },
+      "aggregation": "paired within campaign; mean over repeats within seed; then mean and sample SD over training-seed means",
+      "comparison": "adaptive-minus-fixed-2048",
+      "model_id": "l4-base",
+      "training_seed_delta": [
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": -2.000000000000002e-05,
+            "sample_sd": 0.00031718458443950393
+          },
+          "repeat_count": 100,
+          "training_seed": 30
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": -5.000000000000004e-05,
+            "sample_sd": 0.000329523684408054
+          },
+          "repeat_count": 100,
+          "training_seed": 31
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": -6.0000000000000056e-05,
+            "sample_sd": 0.00023868325657594222
+          },
+          "repeat_count": 100,
+          "training_seed": 32
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 2.000000000000002e-05,
+            "sample_sd": 0.000347574568701568
+          },
+          "repeat_count": 100,
+          "training_seed": 33
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": -0.0001100000000000001,
+            "sample_sd": 0.0003993681878855022
+          },
+          "repeat_count": 100,
+          "training_seed": 34
+        }
+      ]
+    },
+    {
+      "across_training_seeds": {
+        "mean": 0.0017340000000000016,
+        "sample_sd": 0.0008758310339329164
+      },
+      "aggregation": "paired within campaign; mean over repeats within seed; then mean and sample SD over training-seed means",
+      "comparison": "adaptive-minus-fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_delta": [
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.00029000000000000027,
+            "sample_sd": 0.004374616866340727
+          },
+          "repeat_count": 100,
+          "training_seed": 30
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0019900000000000018,
+            "sample_sd": 0.0047598807386808216
+          },
+          "repeat_count": 100,
+          "training_seed": 31
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0017900000000000017,
+            "sample_sd": 0.004599725507840091
+          },
+          "repeat_count": 100,
+          "training_seed": 32
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0026700000000000022,
+            "sample_sd": 0.004503769465008109
+          },
+          "repeat_count": 100,
+          "training_seed": 33
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0019300000000000018,
+            "sample_sd": 0.004930332830365701
+          },
+          "repeat_count": 100,
+          "training_seed": 34
+        }
+      ]
+    },
+    {
+      "across_training_seeds": {
+        "mean": 0.00046200000000000044,
+        "sample_sd": 0.0007080042372754565
+      },
+      "aggregation": "paired within campaign; mean over repeats within seed; then mean and sample SD over training-seed means",
+      "comparison": "adaptive-minus-fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_delta": [
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": -0.0007900000000000007,
+            "sample_sd": 0.0032607088527224016
+          },
+          "repeat_count": 100,
+          "training_seed": 30
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0008600000000000007,
+            "sample_sd": 0.004156095681421609
+          },
+          "repeat_count": 100,
+          "training_seed": 31
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0006900000000000006,
+            "sample_sd": 0.0034191823702177837
+          },
+          "repeat_count": 100,
+          "training_seed": 32
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0009000000000000008,
+            "sample_sd": 0.0033978602892783226
+          },
+          "repeat_count": 100,
+          "training_seed": 33
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 0.0006500000000000006,
+            "sample_sd": 0.0033676266258166315
+          },
+          "repeat_count": 100,
+          "training_seed": 34
+        }
+      ]
+    },
+    {
+      "across_training_seeds": {
+        "mean": 1.4000000000000012e-05,
+        "sample_sd": 5.594640292279751e-05
+      },
+      "aggregation": "paired within campaign; mean over repeats within seed; then mean and sample SD over training-seed means",
+      "comparison": "adaptive-minus-fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_delta": [
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 3.0000000000000028e-05,
+            "sample_sd": 0.0003319668962442195
+          },
+          "repeat_count": 100,
+          "training_seed": 30
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 6.0000000000000056e-05,
+            "sample_sd": 0.0003974667256259299
+          },
+          "repeat_count": 100,
+          "training_seed": 31
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 5.000000000000004e-05,
+            "sample_sd": 0.0002972941950052818
+          },
+          "repeat_count": 100,
+          "training_seed": 32
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": 1.000000000000001e-05,
+            "sample_sd": 0.00036223213718846294
+          },
+          "repeat_count": 100,
+          "training_seed": 33
+        },
+        {
+          "adaptive_minus_fixed_accuracy": {
+            "mean": -8.000000000000007e-05,
+            "sample_sd": 0.00036735472631980006
+          },
+          "repeat_count": 100,
+          "training_seed": 34
+        }
+      ]
+    }
+  ],
+  "per_model": [
+    {
+      "method_id": "adaptive",
+      "model_id": "l4-base",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.821848,
+          "sample_sd": 0.03445069186533122
+        },
+        "cap_hit": {
+          "mean": 39.076,
+          "sample_sd": 4.383506587197058
+        },
+        "cap_hit_fraction": {
+          "mean": 0.039076,
+          "sample_sd": 0.004383506587197057
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.006748,
+          "sample_sd": 0.0005214115457102959
+        },
+        "mean_shots": {
+          "mean": 315.227648,
+          "sample_sd": 22.809252748871906
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.3072000000001,
+          "sample_sd": 0.686920082688114
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.831692,
+          "sample_sd": 0.01688567943554538
+        },
+        "stop_fraction_2048": {
+          "mean": 0.079816,
+          "sample_sd": 0.010646418646662362
+        },
+        "stop_fraction_512": {
+          "mean": 0.088492,
+          "sample_sd": 0.006409034248621237
+        },
+        "total_shots": {
+          "mean": 315227.648,
+          "sample_sd": 22809.2527488719
+        }
+      }
+    },
+    {
+      "method_id": "fixed-128",
+      "model_id": "l4-base",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.8194400000000001,
+          "sample_sd": 0.03517151972832561
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.026896,
+          "sample_sd": 0.0030886696165177657
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      }
+    },
+    {
+      "method_id": "fixed-2048",
+      "model_id": "l4-base",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.8218920000000001,
+          "sample_sd": 0.03440865617835138
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.006704,
+          "sample_sd": 0.0005248618865949402
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      }
+    },
+    {
+      "method_id": "fixed-512",
+      "model_id": "l4-base",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.82111,
+          "sample_sd": 0.034850297703176054
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01339,
+          "sample_sd": 0.0008856353651475308
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      }
+    },
+    {
+      "method_id": "adaptive",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.806396,
+          "sample_sd": 0.022918631721810943
+        },
+        "cap_hit": {
+          "mean": 43.269999999999996,
+          "sample_sd": 0.6757218362610461
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04327,
+          "sample_sd": 0.000675721836261047
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.0070599999999999994,
+          "sample_sd": 0.0007427651041883968
+        },
+        "mean_shots": {
+          "mean": 329.777408,
+          "sample_sd": 5.955106740161744
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.81977,
+          "sample_sd": 0.0008499117601257222
+        },
+        "stop_fraction_2048": {
+          "mean": 0.086308,
+          "sample_sd": 0.0036752374072976557
+        },
+        "stop_fraction_512": {
+          "mean": 0.093922,
+          "sample_sd": 0.0028834996098491147
+        },
+        "total_shots": {
+          "mean": 329777.408,
+          "sample_sd": 5955.106740161764
+        }
+      }
+    },
+    {
+      "method_id": "fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.804662,
+          "sample_sd": 0.023724407684913837
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.028470000000000002,
+          "sample_sd": 0.0007733045971672479
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      }
+    },
+    {
+      "method_id": "fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.806382,
+          "sample_sd": 0.022909733084433764
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.007002,
+          "sample_sd": 0.0007393713545979448
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      }
+    },
+    {
+      "method_id": "fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "training_seed_count": 5,
+      "training_seed_metrics": {
+        "accuracy": {
+          "mean": 0.805934,
+          "sample_sd": 0.0236174306392545
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.014418,
+          "sample_sd": 0.0008054005214798411
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      }
+    }
+  ],
+  "per_training_seed": [
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.85085,
+          "sample_sd": 0.0020859075005881995
+        },
+        "cap_hit": {
+          "mean": 34.25,
+          "sample_sd": 3.488436887660707
+        },
+        "cap_hit_fraction": {
+          "mean": 0.03425,
+          "sample_sd": 0.0034884368876607064
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00665,
+          "sample_sd": 0.002208226126614443
+        },
+        "mean_shots": {
+          "mean": 303.5648,
+          "sample_sd": 7.843496066516168
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.84256,
+          "sample_sd": 0.005180226585270911
+        },
+        "stop_fraction_2048": {
+          "mean": 0.07493999999999999,
+          "sample_sd": 0.004694333571101193
+        },
+        "stop_fraction_512": {
+          "mean": 0.0825,
+          "sample_sd": 0.006278872703299727
+        },
+        "total_shots": {
+          "mean": 303564.8,
+          "sample_sd": 7843.496066516164
+        }
+      },
+      "exact_accuracy": 0.851,
+      "method_id": "adaptive",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.84876,
+          "sample_sd": 0.004311413089496628
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02462,
+          "sample_sd": 0.004366493172588574
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.851,
+      "method_id": "fixed-128",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.85087,
+          "sample_sd": 0.00207756170215535
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00659,
+          "sample_sd": 0.0022522491564270285
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.851,
+      "method_id": "fixed-2048",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.85048,
+          "sample_sd": 0.0029006443032087523
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01216,
+          "sample_sd": 0.0025612496949731396
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.851,
+      "method_id": "fixed-512",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79654,
+          "sample_sd": 0.002253706262846143
+        },
+        "cap_hit": {
+          "mean": 41.6,
+          "sample_sd": 3.1908961408698624
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0416,
+          "sample_sd": 0.0031908961408698617
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00638,
+          "sample_sd": 0.0019528792522164225
+        },
+        "mean_shots": {
+          "mean": 330.17984,
+          "sample_sd": 8.289150302764343
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 513.5360000000004,
+          "sample_sd": 15.360000000003492
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.82033,
+          "sample_sd": 0.006187401667415753
+        },
+        "stop_fraction_2048": {
+          "mean": 0.08671,
+          "sample_sd": 0.004854020514121787
+        },
+        "stop_fraction_512": {
+          "mean": 0.09296,
+          "sample_sd": 0.007012139545823444
+        },
+        "total_shots": {
+          "mean": 330179.84,
+          "sample_sd": 8289.150302764341
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "adaptive",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79406,
+          "sample_sd": 0.005018792965273909
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02884,
+          "sample_sd": 0.004244354539213879
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "fixed-128",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79659,
+          "sample_sd": 0.0021560110942163186
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.0062900000000000005,
+          "sample_sd": 0.0018978722801914758
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "fixed-2048",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7958500000000001,
+          "sample_sd": 0.0032733234586038826
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01375,
+          "sample_sd": 0.003131382371342656
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "fixed-512",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7978700000000001,
+          "sample_sd": 0.001972820367397957
+        },
+        "cap_hit": {
+          "mean": 43.15,
+          "sample_sd": 3.1857479340007266
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04315,
+          "sample_sd": 0.0031857479340007266
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00645,
+          "sample_sd": 0.0020566472667421557
+        },
+        "mean_shots": {
+          "mean": 332.04608,
+          "sample_sd": 7.312345072422515
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.81883,
+          "sample_sd": 0.005579643737948154
+        },
+        "stop_fraction_2048": {
+          "mean": 0.08755,
+          "sample_sd": 0.0043166929916127195
+        },
+        "stop_fraction_512": {
+          "mean": 0.09362,
+          "sample_sd": 0.0064366061701722115
+        },
+        "total_shots": {
+          "mean": 332046.08,
+          "sample_sd": 7312.345072422514
+        }
+      },
+      "exact_accuracy": 0.798,
+      "method_id": "adaptive",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7950200000000001,
+          "sample_sd": 0.0035161388373089516
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02866,
+          "sample_sd": 0.004579753422853835
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.798,
+      "method_id": "fixed-128",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79793,
+          "sample_sd": 0.0019604936504705544
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00647,
+          "sample_sd": 0.0020765890836230024
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.798,
+      "method_id": "fixed-2048",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79642,
+          "sample_sd": 0.0027235597621087355
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01396,
+          "sample_sd": 0.002926438177040548
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.798,
+      "method_id": "fixed-512",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.86724,
+          "sample_sd": 0.002220746985074432
+        },
+        "cap_hit": {
+          "mean": 34.38,
+          "sample_sd": 2.55358729649254
+        },
+        "cap_hit_fraction": {
+          "mean": 0.03438,
+          "sample_sd": 0.0025535872964925397
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00766,
+          "sample_sd": 0.002475006376892101
+        },
+        "mean_shots": {
+          "mean": 280.30976,
+          "sample_sd": 7.153339813490809
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.85624,
+          "sample_sd": 0.006265377043319066
+        },
+        "stop_fraction_2048": {
+          "mean": 0.06322,
+          "sample_sd": 0.0040491425704160585
+        },
+        "stop_fraction_512": {
+          "mean": 0.08054,
+          "sample_sd": 0.006655171908471871
+        },
+        "total_shots": {
+          "mean": 280309.76,
+          "sample_sd": 7153.339813490809
+        }
+      },
+      "exact_accuracy": 0.867,
+      "method_id": "adaptive",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.866,
+          "sample_sd": 0.003601346549514083
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02264,
+          "sample_sd": 0.004132942307994648
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.867,
+      "method_id": "fixed-128",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.86722,
+          "sample_sd": 0.002134753315297045
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00762,
+          "sample_sd": 0.002465028120805853
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.867,
+      "method_id": "fixed-2048",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.86701,
+          "sample_sd": 0.0027135834893246545
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01279,
+          "sample_sd": 0.002910430562752883
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.867,
+      "method_id": "fixed-512",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79674,
+          "sample_sd": 0.0022813251509691585
+        },
+        "cap_hit": {
+          "mean": 42.0,
+          "sample_sd": 3.3090021078105933
+        },
+        "cap_hit_fraction": {
+          "mean": 0.042,
+          "sample_sd": 0.003309002107810593
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.0066,
+          "sample_sd": 0.002482260292881502
+        },
+        "mean_shots": {
+          "mean": 330.03776,
+          "sample_sd": 7.483551996697343
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.8205,
+          "sample_sd": 0.006501748016704971
+        },
+        "stop_fraction_2048": {
+          "mean": 0.08666,
+          "sample_sd": 0.004204903342671756
+        },
+        "stop_fraction_512": {
+          "mean": 0.09284,
+          "sample_sd": 0.0068042173493630944
+        },
+        "total_shots": {
+          "mean": 330037.76,
+          "sample_sd": 7483.551996697339
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "adaptive",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7933600000000001,
+          "sample_sd": 0.004689381945449002
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02972,
+          "sample_sd": 0.004415491553220961
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "fixed-128",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7968500000000001,
+          "sample_sd": 0.002275805995530581
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00655,
+          "sample_sd": 0.002487849259781215
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "fixed-2048",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79579,
+          "sample_sd": 0.0031278966373167435
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01429,
+          "sample_sd": 0.0033068493351304236
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.799,
+      "method_id": "fixed-512",
+      "model_id": "l4-base",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.84739,
+          "sample_sd": 0.002518196404435751
+        },
+        "cap_hit": {
+          "mean": 42.19,
+          "sample_sd": 2.9428736042353316
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04219,
+          "sample_sd": 0.002942873604235331
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00831,
+          "sample_sd": 0.0023471237502504846
+        },
+        "mean_shots": {
+          "mean": 319.232,
+          "sample_sd": 7.987073192466575
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.82116,
+          "sample_sd": 0.0069394495167815285
+        },
+        "stop_fraction_2048": {
+          "mean": 0.07979,
+          "sample_sd": 0.004645612679907482
+        },
+        "stop_fraction_512": {
+          "mean": 0.09905,
+          "sample_sd": 0.007742542844374172
+        },
+        "total_shots": {
+          "mean": 319232.0,
+          "sample_sd": 7987.073192466573
+        }
+      },
+      "exact_accuracy": 0.849,
+      "method_id": "adaptive",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.8471,
+          "sample_sd": 0.004013864859597436
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.0274,
+          "sample_sd": 0.004306443375391641
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.849,
+      "method_id": "fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.84736,
+          "sample_sd": 0.002496543064464798
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00826,
+          "sample_sd": 0.0023424928446577433
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.849,
+      "method_id": "fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.8481799999999999,
+          "sample_sd": 0.0031889328825318586
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01558,
+          "sample_sd": 0.003624217087172
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.849,
+      "method_id": "fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 30
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79635,
+          "sample_sd": 0.002253504565844684
+        },
+        "cap_hit": {
+          "mean": 43.79,
+          "sample_sd": 3.616167400254953
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04379,
+          "sample_sd": 0.003616167400254953
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00709,
+          "sample_sd": 0.0022251773280828973
+        },
+        "mean_shots": {
+          "mean": 333.22496,
+          "sample_sd": 7.422659690924318
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.8194,
+          "sample_sd": 0.0066469405128839485
+        },
+        "stop_fraction_2048": {
+          "mean": 0.08846,
+          "sample_sd": 0.004300387579432036
+        },
+        "stop_fraction_512": {
+          "mean": 0.09214,
+          "sample_sd": 0.0073677155430453695
+        },
+        "total_shots": {
+          "mean": 333224.96,
+          "sample_sd": 7422.659690924321
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "adaptive",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7943600000000001,
+          "sample_sd": 0.004650448007092081
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02912,
+          "sample_sd": 0.00492833489613732
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79629,
+          "sample_sd": 0.002239656358922193
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00701,
+          "sample_sd": 0.002176527676661321
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79549,
+          "sample_sd": 0.003529085496902061
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01481,
+          "sample_sd": 0.0029187481750042963
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 31
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79568,
+          "sample_sd": 0.002059126028197402
+        },
+        "cap_hit": {
+          "mean": 43.37,
+          "sample_sd": 3.56938440778029
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04337,
+          "sample_sd": 0.0035693844077802897
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00682,
+          "sample_sd": 0.00233281379497383
+        },
+        "mean_shots": {
+          "mean": 332.35328,
+          "sample_sd": 7.283036393752764
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.81919,
+          "sample_sd": 0.005864970484825867
+        },
+        "stop_fraction_2048": {
+          "mean": 0.08784,
+          "sample_sd": 0.004389427150217976
+        },
+        "stop_fraction_512": {
+          "mean": 0.09297,
+          "sample_sd": 0.007028736110648295
+        },
+        "total_shots": {
+          "mean": 332353.28,
+          "sample_sd": 7283.0363937527645
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "adaptive",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79389,
+          "sample_sd": 0.004299154250864617
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02849,
+          "sample_sd": 0.004198352250128807
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7956300000000001,
+          "sample_sd": 0.0020382949896044175
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00675,
+          "sample_sd": 0.002332792145031184
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7949900000000001,
+          "sample_sd": 0.0034567895422478296
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01433,
+          "sample_sd": 0.0037713834773638885
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 32
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7965300000000001,
+          "sample_sd": 0.002176342033427801
+        },
+        "cap_hit": {
+          "mean": 43.13,
+          "sample_sd": 3.680840373961612
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04313,
+          "sample_sd": 0.0036808403739616116
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00639,
+          "sample_sd": 0.0024366519503763204
+        },
+        "mean_shots": {
+          "mean": 331.06304,
+          "sample_sd": 7.513877523138588
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.81999,
+          "sample_sd": 0.005478138369920927
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0872,
+          "sample_sd": 0.004636264605795217
+        },
+        "stop_fraction_512": {
+          "mean": 0.09281,
+          "sample_sd": 0.007019014578740071
+        },
+        "total_shots": {
+          "mean": 331063.04,
+          "sample_sd": 7513.877523138587
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "adaptive",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79386,
+          "sample_sd": 0.0046078983574648555
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02806,
+          "sample_sd": 0.004494261211632435
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79652,
+          "sample_sd": 0.002176458062304373
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00638,
+          "sample_sd": 0.0023731664905604897
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7956300000000001,
+          "sample_sd": 0.0031771119596325876
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01375,
+          "sample_sd": 0.003211013245162041
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 33
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.79603,
+          "sample_sd": 0.0024759652744745938
+        },
+        "cap_hit": {
+          "mean": 43.87,
+          "sample_sd": 3.2618238685580416
+        },
+        "cap_hit_fraction": {
+          "mean": 0.04387,
+          "sample_sd": 0.0032618238685580415
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00669,
+          "sample_sd": 0.0023557151651661832
+        },
+        "mean_shots": {
+          "mean": 333.01376,
+          "sample_sd": 7.03669767175174
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.81911,
+          "sample_sd": 0.006764277828819145
+        },
+        "stop_fraction_2048": {
+          "mean": 0.08825,
+          "sample_sd": 0.003960346378076472
+        },
+        "stop_fraction_512": {
+          "mean": 0.09264,
+          "sample_sd": 0.007187980989615284
+        },
+        "total_shots": {
+          "mean": 333013.76,
+          "sample_sd": 7036.69767175174
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "adaptive",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7941,
+          "sample_sd": 0.0046914924075501865
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.02928,
+          "sample_sd": 0.004216561862393809
+        },
+        "mean_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 128.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 128000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-128",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7961100000000001,
+          "sample_sd": 0.0024818329817888553
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.00661,
+          "sample_sd": 0.0023693966329089784
+        },
+        "mean_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 2048.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 2048000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-2048",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 34
+    },
+    {
+      "campaign_metrics": {
+        "accuracy": {
+          "mean": 0.7953800000000001,
+          "sample_sd": 0.003171145158481654
+        },
+        "cap_hit": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "cap_hit_fraction": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "exact_label_flip_rate": {
+          "mean": 0.01362,
+          "sample_sd": 0.003227971186333295
+        },
+        "mean_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "median_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p90_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "p95_shots": {
+          "mean": 512.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_128": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_2048": {
+          "mean": 0.0,
+          "sample_sd": 0.0
+        },
+        "stop_fraction_512": {
+          "mean": 1.0,
+          "sample_sd": 0.0
+        },
+        "total_shots": {
+          "mean": 512000.0,
+          "sample_sd": 0.0
+        }
+      },
+      "exact_accuracy": 0.795,
+      "method_id": "fixed-512",
+      "model_id": "l4-to-l3-pruned",
+      "repeat_count": 100,
+      "training_seed": 34
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,9 @@
+config_id,optimization_level,n_qubits,layers,parameters,template_cz,median_target_depth_across_seed_medians,median_rz_across_seed_medians,median_sx_across_seed_medians,median_x_across_seed_medians,median_cz_across_seed_medians,max_probability_error,all_probability_parity,all_label_parity
+1q-l4-paper_squared,0,1,4,20,0,20.0,12.0,8.0,0.0,0.0,2.4424906541753444e-15,True,True
+1q-l4-paper_squared,3,1,4,20,0,5.0,3.0,2.0,0.0,0.0,1.9984014443252818e-15,True,True
+1q-l2-paper_squared,0,1,2,10,0,10.0,6.0,4.0,0.0,0.0,1.2212453270876722e-15,True,True
+1q-l2-paper_squared,3,1,2,10,0,5.0,3.0,2.0,0.0,0.0,1.3322676295501878e-15,True,True
+2q-l2-separable-paper_squared,0,2,2,20,0,10.0,12.0,8.0,0.0,0.0,1.3322676295501878e-15,True,True
+2q-l2-separable-paper_squared,3,2,2,20,0,5.0,6.0,4.0,0.0,0.0,1.1102230246251565e-15,True,True
+2q-l2-cz-paper_squared,0,2,2,20,1,11.0,12.0,8.0,0.0,1.0,1.5543122344752192e-15,True,True
+2q-l2-cz-paper_squared,3,2,2,20,1,10.0,10.0,8.0,0.0,1.0,4.6520326479893015e-10,False,True

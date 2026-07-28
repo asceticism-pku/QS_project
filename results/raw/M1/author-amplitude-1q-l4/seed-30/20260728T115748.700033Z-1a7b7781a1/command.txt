@@ -1,0 +1,1 @@
+/Users/kuroneko/Documents/课程/Homework/量子/QS_project/.venv/bin/python experiments/run_project.py m1 --slice reference

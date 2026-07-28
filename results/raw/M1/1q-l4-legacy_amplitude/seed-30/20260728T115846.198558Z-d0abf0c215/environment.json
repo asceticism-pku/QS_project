@@ -1,0 +1,8 @@
+{
+  "numpy": "2.4.2",
+  "platform": "macOS-26.3.1-arm64-arm-64bit",
+  "python": "3.11.7 (main, Mar  7 2026, 23:13:25) [Clang 17.0.0 (clang-1700.6.4.2)]",
+  "python_executable": "/Users/kuroneko/Documents/课程/Homework/量子/QS_project/.venv/bin/python",
+  "qiskit": "2.3.0",
+  "scipy": "1.17.0"
+}

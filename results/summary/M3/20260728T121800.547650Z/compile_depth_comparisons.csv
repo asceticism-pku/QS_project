@@ -1,0 +1,11 @@
+seed,optimization_level,base_median_target_depth,pruned_median_target_depth,truncate_median_target_depth,scratch_median_target_depth,pruned_minus_base_depth,truncate_minus_base_depth,scratch_minus_base_depth,pruned_nonincrease_vs_base,pruned_strict_decrease_vs_base
+30,0,20.0,15.0,15.0,15.0,-5.0,-5.0,-5.0,True,True
+30,3,5.0,5.0,5.0,5.0,0.0,0.0,0.0,True,False
+31,0,20.0,15.0,15.0,15.0,-5.0,-5.0,-5.0,True,True
+31,3,5.0,5.0,5.0,5.0,0.0,0.0,0.0,True,False
+32,0,20.0,15.0,15.0,15.0,-5.0,-5.0,-5.0,True,True
+32,3,5.0,5.0,5.0,5.0,0.0,0.0,0.0,True,False
+33,0,20.0,15.0,15.0,15.0,-5.0,-5.0,-5.0,True,True
+33,3,5.0,5.0,5.0,5.0,0.0,0.0,0.0,True,False
+34,0,20.0,15.0,15.0,15.0,-5.0,-5.0,-5.0,True,True
+34,3,5.0,5.0,5.0,5.0,0.0,0.0,0.0,True,False

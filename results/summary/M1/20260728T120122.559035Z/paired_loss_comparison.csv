@@ -1,0 +1,6 @@
+seed,amplitude_test_accuracy,squared_test_accuracy,delta_test_accuracy_squared_minus_amplitude,amplitude_nfev,squared_nfev,delta_nfev_squared_minus_amplitude,same_initial_parameters
+30,0.85425,0.86925,0.015000000000000013,2268,4137,1869,True
+31,0.8535,0.81225,-0.04125000000000001,3549,2247,-1302,True
+32,0.90475,0.813,-0.09175000000000011,3213,1785,-1428,True
+33,0.90475,0.87475,-0.030000000000000027,2541,3591,1050,True
+34,0.90475,0.81225,-0.09250000000000003,1029,3465,2436,True

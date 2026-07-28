@@ -1,0 +1,10 @@
+# Generated CSV artifacts use the csv module's CRLF line endings and may end
+# with empty fields. Preserve their bytes while excluding those line endings
+# from whitespace-error checks.
+results/**/*.csv whitespace=-blank-at-eol,-blank-at-eof
+
+# These files are part of the recorded training-source digest. Keep their
+# audited bytes, including the existing terminal blank line.
+src/qs_project/__init__.py whitespace=-blank-at-eof
+src/qs_project/core.py whitespace=-blank-at-eof
+src/qs_project/training.py whitespace=-blank-at-eof
