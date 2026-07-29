@@ -7,6 +7,7 @@ __pycache__/
 
 
 
+# 核心辅助文件与日志
 *.aux
 *.log
 *.out
@@ -16,5 +17,44 @@ __pycache__/
 *.fot
 *.cb
 *.cb2
+
+# 参考文献相关 (BibTeX / Biber)
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# 图表目录与索引
+*.lof
+*.lot
+*.idx
+*.ind
+*.ilg
+*.glg
+*.glo
+*.gls
+
+# 编译工具缓存 (如 latexmk)
+*.fdb_latexmk
+
+# Beamer 幻灯片专用辅助文件
+*.nav
+*.snm
+*.vrb
+
+# SyncTeX 逆向搜索文件
+*.synctex.gz
+*.synctex.gz(busy)
+*.synctex(busy)
+*.pdfsync
+
+# 排版引擎中间产物
+*.dvi
+*.xdv
+
+# 临时文件与备份
+*~
+*.bak
+*.sav
 
 

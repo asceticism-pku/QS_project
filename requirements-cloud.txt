@@ -1,0 +1,2 @@
+# Optional dependency for submitting frozen classifier circuits to Origin Cloud.
+pyqpanda3==0.4.0

@@ -1,0 +1,7 @@
+﻿backend,points,shots_per_basis,measurement_bases,circuits_executed,accuracy,mean_decision_margin,single_qubit_error,two_qubit_error,readout_error,rng_seed,recorded_noiseless_full_test_accuracy,summary_path
+local-density-matrix,400,2048,"['x', 'y', 'z']",1200,0.9,0.6457085971391113,0.0,0.0,0.0,2026,0.918,D:\programming\QS_project\weighted_fidelity_chi\crown\1_qubits\10_layers\L-BFGS-B\appendix_seed_30_summary.txt
+local-density-matrix,400,2048,"['x', 'y', 'z']",1200,0.9025,0.6328961331936523,0.001,0.01,0.002,2027,0.918,D:\programming\QS_project\weighted_fidelity_chi\crown\1_qubits\10_layers\L-BFGS-B\appendix_seed_30_summary.txt
+local-density-matrix,400,2048,"['x', 'y', 'z']",1200,0.89,0.5888955433757813,0.005,0.05,0.01,2028,0.918,D:\programming\QS_project\weighted_fidelity_chi\crown\1_qubits\10_layers\L-BFGS-B\appendix_seed_30_summary.txt
+local-density-matrix,400,2048,"['x', 'y', 'z']",1200,0.8875,0.5403285214714356,0.01,0.1,0.02,2029,0.918,D:\programming\QS_project\weighted_fidelity_chi\crown\1_qubits\10_layers\L-BFGS-B\appendix_seed_30_summary.txt
+local-density-matrix,400,2048,"['x', 'y', 'z']",1200,0.8925,0.44903744326757816,0.02,0.2,0.04,2030,0.918,D:\programming\QS_project\weighted_fidelity_chi\crown\1_qubits\10_layers\L-BFGS-B\appendix_seed_30_summary.txt
+local-density-matrix,400,2048,"['x', 'y', 'z']",1200,0.895,0.25729582829453124,0.05,0.5,0.1,2031,0.918,D:\programming\QS_project\weighted_fidelity_chi\crown\1_qubits\10_layers\L-BFGS-B\appendix_seed_30_summary.txt

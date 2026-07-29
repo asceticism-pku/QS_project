@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-07-29T02:24:29.994836+00:00",
+  "model": {
+    "chi": "weighted_fidelity_chi",
+    "problem": "crown",
+    "qubits": 1,
+    "layers": 10,
+    "entanglement": "n",
+    "classes": 2,
+    "recorded_accuracy": 0.918,
+    "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+  },
+  "evaluation": {
+    "backend": "local",
+    "origin_backend": null,
+    "points": 400,
+    "shots": 2048,
+    "selection_seed": 2026,
+    "sampling_seed": 2026,
+    "two_qubit_multiplier": 10.0,
+    "readout_multiplier": 2.0
+  },
+  "noise_sweep": [
+    {
+      "backend": "local-density-matrix",
+      "points": 400,
+      "shots_per_basis": 2048,
+      "measurement_bases": [
+        "x",
+        "y",
+        "z"
+      ],
+      "circuits_executed": 1200,
+      "accuracy": 0.9,
+      "mean_decision_margin": 0.6457085971391113,
+      "single_qubit_error": 0.0,
+      "two_qubit_error": 0.0,
+      "readout_error": 0.0,
+      "rng_seed": 2026,
+      "recorded_noiseless_full_test_accuracy": 0.918,
+      "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+    },
+    {
+      "backend": "local-density-matrix",
+      "points": 400,
+      "shots_per_basis": 2048,
+      "measurement_bases": [
+        "x",
+        "y",
+        "z"
+      ],
+      "circuits_executed": 1200,
+      "accuracy": 0.8975,
+      "mean_decision_margin": 0.5406855181333496,
+      "single_qubit_error": 0.01,
+      "two_qubit_error": 0.1,
+      "readout_error": 0.02,
+      "rng_seed": 2027,
+      "recorded_noiseless_full_test_accuracy": 0.918,
+      "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+    },
+    {
+      "backend": "local-density-matrix",
+      "points": 400,
+      "shots_per_basis": 2048,
+      "measurement_bases": [
+        "x",
+        "y",
+        "z"
+      ],
+      "circuits_executed": 1200,
+      "accuracy": 0.91,
+      "mean_decision_margin": 0.2575975325068848,
+      "single_qubit_error": 0.05,
+      "two_qubit_error": 0.5,
+      "readout_error": 0.1,
+      "rng_seed": 2028,
+      "recorded_noiseless_full_test_accuracy": 0.918,
+      "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+    },
+    {
+      "backend": "local-density-matrix",
+      "points": 400,
+      "shots_per_basis": 2048,
+      "measurement_bases": [
+        "x",
+        "y",
+        "z"
+      ],
+      "circuits_executed": 1200,
+      "accuracy": 0.8925,
+      "mean_decision_margin": 0.0949203938850586,
+      "single_qubit_error": 0.1,
+      "two_qubit_error": 1.0,
+      "readout_error": 0.2,
+      "rng_seed": 2029,
+      "recorded_noiseless_full_test_accuracy": 0.918,
+      "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+    },
+    {
+      "backend": "local-density-matrix",
+      "points": 400,
+      "shots_per_basis": 2048,
+      "measurement_bases": [
+        "x",
+        "y",
+        "z"
+      ],
+      "circuits_executed": 1200,
+      "accuracy": 0.5275,
+      "mean_decision_margin": 0.03590866447465824,
+      "single_qubit_error": 0.2,
+      "two_qubit_error": 1.0,
+      "readout_error": 0.4,
+      "rng_seed": 2030,
+      "recorded_noiseless_full_test_accuracy": 0.918,
+      "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+    },
+    {
+      "backend": "local-density-matrix",
+      "points": 400,
+      "shots_per_basis": 2048,
+      "measurement_bases": [
+        "x",
+        "y",
+        "z"
+      ],
+      "circuits_executed": 1200,
+      "accuracy": 0.49,
+      "mean_decision_margin": 0.038339176612548875,
+      "single_qubit_error": 0.4,
+      "two_qubit_error": 1.0,
+      "readout_error": 0.8,
+      "rng_seed": 2031,
+      "recorded_noiseless_full_test_accuracy": 0.918,
+      "summary_path": "D:\\programming\\QS_project\\weighted_fidelity_chi\\crown\\1_qubits\\10_layers\\L-BFGS-B\\appendix_seed_30_summary.txt"
+    }
+  ]
+}

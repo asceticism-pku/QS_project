@@ -1,0 +1,18 @@
+﻿metric,scope,n,value,lower,upper
+best_accuracy,non convex,4000,0.9775,0.9724253099408094,0.9816583880756157
+best_accuracy,crown,4000,0.9725,0.9669608246313627,0.9771324681702306
+best_accuracy,sphere,4000,0.96175,0.9553493975372275,0.9672645240524776
+best_accuracy,squares,4000,0.98575,0.98158326405778,0.9889846025631173
+best_accuracy,wavy lines,4000,0.939,0.9311534681481274,0.9460041097140935
+weighted_minus_ordinary_mean,all,115,0.06338913043478261,,
+entangled_minus_separable_mean,all,105,0.00528095238095238,,
+weighted_minus_ordinary_mean,non convex,23,0.0728804347826087,,
+entangled_minus_separable_mean,non convex,21,0.012940476190476193,,
+weighted_minus_ordinary_mean,crown,23,0.10504347826086954,,
+entangled_minus_separable_mean,crown,21,0.02017857142857143,,
+weighted_minus_ordinary_mean,sphere,23,0.08669565217391306,,
+entangled_minus_separable_mean,sphere,21,-0.008785714285714286,,
+weighted_minus_ordinary_mean,squares,23,0.007717391304347826,,
+entangled_minus_separable_mean,squares,21,-0.0039523809523809615,,
+weighted_minus_ordinary_mean,wavy lines,23,0.04460869565217392,,
+entangled_minus_separable_mean,wavy lines,21,0.0060238095238095216,,
