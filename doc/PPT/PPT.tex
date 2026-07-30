@@ -1,0 +1,270 @@
+\documentclass{ctexbeamer}
+
+\usepackage{packages}
+\usepackage{mathstyle}
+
+\graphicspath{{./images/}}
+
+\usetheme{Madrid}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{caption}[numbered]
+
+\title[数据重上传量子分类器复现]{基于数据重上传的通用量子分类器复现}
+\subtitle{理论分析与数值实验}
+\author[崔正平, 张译夫, 张扬皓]{崔正平, 张译夫, 张扬皓}
+\institute[]{课程大作业汇报}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section{理论部分}
+
+\begin{frame}{核心问题: 少量量子比特能否完成复杂分类}
+    \framesubtitle{理论部分 · 崔正平}
+    \begin{itemize}
+        \setlength{\itemsep}{1.1ex}
+        \item 经典输入 $\bm{x}$ 需要先编码为量子态, 再通过测量得到类别.
+        \item 如果数据只编码一次, 后续与输入无关的单量子比特门只是对全部状态施加相同旋转, 表达能力有限.
+        \item 数据重上传方法在不同电路层中反复编码同一输入, 并在各层使用不同的可训练权重和偏置.
+    \end{itemize}
+    \vspace{0.4em}
+    \[
+        \bm{x}
+        \longrightarrow U\!\left(\bm{\phi}_1(\bm{x})\right)
+        \longrightarrow \cdots
+        \longrightarrow U\!\left(\bm{\phi}_N(\bm{x})\right)\ket{0}
+        \longrightarrow F_c(\bm{x})
+        \longrightarrow \widehat c .
+    \]
+    \vfill
+    {\tiny Pérez-Salinas et al., \textit{Data re-uploading for a universal quantum classifier}, Quantum 4, 226 (2020).}
+\end{frame}
+
+\begin{frame}{Bloch 球把量子态分类转化为几何问题}
+    \framesubtitle{理论部分 · 崔正平}
+    任意单量子比特状态都可以写成
+    \[
+        \rho(\bm{x})=\frac12\left(I+\bm{r}(\bm{x})\cdot\bm{\sigma}\right),\qquad
+        \left|\bm{r}(\bm{x})\right|\leq 1.
+    \]
+    \begin{itemize}
+        \setlength{\itemsep}{0.9ex}
+        \item 纯态位于 Bloch 球面, 混合态位于球内; 电路训练相当于移动输出 Bloch 向量 $\bm{r}(\bm{x})$.
+        \item 若第 $c$ 类标签态的 Bloch 向量为 $\bm{s}_c$, 则
+        \[
+            F_c(\bm{x})=\operatorname{tr}\!\left[\rho_c\rho(\bm{x})\right]
+            =\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
+        \]
+        \item 二分类可选择一对相反方向; 四分类使用正四面体顶点, 任意两个标签方向满足 $\bm{s}_c\cdot\bm{s}_{c'}=-1/3$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{模型把数据和训练参数写入同一组旋转角}
+    \framesubtitle{理论部分 · 崔正平}
+    第 $i$ 个数据重上传层写为
+    \[
+        L_i(\bm{x})=U\!\left(\bm{\theta}_i+\bm{w}_i\circ\bm{x}\right),\qquad
+        \ket{\psi(\bm{x})}=L_N(\bm{x})\cdots L_1(\bm{x})\ket{0}.
+    \]
+    \begin{itemize}
+        \setlength{\itemsep}{0.9ex}
+        \item $\bm{w}_i$ 控制数据缩放, $\bm{\theta}_i$ 控制旋转偏置; 这是新的参数化形式, 并不表示两个一般旋转可以直接合并.
+        \item 类别 $c$ 对应标签态 $\ket{\widetilde\psi_c}$, 输出与标签的保真度为
+        \[
+            F_c(\bm{x})=\left|\braket{\widetilde\psi_c|\psi(\bm{x})}\right|^2
+            =\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
+        \]
+        \item 推断时取 $\widehat c=\arg\max_c F_c(\bm{x})$; 四分类时可将四个标签态放在 Bloch 球内接正四面体的四个顶点方向.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{非对易旋转产生非线性, 经典优化器完成训练}
+    \framesubtitle{理论部分 · 崔正平}
+    \begin{columns}[T]
+        \begin{column}{0.53\textwidth}
+            \textbf{表达能力来源}
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item Pauli 矩阵满足
+                \[
+                    [\bm{a}\cdot\bm{\sigma},\bm{b}\cdot\bm{\sigma}]
+                    =2\i(\bm{a}\times\bm{b})\cdot\bm{\sigma}.
+                \]
+                \item 当相邻旋转轴不平行时, 多层乘积产生交叉项和更丰富的三角频率组合.
+                \item 重上传层数增加后, 电路能够形成更复杂的非线性决策边界.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.43\textwidth}
+            \textbf{训练目标}
+            \[
+                \chi_f^2=\sum_{\mu}\left[1-F_{s_\mu}(\bm{x}_\mu)\right]^2,
+            \]
+            \[
+                \chi_{wf}^2=\frac12\sum_{\mu,c}
+                \left[\alpha_cF_{c\mu}-Y_{c\mu}\right]^2.
+            \]
+            \begin{itemize}
+                \setlength{\itemsep}{0.8ex}
+                \item $\alpha_c$ 是可训练类别权重.
+                \item 本项目采用 L-BFGS-B 优化旋转参数和权重.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{第一组实验}
+
+\begin{frame}{第一组实验检验模型结构与测量成本}
+    \framesubtitle{第一组实验 · 张扬皓}
+    \begin{columns}[T]
+        \begin{column}{0.46\textwidth}
+            \textbf{统一任务与配置}
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item 圆形二分类:
+                \[
+                    x_1^2+x_2^2<\frac{2}{\pi}.
+                \]
+                \item 训练/测试样本数: $200/4000$.
+                \item 五个参数初始化随机种子.
+                \item Python 状态向量模拟, L-BFGS-B 优化.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.50\textwidth}
+            \textbf{四个问题}
+            \begin{enumerate}
+                \setlength{\itemsep}{1.0ex}
+                \item 重叠模损失与保真度损失是否等价?
+                \item 增加量子比特或加入 CZ 能否替代较深电路?
+                \item 删除一个重上传层能否降低资源消耗?
+                \item 自适应测量能否减少测量次数?
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{结构简化未稳定保真, 自适应测量明显节省成本}
+    \framesubtitle{第一组实验 · 张扬皓}
+    \begin{columns}[T]
+        \begin{column}{0.54\textwidth}
+            \textbf{模型结构}
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item 相同初值下, 重叠模损失与保真度损失的平均准确率分别为 $0.88$ 和 $0.84$, 两个目标不能互换.
+                \item 1Q-L4 基准准确率为 $0.84$; 2Q-L2 无纠缠和 CZ 模型分别为 $0.52$ 和 $0.60$, 均未保持基准性能.
+                \item L4$\to$L3 剪枝准确率由 $0.84$ 降至 $0.82$; 优化编译后的线路深度仍为 $5$.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \textbf{有限测量}
+            \vspace{0.4em}
+            \[
+                2048\ \text{次}
+                \quad\longrightarrow\quad
+                315\text{--}330\ \text{次}
+            \]
+            \[
+                \textcolor{blue}{\text{平均测量次数减少约 }84\%}
+            \]
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item 准确率差小于 $0.005$.
+                \item 标签翻转率保持为 $0.007$.
+                \item 结果来自理想模拟, 不能直接等同于真机加速.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{第二组实验}
+
+\begin{frame}{第二组实验在五类任务上系统扫描配置}
+    \framesubtitle{第二组实验 · 张译夫}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{五类分类任务}
+            \begin{itemize}
+                \setlength{\itemsep}{0.7ex}
+                \item 非凸边界
+                \item 二分类圆环
+                \item 三维球
+                \item 四分类方块
+                \item 四分类波浪线
+            \end{itemize}
+            \textbf{配置网格}
+            \begin{itemize}
+                \setlength{\itemsep}{0.7ex}
+                \item 层数: $1,2,3,4,5,6,8,10$.
+                \item 非加权/加权保真度损失.
+                \item $1/2/4$ 量子比特, 有/无 CZ.
+                \item 合计 $5\times61=305$ 次训练.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{non_convex.png}
+
+            {\scriptsize 非凸边界示例: 左侧为数据标签, 右侧为模型预测区域.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{层数带来最稳定增益, 其他因素依赖具体任务}
+    \framesubtitle{第二组实验 · 张译夫}
+    \centering
+    \includegraphics[width=0.91\textwidth]{layer_trends.png}
+    \vspace{-0.2em}
+    \begin{itemize}
+        \setlength{\itemsep}{0.55ex}
+        \item 平均性能主要在前 $5$--$6$ 层提升, 随后进入平台区.
+        \item 在 $115$ 对共享配置上, 加权损失平均提高 $6.34$ 个百分点, 但并非每类任务都占优.
+        \item 在 $105$ 对纠缠比较中, CZ 的平均增益仅为 $0.53$ 个百分点且正负并存.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{五类任务的最佳准确率均超过 93\%}
+    \framesubtitle{第二组实验 · 张译夫}
+    \begin{table}
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{lccccc}
+            \toprule
+            任务 & 最高准确率 & 损失 & 量子比特 & CZ & 层数 \\
+            \midrule
+            非凸边界 & 97.75\% & $\chi_{wf}^2$ & 2 & 无 & 8 \\
+            二分类圆环 & 97.25\% & $\chi_{wf}^2$ & 2 & 无 & 5 \\
+            三维球 & 96.17\% & $\chi_{wf}^2$ & 4 & 有 & 2 \\
+            四分类方块 & 98.58\% & $\chi_f^2$ & 2 & 有 & 5 \\
+            四分类波浪线 & 93.90\% & $\chi_{wf}^2$ & 4 & 有 & 8 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    \begin{itemize}
+        \setlength{\itemsep}{0.7ex}
+        \item 最优电路横跨 $2/4$ 量子比特, $2$--$8$ 层及有/无 CZ, 不存在统一最优结构.
+        \item 上表是从 $305$ 个配置中按固定测试集准确率选出的描述性结果, 仍需验证集选择和多随机种子复核.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{结论: 数据重上传有效, 资源收益仍需任务化验证}
+    \framesubtitle{总结 · 张译夫}
+    \begin{itemize}
+        \setlength{\itemsep}{1.1ex}
+        \item \textcolor{blue}{理论上}, 多次输入编码与非对易旋转产生丰富的三角函数组合, 使少量量子比特能够表示复杂决策边界.
+        \item \textcolor{blue}{实验上}, 重上传层数是最稳定的容量来源; 加权保真度和纠缠结构的收益具有明显任务依赖性.
+        \item \textcolor{blue}{资源上}, 简单删层或增加量子比特不会自动带来更好的精度或更浅的编译电路; 自适应测量则在模拟中将平均测量次数减少约 $84\%$.
+        \item \textcolor{blue}{局限性}, 当前结果来自理想状态向量模拟, 随机种子数量有限, 尚未包含设备噪声, 真机实验和统一经典基线.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \Huge \textcolor{structure}{谢谢!}
+\end{frame}
+
+\end{document}

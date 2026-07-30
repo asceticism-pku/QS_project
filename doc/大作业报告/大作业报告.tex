@@ -37,9 +37,9 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
                 1 \\
                 0
             \end{pNiceMatrix}, \q \ket{1}=\begin{pNiceMatrix}
-                0 \\
-                1
-            \end{pNiceMatrix}.
+                                              0 \\
+                                              1
+                                          \end{pNiceMatrix}.
 \end{align}
 任意单量子比特纯态都可以写成
 \begin{align}
@@ -93,12 +93,12 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
                  0 & 1 \\
                  1 & 0
              \end{pNiceMatrix}, \q \sigma_y=\begin{pNiceMatrix}
-                                               0  & -\i \\
-                                               \i & 0
-                                           \end{pNiceMatrix}, \q \sigma_z=\begin{pNiceMatrix}
-                                                                             1 & 0  \\
-                                                                             0 & -1
-                                                                         \end{pNiceMatrix}.
+                                                0  & -\i \\
+                                                \i & 0
+                                            \end{pNiceMatrix}, \q \sigma_z=\begin{pNiceMatrix}
+                                                                               1 & 0  \\
+                                                                               0 & -1
+                                                                           \end{pNiceMatrix}.
     \label{eq:pauli}
 \end{align}
 它们既是单量子比特的基本可观测量, 也是 $\te{SU}(2)$ 旋转的生成元. Pauli 矩阵满足
@@ -124,8 +124,8 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 任意 $2\times2$ 厄米矩阵 $H$ 都可以唯一写成
 \begin{align}
     H=\begin{pNiceMatrix}
-          a      & c-d\i \\
-          c+d\i  & b
+          a     & c-d\i \\
+          c+d\i & b
       \end{pNiceMatrix}, \q a,b,c,d\in\R.
 \end{align}
 由于 $I,\sigma_x,\sigma_y,\sigma_z$ 构成 $2\times2$ 厄米矩阵实向量空间的一组基, 任意单量子比特密度矩阵都可以唯一写成
@@ -162,9 +162,9 @@ $\bm r\cdot\bm\sigma$ 的本征值为 $\pm\abs{\bm r}$, 从而 $\rho$ 的两个�
                   \cos(\phi/2) & -\sin(\phi/2) \\
                   \sin(\phi/2) & \cos(\phi/2)
               \end{pNiceMatrix}, \q R_z(\phi)=\begin{pNiceMatrix}
-                                                 \e^{-\i\phi/2} & 0             \\
-                                                 0              & \e^{\i\phi/2}
-                                             \end{pNiceMatrix}.
+                                                  \e^{-\i\phi/2} & 0             \\
+                                                  0              & \e^{\i\phi/2}
+                                              \end{pNiceMatrix}.
 \end{align}
 忽略整体相位后, 任意单量子比特酉门属于 $\te{SU}(2)$, 可以由三个 Euler 角参数化. 我们采用显式形式
 \begin{align}
@@ -317,7 +317,7 @@ $\bm r\cdot\bm\sigma$ 的本征值为 $\pm\abs{\bm r}$, 从而 $\rho$ 的两个�
 
 对于 Euler 角, 可以取
 \begin{align}
-    \omega_1(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
+    \omega_1(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2},  \\
     \omega_2(\bm{\phi}) & =-d\mathcal{N}\cos\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
     \omega_3(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},
 \end{align}
@@ -356,13 +356,13 @@ $\bm r\cdot\bm\sigma$ 的本征值为 $\pm\abs{\bm r}$, 从而 $\rho$ 的两个�
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{cc}
         \toprule
-        单隐层神经网络         & 数据重上传量子电路 \\
+        单隐层神经网络           & 数据重上传量子电路               \\
         \midrule
-        输入权重 $\bm{w}_i$   & 数据缩放参数 $\bm{w}_i$ \\
-        偏置 $b_i$          & 旋转偏置 $\bm{\theta}_i$ \\
+        输入权重 $\bm{w}_i$   & 数据缩放参数 $\bm{w}_i$       \\
+        偏置 $b_i$          & 旋转偏置 $\bm{\theta}_i$    \\
         激活函数 $\varphi$    & 旋转产生的三角函数 $\bm{\omega}$ \\
-        隐藏神经元数 $N$        & 数据重上传层数 $N$ \\
-        输出组合权重 $\alpha_i$ & 测量及加权损失参数 \\
+        隐藏神经元数 $N$        & 数据重上传层数 $N$             \\
+        输出组合权重 $\alpha_i$ & 测量及加权损失参数               \\
         \bottomrule
     \end{tabular}
 \end{center}
@@ -506,13 +506,13 @@ L-BFGS-B 适合本实验的主要原因是训练集较小, 状态向量模拟给
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
         \toprule
-        项目 & 固定设置 \\
+        项目     & 固定设置                                                       \\
         \midrule
-        数据与随机性 & 训练/测试各使用 $200/4000$ 个点; 数据随机种子为 30; 参数初始化随机种子为 30--34 \\
-        优化设置 & L-BFGS-B; 默认迭代或函数评价上限为 15000, L3 独立训练模型为 30000; 实验 4 不重新训练 \\
-        损失函数 & 实验 1 比较重叠模损失与保真度损失; 实验 2--4 统一使用保真度损失 \\
-        对照方式 & 相同任务共享数据划分; 成对比较尽量使用相同初值; 实验 3--4 沿用对应模型参数 \\
-        评价指标 & 测试准确率, 损失函数值, 目标函数评价次数和编译深度; 实验 4 另统计平均测量次数与标签翻转率 \\
+        数据与随机性 & 训练/测试各使用 $200/4000$ 个点; 数据随机种子为 30; 参数初始化随机种子为 30--34      \\
+        优化设置   & L-BFGS-B; 默认迭代或函数评价上限为 15000, L3 独立训练模型为 30000; 实验 4 不重新训练 \\
+        损失函数   & 实验 1 比较重叠模损失与保真度损失; 实验 2--4 统一使用保真度损失                      \\
+        对照方式   & 相同任务共享数据划分; 成对比较尽量使用相同初值; 实验 3--4 沿用对应模型参数                 \\
+        评价指标   & 测试准确率, 损失函数值, 目标函数评价次数和编译深度; 实验 4 另统计平均测量次数与标签翻转率          \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -530,12 +530,12 @@ L-BFGS-B 适合本实验的主要原因是训练集较小, 状态向量模拟给
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{@{}rrrrl@{}}
         \toprule
-        层数 & 测试准确率 & 最终损失 & 函数评价次数 & 优化器状态 \\
+        层数 & 测试准确率 & 最终损失 & 函数评价次数 & 优化器状态         \\
         \midrule
-        1 & 0.50 & 0.24 & 184   & 收敛, status 0 \\
-        2 & 0.94 & 0.09 & 676   & 收敛, status 0 \\
-        4 & 0.94 & 0.07 & 4945  & 收敛, status 0 \\
-        8 & 0.97 & 0.03 & 15007 & 未收敛, status 1 \\
+        1  & 0.50  & 0.24 & 184    & 收敛, status 0  \\
+        2  & 0.94  & 0.09 & 676    & 收敛, status 0  \\
+        4  & 0.94  & 0.07 & 4945   & 收敛, status 0  \\
+        8  & 0.97  & 0.03 & 15007  & 未收敛, status 1 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -551,8 +551,8 @@ L-BFGS-B 适合本实验的主要原因是训练集较小, 状态向量模拟给
         \toprule
         损失函数 & 收敛数 & 测试准确率均值 & 测试准确率标准差 & 平均函数评价次数 \\
         \midrule
-        重叠模 & 5/5 & 0.88 & 0.03 & 2520.0 \\
-        保真度 & 5/5 & 0.84 & 0.03 & 3045.0 \\
+        重叠模  & 5/5 & 0.88    & 0.03     & 2520.0   \\
+        保真度  & 5/5 & 0.84    & 0.03     & 3045.0   \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -652,16 +652,16 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
         模型 & 方法 & 评价准确率 & 标签翻转率 & 平均测量次数 \\
         \midrule
         \multirow{4}{*}{L4 基准}
-            & 固定 128  & $0.82\pm0.04$ & 0.027 & 128.0 \\
-            & 固定 512  & $0.82\pm0.03$ & 0.013 & 512.0 \\
-            & 固定 2048 & $0.82\pm0.03$ & 0.007 & 2048.0 \\
-            & 自适应    & $0.82\pm0.03$ & 0.007 & 315.2 \\
+        & 固定 128  & $0.82\pm0.04$ & 0.027 & 128.0 \\
+        & 固定 512  & $0.82\pm0.03$ & 0.013 & 512.0 \\
+        & 固定 2048 & $0.82\pm0.03$ & 0.007 & 2048.0 \\
+        & 自适应    & $0.82\pm0.03$ & 0.007 & 315.2 \\
         \midrule
         \multirow{4}{*}{L4$\to$L3 剪枝}
-            & 固定 128  & $0.80\pm0.02$ & 0.028 & 128.0 \\
-            & 固定 512  & $0.81\pm0.02$ & 0.014 & 512.0 \\
-            & 固定 2048 & $0.81\pm0.02$ & 0.007 & 2048.0 \\
-            & 自适应    & $0.81\pm0.02$ & 0.007 & 329.8 \\
+        & 固定 128  & $0.80\pm0.02$ & 0.028 & 128.0 \\
+        & 固定 512  & $0.81\pm0.02$ & 0.014 & 512.0 \\
+        & 固定 2048 & $0.81\pm0.02$ & 0.007 & 2048.0 \\
+        & 自适应    & $0.81\pm0.02$ & 0.007 & 329.8 \\
         \bottomrule
     \end{tabular*}
 \end{table}
@@ -692,7 +692,7 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
 
 本次 4 量子比特实验仅考察 $\chi_{wf}^2$; 因此, 两种损失函数的严格配对比较限定在 1 量子比特和 2 量子比特的共享配置上.
 
-二维任务使用 200 个训练点和 4000 个测试点, 三维球任务使用 500 个训练点和 4000 个测试点. 所有配置均采用 L-BFGS-B 优化器, 且仅以随机种子 30 训练一次. 因此, 下文比较只用于描述本次实验网格中的结构性趋势, 不作为跨随机初始化的统计推断.
+二维任务使用 200 个训练点和 4000 个测试点, 三维球任务使用 500 个训练点和 4000 个测试点. 所有配置均采用 L-BFGS-B 优化器, 且仅以随机种子 30 训练一次. 因此, 下文比较只用于描述本次实验网格中观察到的趋势, 不能当做普遍性的结论.
 
 \subsection{实验结果}
 
@@ -726,9 +726,9 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{@{}c*{8}{c}@{}}
         \toprule
-        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$}                                           \\
         \cmidrule(lr){2-4}\cmidrule(lr){5-9}
-        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
+                            & 1Q                             & \shortstack{2Q                                                              \\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.49                           & 0.55                              & --   & 0.49 & 0.76 & --   & 0.76 & --   \\
         2                   & 0.82                           & 0.75                              & 0.75 & 0.86 & 0.95 & 0.85 & 0.96 & 0.96 \\
@@ -748,9 +748,9 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{@{}c*{8}{c}@{}}
         \toprule
-        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$}                                           \\
         \cmidrule(lr){2-4}\cmidrule(lr){5-9}
-        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
+                            & 1Q                             & \shortstack{2Q                                                              \\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.44                           & 0.50                              & --   & 0.44 & 0.57 & --   & 0.66 & --   \\
         2                   & 0.48                           & 0.50                              & 0.51 & 0.53 & 0.72 & 0.71 & 0.70 & 0.96 \\
@@ -770,9 +770,9 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{@{}c*{8}{c}@{}}
         \toprule
-        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$}                                           \\
         \cmidrule(lr){2-4}\cmidrule(lr){5-9}
-        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
+                            & 1Q                             & \shortstack{2Q                                                              \\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.53                           & 0.70                              & --   & 0.53 & 0.70 & --   & 0.70 & --   \\
         2                   & 0.77                           & 0.73                              & 0.53 & 0.78 & 0.94 & 0.96 & 0.96 & 0.96 \\
@@ -792,9 +792,9 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{@{}c*{8}{c}@{}}
         \toprule
-        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$}                                           \\
         \cmidrule(lr){2-4}\cmidrule(lr){5-9}
-        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
+                            & 1Q                             & \shortstack{2Q                                                              \\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.58                           & 0.48                              & --   & 0.71 & 0.92 & --   & 0.90 & --   \\
         2                   & 0.76                           & 0.96                              & 0.96 & 0.74 & 0.91 & 0.94 & 0.94 & 0.95 \\
@@ -815,9 +815,9 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{@{}c*{8}{c}@{}}
         \toprule
-        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$}                                           \\
         \cmidrule(lr){2-4}\cmidrule(lr){5-9}
-        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
+                            & 1Q                             & \shortstack{2Q                                                              \\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.70                           & 0.52                              & --   & 0.76 & 0.75 & --   & 0.89 & --   \\
         2                   & 0.86                           & 0.75                              & 0.80 & 0.84 & 0.89 & 0.88 & 0.91 & 0.92 \\
@@ -896,7 +896,7 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
 \end{figure}
 
 \subsubsection{损失函数的配对比较}
-为避免只存在于加权损失一侧的 4 量子比特配置造成结构混杂, \cref{tab:appendix-objective-pairs} 只在任务, 量子比特数, 层数和纠缠设置完全相同的条件下比较两种损失. 每个任务含 23 对, 总计 115 对. 加权保真度损失的平均准确率差为 $+6.34$ 个百分点, 中位差为 $+2.45$ 个百分点, 并在 92/115 个配对中取得更高准确率. 但方块任务的平均差仅为 $+0.77$ 个百分点, 且加权损失只在 8/23 个配对中占优. 因此, 本次网格支持``加权损失总体占优'', 但不支持``它对每类边界都稳定更好''.
+\cref{tab:appendix-objective-pairs} 只在任务, 量子比特数, 层数和纠缠设置完全相同的条件下比较两种损失. 每个任务含 23 对, 总计 115 对. 加权保真度损失的平均准确率差为 $+6.34$ 个百分点, 中位差为 $+2.45$ 个百分点, 并在 92/115 个配对中取得更高准确率. 但方块任务的平均差仅为 $+0.77$ 个百分点, 且加权损失只在 8/23 个配对中占优. 因此, 本次网格支持``加权损失总体占优'', 但不支持``它对每类边界都稳定更好''.
 
 \begin{table}[H]
     \centering
@@ -936,8 +936,8 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \label{fig:appendix-loss-comparison}
 \end{figure}
 
-\subsubsection{纠缠效应的异质性}
-固定任务, 损失函数, 量子比特数和层数后, 共得到 105 对有纠缠与无纠缠结果. 加入纠缠后的平均准确率差为 $+0.53$ 个百分点, 中位差为 $+0.25$ 个百分点; 59 对提高, 46 对下降, 差值范围为 $-20.60$ 至 $+25.55$ 个百分点. 这一分布表明纠缠效应具有明显异质性, 不能仅凭总体均值断言 CZ 必然改善分类. \Cref{fig:appendix-entanglement-comparison} 展示增益最大的圆环实例: 4 量子比特 2 层加权模型加入 CZ 后由 70.45\% 提高到 96.00\%. 该实例说明纠缠可能在特定任务和深度下提供有效表达能力, 但不能代表所有配置.
+\subsubsection{纠缠效应}
+固定任务, 损失函数, 量子比特数和层数后, 共得到 105 对有纠缠与无纠缠结果. 加入纠缠后的平均准确率差为 $+0.53$ 个百分点, 中位差为 $+0.25$ 个百分点; 59 对提高, 46 对下降, 差值范围为 $-20.60$ 至 $+25.55$ 个百分点. 这一结果表明不能仅凭总体均值断言 CZ 必然改善分类. \Cref{fig:appendix-entanglement-comparison} 展示增益最大的圆环实例: 4 量子比特 2 层加权模型加入 CZ 后由 70.45\% 提高到 96.00\%. 该实例说明纠缠可能在特定任务和深度下提供有效表达能力, 但不能代表所有配置.
 
 \begin{figure}[H]
     \centering
@@ -995,7 +995,7 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
 
 \subsection{实验结论与局限}
 
-五类任务的 305 个配置给出三点描述性结果. 第一, 重上传层数是本次网格中最稳定的平均容量来源, 总体性能在 5--6 层后趋于饱和, 但单次训练结果并不随层数单调提高. 第二, 在严格匹配的 115 对共享配置上, 加权保真度损失的平均准确率比非加权保真度损失高 6.34 个百分点, 但方块任务上的优势很弱, 且该任务的最佳模型来自非加权保真度损失. 第三, 105 对纠缠比较的平均准确率差只有 $+0.53$ 个百分点且正负并存, 因而 CZ 更适合被理解为任务相关的表达能力补充, 而不是普遍增益.
+五类任务的 305 个配置给出三点描述性结果. 第一, 重上传层数是本次网格中最稳定的平均容量来源, 总体性能在 5--6 层后趋于饱和, 单次训练结果并不随层数单调提高. 第二, 在严格匹配的 115 对架构中, 加权保真度损失的平均准确率比非加权保真度损失高 6.34 个百分点, 但方块任务上的优势很弱, 且该任务的最佳模型来自非加权保真度损失. 第三, 105 对纠缠比较的平均准确率差只有 $+0.53$ 个百分点且正负并存, 因而 CZ 更适合被理解为任务相关的表达能力补充, 而不是普遍增益.
 
 本批实验全部来自理想数值模拟, 且每个配置只使用随机种子 30 训练一次. 表中的二项比例区间只刻画固定模型在有限测试样本上的抽样不确定性, 不包含训练初始化差异, 也没有校正从 305 个配置中按测试准确率选择``最佳''模型所产生的选择偏差. 因此, 这些最佳准确率和配置比较只能作描述性结论; 更严格的评估应使用独立验证集选择配置, 保留测试集作最终评价, 并对每个配置重复多个独立随机种子.
 
@@ -1048,10 +1048,10 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \end{align}
     将矩阵指数展开为幂级数, 并分别对偶数次幂与奇数次幂求和, 有
     \begin{align}
-        R_{\bm{n}}(\phi)&=\e^{-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}} \\
-        &=\sum_{k=0}^{\infty}\frac{1}{k!}\left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right)^k \\
-        &=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}\left(\frac{\phi}{2}\right)^{2k}I-\i\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}\left(\frac{\phi}{2}\right)^{2k+1}\bm{n}\cdot\bm{\sigma} \\
-        &=\cos\frac{\phi}{2}I-\i\sin\frac{\phi}{2}\bm{n}\cdot\bm{\sigma}.
+        R_{\bm{n}}(\phi) & =\e^{-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}}                                                                                                                                 \\
+                         & =\sum_{k=0}^{\infty}\frac{1}{k!}\left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right)^k                                                                                        \\
+                         & =\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}\left(\frac{\phi}{2}\right)^{2k}I-\i\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}\left(\frac{\phi}{2}\right)^{2k+1}\bm{n}\cdot\bm{\sigma} \\
+                         & =\cos\frac{\phi}{2}I-\i\sin\frac{\phi}{2}\bm{n}\cdot\bm{\sigma}.
     \end{align}
 
     我们考虑 Bloch 向量为 $\bm r$ 的单量子比特状态
@@ -1064,19 +1064,19 @@ L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次
     \end{align}
     作用后, 密度矩阵变为 $\rho'=U\rho U^\dagger$. 由于
     \begin{align}
-        U(\bm r\cdot\bm\sigma)U^\dagger&=\left(\cos\frac{\phi}{2}I-\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma\right)(\bm r\cdot\bm\sigma)\left(\cos\frac{\phi}{2}I+\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma\right) \\
-        &=\left(\cos\frac{\phi}{2}\right)^2\bm r\cdot\bm\sigma +\i \cos\frac{\phi}{2}\sin\frac{\phi}{2}[(\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma-\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)]+\left(\sin\frac{\phi}{2}\right)^2(\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma).
+        U(\bm r\cdot\bm\sigma)U^\dagger & =\left(\cos\frac{\phi}{2}I-\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma\right)(\bm r\cdot\bm\sigma)\left(\cos\frac{\phi}{2}I+\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma\right)                                                                                                            \\
+                                        & =\left(\cos\frac{\phi}{2}\right)^2\bm r\cdot\bm\sigma +\i \cos\frac{\phi}{2}\sin\frac{\phi}{2}[(\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma-\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)]+\left(\sin\frac{\phi}{2}\right)^2(\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma).
     \end{align}
     利用式~\eqref{eq:pauli-vector-product} 可得
     \begin{align}
-        (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma-\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)&=-2\i(\bm n\times\bm r)\cdot\bm\sigma, \\
-        (\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma)&=[2(\bm n\cdot\bm r)\bm n-\bm r]\cdot\bm\sigma.
+        (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma-\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma) & =-2\i(\bm n\times\bm r)\cdot\bm\sigma,          \\
+        (\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma)                   & =[2(\bm n\cdot\bm r)\bm n-\bm r]\cdot\bm\sigma.
     \end{align}
     因此
     \begin{align}
-        U(\bm r\cdot\bm\sigma)U^\dagger&=\left[\left(\left(\cos\frac{\phi}{2}\right)^2-(\sin\frac{\phi}{2})^2\right)\bm r+2\cos\frac{\phi}{2}\sin\frac{\phi}{2}(\bm n\times\bm r)+2(\sin\frac{\phi}{2})^2(\bm n\cdot\bm r)\bm n\right]\cdot\bm\sigma \\
-        &=[\bm r\cos\phi+(\bm n\times\bm r)\sin\phi+\bm n(\bm n\cdot\bm r)(1-\cos\phi)]\cdot\bm\sigma \\
-        &=\bm r'\cdot\bm\sigma
+        U(\bm r\cdot\bm\sigma)U^\dagger & =\left[\left(\left(\cos\frac{\phi}{2}\right)^2-(\sin\frac{\phi}{2})^2\right)\bm r+2\cos\frac{\phi}{2}\sin\frac{\phi}{2}(\bm n\times\bm r)+2(\sin\frac{\phi}{2})^2(\bm n\cdot\bm r)\bm n\right]\cdot\bm\sigma \\
+                                        & =[\bm r\cos\phi+(\bm n\times\bm r)\sin\phi+\bm n(\bm n\cdot\bm r)(1-\cos\phi)]\cdot\bm\sigma                                                                                                                 \\
+                                        & =\bm r'\cdot\bm\sigma
     \end{align}
     其中
     \begin{align}\label{eq:bloch-rotation}

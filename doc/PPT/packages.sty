@@ -1,0 +1,91 @@
+\ProvidesPackage{packages}
+
+\PassOptionsToPackage{dvipsnames, svgnames, table}{xcolor}
+\PassOptionsToPackage{nameinlink, capitalize}{cleveref}
+
+\RequirePackage{etoolbox}
+\RequirePackage{expl3}
+\RequirePackage{kvoptions}
+\RequirePackage{iftex}
+
+\RequirePackage{fontspec}
+\RequirePackage{microtype}
+
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+
+\makeatletter
+\@ifclassloaded{beamer}{
+    \RequirePackage{setspace}
+    \RequirePackage{lipsum}
+}{
+    \RequirePackage{amsthm}
+    \RequirePackage{indentfirst}
+    \RequirePackage{geometry}
+    \RequirePackage{fancyhdr}
+    \RequirePackage{setspace}
+    \RequirePackage{enumitem}
+    \RequirePackage{pdflscape}
+    \RequirePackage{titletoc}
+    \RequirePackage{caption}
+    \RequirePackage{subcaption}
+    \RequirePackage{lastpage}
+    \RequirePackage{lipsum}
+    \RequirePackage{hyperref}
+    \RequirePackage{cleveref}
+}
+\makeatother
+
+\RequirePackage{bm}
+\RequirePackage{dsfont}
+\RequirePackage{relsize}
+\RequirePackage{derivative}
+\RequirePackage{esint}
+\RequirePackage{extarrows}
+\RequirePackage{braket}
+\RequirePackage{siunitx}
+\RequirePackage{multirow}
+
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta, calc, positioning, shapes, patterns}
+\RequirePackage{pgfplots}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{nicematrix}
+
+\RequirePackage{silence}
+\WarningFilter{Qcircuit}{qcircuit is not loading}
+\RequirePackage{qcircuit}
+
+\RequirePackage{tabularray}
+\UseTblrLibrary{booktabs, siunitx, varwidth}
+
+\RequirePackage{listings}
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+
+\makeatletter
+\@ifclassloaded{beamer}{}{
+    \setlist{nosep}
+}
+\makeatother
+
+\pgfplotsset{compat=1.18}
+
+\allowdisplaybreaks
+\sisetup{separate-uncertainty=true}
+
+\ifdefined\kaishu
+    \RequirePackage{xeCJK}
+    \setCJKfamilyfont{mymain}{SimSun}[
+        AutoFakeBold=2,
+        ItalicFont=KaiTi
+    ]
+    \renewcommand{\CJKrmdefault}{mymain}
+
+    \setCJKfamilyfont{mykai}{KaiTi}[
+        AutoFakeBold=2
+    ]
+    \renewcommand{\kaishu}{\CJKfamily{mykai}}
+\fi
