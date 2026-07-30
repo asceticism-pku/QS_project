@@ -1,2 +1,0 @@
-﻿backend,points,shots_per_basis,measurement_bases,circuits_executed,accuracy,mean_decision_margin,single_qubit_error,two_qubit_error,readout_error,rng_seed,recorded_noiseless_full_test_accuracy,summary_path
-local-density-matrix,20,,['z'],20,0.45,0.34244427857635,0.0,0.0,0.0,2026,0.56075,D:\programming\QS_project\fidelity_chi\crown\2_qubits\entangled\4_layers\L-BFGS-B\appendix_seed_30_summary.txt
