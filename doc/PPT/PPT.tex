@@ -23,94 +23,125 @@
 
 \section{理论部分}
 
-\begin{frame}{核心问题: 少量量子比特能否完成复杂分类}
-    \framesubtitle{理论部分 · 崔正平}
-    \begin{itemize}
-        \setlength{\itemsep}{1.1ex}
-        \item 经典输入 $\bm{x}$ 需要先编码为量子态, 再通过测量得到类别.
-        \item 如果数据只编码一次, 后续与输入无关的单量子比特门只是对全部状态施加相同旋转, 表达能力有限.
-        \item 数据重上传方法在不同电路层中反复编码同一输入, 并在各层使用不同的可训练权重和偏置.
-    \end{itemize}
-    \vspace{0.4em}
-    \[
-        \bm{x}
-        \longrightarrow U\!\left(\bm{\phi}_1(\bm{x})\right)
-        \longrightarrow \cdots
-        \longrightarrow U\!\left(\bm{\phi}_N(\bm{x})\right)\ket{0}
-        \longrightarrow F_c(\bm{x})
-        \longrightarrow \widehat c .
-    \]
-    \vfill
-    {\tiny Pérez-Salinas et al., \textit{Data re-uploading for a universal quantum classifier}, Quantum 4, 226 (2020).}
-\end{frame}
-
-\begin{frame}{Bloch 球把量子态分类转化为几何问题}
-    \framesubtitle{理论部分 · 崔正平}
-    任意单量子比特状态都可以写成
-    \[
-        \rho(\bm{x})=\frac12\left(I+\bm{r}(\bm{x})\cdot\bm{\sigma}\right),\qquad
-        \left|\bm{r}(\bm{x})\right|\leq 1.
-    \]
-    \begin{itemize}
-        \setlength{\itemsep}{0.9ex}
-        \item 纯态位于 Bloch 球面, 混合态位于球内; 电路训练相当于移动输出 Bloch 向量 $\bm{r}(\bm{x})$.
-        \item 若第 $c$ 类标签态的 Bloch 向量为 $\bm{s}_c$, 则
-        \[
-            F_c(\bm{x})=\operatorname{tr}\!\left[\rho_c\rho(\bm{x})\right]
-            =\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
-        \]
-        \item 二分类可选择一对相反方向; 四分类使用正四面体顶点, 任意两个标签方向满足 $\bm{s}_c\cdot\bm{s}_{c'}=-1/3$.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{模型把数据和训练参数写入同一组旋转角}
-    \framesubtitle{理论部分 · 崔正平}
-    第 $i$ 个数据重上传层写为
-    \[
-        L_i(\bm{x})=U\!\left(\bm{\theta}_i+\bm{w}_i\circ\bm{x}\right),\qquad
-        \ket{\psi(\bm{x})}=L_N(\bm{x})\cdots L_1(\bm{x})\ket{0}.
-    \]
-    \begin{itemize}
-        \setlength{\itemsep}{0.9ex}
-        \item $\bm{w}_i$ 控制数据缩放, $\bm{\theta}_i$ 控制旋转偏置; 这是新的参数化形式, 并不表示两个一般旋转可以直接合并.
-        \item 类别 $c$ 对应标签态 $\ket{\widetilde\psi_c}$, 输出与标签的保真度为
-        \[
-            F_c(\bm{x})=\left|\braket{\widetilde\psi_c|\psi(\bm{x})}\right|^2
-            =\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
-        \]
-        \item 推断时取 $\widehat c=\arg\max_c F_c(\bm{x})$; 四分类时可将四个标签态放在 Bloch 球内接正四面体的四个顶点方向.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{非对易旋转产生非线性, 经典优化器完成训练}
+\begin{frame}{核心问题与基本思想}
     \framesubtitle{理论部分 · 崔正平}
     \begin{columns}[T]
-        \begin{column}{0.53\textwidth}
-            \textbf{表达能力来源}
+        \begin{column}{0.46\textwidth}
+            \textbf{核心问题}
             \begin{itemize}
-                \setlength{\itemsep}{0.9ex}
-                \item Pauli 矩阵满足
-                \[
-                    [\bm{a}\cdot\bm{\sigma},\bm{b}\cdot\bm{\sigma}]
-                    =2\i(\bm{a}\times\bm{b})\cdot\bm{\sigma}.
-                \]
-                \item 当相邻旋转轴不平行时, 多层乘积产生交叉项和更丰富的三角频率组合.
-                \item 重上传层数增加后, 电路能够形成更复杂的非线性决策边界.
+                \setlength{\itemsep}{1.0ex}
+                \item 如何把经典输入 $\bm{x}$ 编码进量子电路, 并通过测量输出类别?
+                \item 如果只编码一次数据, 后续固定旋转对所有输入作用相同, 难以形成复杂决策边界.
+                \item 我们希望在量子比特数很少时仍获得足够的非线性表达能力.
             \end{itemize}
         \end{column}
-        \begin{column}{0.43\textwidth}
-            \textbf{训练目标}
+        \begin{column}{0.50\textwidth}
+            \textbf{数据重上传思想}
+            \begin{itemize}
+                \setlength{\itemsep}{1.0ex}
+                \item 在每一层重新读取同一个输入.
+                \item 各层使用可训练的数据权重与旋转偏置.
+                \item 多层旋转逐步形成输入依赖的量子态.
+            \end{itemize}
             \[
-                \chi_f^2=\sum_{\mu}\left[1-F_{s_\mu}(\bm{x}_\mu)\right]^2,
+                \ket{0}\xrightarrow{L_1}\cdots
+                \xrightarrow{L_N}\ket{\psi(\bm{x})}
+                \longrightarrow\widehat c .
+            \]
+        \end{column}
+    \end{columns}
+    \vspace{0.4em}
+    \begin{center}
+        \textcolor{blue}{用多次数据编码提高少量量子比特的分类表达能力.}
+    \end{center}
+    \vfill
+    {\tiny Source: Pérez-Salinas et al., Quantum 4, 226 (2020).}
+\end{frame}
+
+\begin{frame}{理论基础: 量子态, Bloch 球与保真度}
+    \framesubtitle{理论部分 · 崔正平}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{量子态的 Bloch 表示}
+            \[
+                \rho=\frac12\left(I+\bm{r}\cdot\bm{\sigma}\right),
+                \qquad r_i=\operatorname{tr}(\rho\sigma_i).
+            \]
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item $\bm{\sigma}=(\sigma_x,\sigma_y,\sigma_z)$ 是 Pauli 矩阵组.
+                \item $\bm{r}$ 是 Bloch 向量; 纯态满足 $|\bm{r}|=1$, 混合态满足 $|\bm{r}|<1$.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{分类的几何解释}
+            \[
+                F_c(\bm{x})
+                =\operatorname{tr}\!\left[\rho_c\rho(\bm{x})\right]
+                =\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
+            \]
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item 最大化 $F_c$ 就是让输出方向接近第 $c$ 类标签方向 $\bm{s}_c$.
+                \item 二分类使用相反方向; 四分类使用正四面体顶点.
+                \item 最终预测为 $\widehat c=\arg\max_c F_c(\bm{x})$.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{实际电路设计与训练流程}
+    \framesubtitle{理论部分 · 崔正平}
+    第 $i$ 层先将数据和可训练参数组成旋转角, 再施加单量子比特旋转:
+    \[
+        \bm{\phi}_i(\bm{x})=\bm{\theta}_i+\bm{w}_i\circ\bm{x},
+        \qquad
+        L_i(\bm{x})=U\!\left(\bm{\phi}_i(\bm{x})\right).
+    \]
+    \[
+        \ket{0}
+        \xrightarrow{U(\bm{\phi}_1)}
+        \cdots
+        \xrightarrow{U(\bm{\phi}_N)}
+        \ket{\psi(\bm{x})}
+        \xrightarrow{F_c(\bm{x})}
+        \widehat c .
+    \]
+    \begin{enumerate}
+        \setlength{\itemsep}{0.9ex}
+        \item \textbf{编码:} $\bm{w}_i$ 缩放输入, $\bm{\theta}_i$ 提供可训练偏置.
+        \item \textbf{演化:} 同一输入经过 $N$ 次重上传, 得到输出态 $\ket{\psi(\bm{x})}$.
+        \item \textbf{测量:} 计算输出态与各类别标签态的保真度 $F_c(\bm{x})$.
+        \item \textbf{更新:} 经典优化器根据训练损失更新 $\bm{\theta}_i$, $\bm{w}_i$ 及类别权重.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{表达能力与优化方法}
+    \framesubtitle{理论部分 · 崔正平}
+    \begin{columns}[T]
+        \begin{column}{0.52\textwidth}
+            \textbf{为什么能够产生非线性}
+            \begin{itemize}
+                \setlength{\itemsep}{0.9ex}
+                \item 旋转轴之间通常不对易, 因而各层不能简单合并.
+                \item 多层乘积产生交叉项及不同频率的三角函数组合.
+                \item 增加重上传层通常提高表达能力, 但也会增加优化难度.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.44\textwidth}
+            \textbf{如何训练}
+            \[
+                \chi_f^2
+                =\sum_\mu\left[1-F_{s_\mu}(\bm{x}_\mu)\right]^2.
             \]
             \[
-                \chi_{wf}^2=\frac12\sum_{\mu,c}
-                \left[\alpha_cF_{c\mu}-Y_{c\mu}\right]^2.
+                \min_{\bm{p}}\chi^2(\bm{p}),
+                \qquad \ell_j\leq p_j\leq u_j.
             \]
             \begin{itemize}
                 \setlength{\itemsep}{0.8ex}
-                \item $\alpha_c$ 是可训练类别权重.
-                \item 本项目采用 L-BFGS-B 优化旋转参数和权重.
+                \item $\bm{p}$ 汇总旋转参数, 数据权重和类别权重.
+                \item L-BFGS-B 用有限组历史向量近似逆 Hessian, 无需存储完整矩阵.
             \end{itemize}
         \end{column}
     \end{columns}
@@ -314,8 +345,8 @@
     \framesubtitle{总结 · 张译夫}
     \begin{itemize}
         \setlength{\itemsep}{1.1ex}
-        \item  多次输入编码与非对易旋转产生丰富的三角函数组合, 使少量量子比特能够表示复杂决策边界.
-        \item  重上传层数是最稳定的容量来源; 加权保真度和纠缠结构的收益具有明显任务依赖性.
+        \item 多次输入编码与非对易旋转产生丰富的三角函数组合, 使少量量子比特能够表示复杂决策边界.
+        \item 重上传层数是最稳定的容量来源; 加权保真度和纠缠结构的收益具有明显任务依赖性.
         \item 简单删层或增加量子比特不会自动带来更好的精度或更浅的编译电路; 
         \item 当前结果来自理想状态向量模拟, 随机种子数量有限, 尚未包含设备噪声, 真机实验和统一经典基线.
     \end{itemize}
