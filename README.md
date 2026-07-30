@@ -62,24 +62,4 @@ audits, layer pruning, and adaptive-shot evaluation.
 The formal training matrix contains exactly 45 optimizer runs. The M4
 fixed/adaptive-shot comparison reuses ten frozen checkpoints and performs no
 additional optimization.
-# 含噪声模拟与 Origin Quantum Cloud
 
-附录实验保存的冻结参数现在可以直接用于有限 shots、门噪声和云端模拟器评估。默认命令测试 `crown` 数据集上表现最好的
-`weighted_fidelity_chi / 1 qubit / 10 layers` 模型，并生成逐点结果、噪声扫描表和准确率曲线：
-
-```powershell
-python experiments/run_noisy_cloud_evaluation.py --backend local
-```
-
-本地模型使用单/双量子比特退极化噪声和对称读出噪声。`--noise-levels` 指定单比特门错误率；默认双比特错误率为其 10 倍，读出错误率为其 2 倍。加权保真度模型会执行 X/Y/Z 三组测量，以保持与论文约化密度矩阵分类判据一致。
-
-提交到 Origin Quantum Cloud 前，安装可选 SDK 并在当前终端设置 API Key：
-
-```powershell
-python -m pip install -r requirements-cloud.txt
-$env:QPANDA_QCLOUD_API_KEY="你的 API Key"
-python experiments/run_noisy_cloud_evaluation.py --list-origin-backends
-python experiments/run_noisy_cloud_evaluation.py --backend origin-cloud --origin-backend full_amplitude --points 40 --noise-levels 0.001 --readout-multiplier 0
-```
-
-云端后端是否可用取决于账户和平台实时状态，请先运行 `--list-origin-backends`。每个已提交批次的 job ID 会立即追加保存到输出目录的 `origin_job_ids.jsonl`，避免长任务中断后丢失任务编号。
