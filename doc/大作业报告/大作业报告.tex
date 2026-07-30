@@ -4,7 +4,7 @@
 \usepackage{mathstyle}
 \usepackage{reportstyle}
 
-\setinfo{基于数据重上传的通用量子分类器复现}
+\setinfo{大作业报告}
 {崔正平 \q 张译夫 \q 张扬皓}
 
 \newtheorem{theorem}{定理}
@@ -14,12 +14,12 @@
 \maketitle
 
 \begin{abstract}
-    本文拟复现 Pérez-Salinas 等人提出的数据重上传量子分类器. 该模型研究在量子比特数极少的条件下, 参数化量子电路能否完成高维、非线性及多类别监督分类任务. 其核心思想是在量子电路的不同位置反复编码同一组经典数据, 并在相邻编码之间插入可训练旋转. 多次数据依赖旋转及其非对易复合能够产生丰富的三角函数和频率组合, 从而提高量子电路的函数表达能力.
+    本文复现 Pérez-Salinas 等人提出的数据重上传量子分类器. 该模型研究在量子比特数极少的条件下, 参数化量子电路能否完成高维, 非线性及多类别监督分类任务. 其核心思想是在量子电路的不同位置反复编码同一组经典数据, 并在相邻编码之间插入可训练旋转. 多次数据依赖旋转及其非对易复合能够产生丰富的三角函数和频率组合, 从而提高量子电路的函数表达能力.
 \end{abstract}
 
 \section{引言}
 
-近年来, 量子机器学习试图利用量子态空间、量子叠加和纠缠等结构完成分类、回归和生成建模等任务. 在当前含噪中等规模量子计算阶段, 具有较少量子比特和较短电路深度的变分量子算法尤其受到关注. 这类算法通常由参数化量子电路和经典优化器共同组成: 量子电路负责生成依赖输入和参数的量子态, 经典计算机负责计算损失函数并更新电路参数.
+近年来, 量子机器学习试图利用量子态空间, 量子叠加和纠缠等结构完成分类, 回归和生成建模等任务. 在当前含噪中等规模量子计算阶段, 具有较少量子比特和较短电路深度的变分量子算法尤其受到关注. 这类算法通常由参数化量子电路和经典优化器共同组成: 量子电路负责生成依赖输入和参数的量子态, 经典计算机负责计算损失函数并更新电路参数.
 
 量子机器学习中的首要问题之一是如何将经典数据编码到量子电路中. 一些方法将数据写入量子态振幅, 但一般状态制备可能需要大量量子门, 并依赖尚不成熟的量子随机存取存储器. 另一些方法把经典数据直接写入旋转门的角度, 从而避免复杂的振幅制备. 然而, 对于单量子比特而言, 如果只在电路开始时编码一次数据, 后续与输入无关的单量子比特门仅相当于对所有输出状态进行相同的 Bloch 球旋转, 表达能力较为有限.
 
@@ -28,7 +28,7 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \section{单量子比特基础知识}
 
 \subsection{量子比特的定义}
-具有量子特性的系统（如自旋 $1/2$ 粒子），选定两个相互正交的本征态，分别以 $\ket{0}$ 和 $\ket{1}$ 代表。
+单量子比特的状态空间是二维复希尔伯特空间. 选取一组正交归一的计算基, 分别记为 $\ket{0}$ 和 $\ket{1}$; 对自旋 $1/2$ 系统, 它们可以取为某一自旋分量算符的两个本征态.
 \subsection{纯态与状态向量}
 
 计算基定义为
@@ -36,20 +36,20 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
     \ket{0}=\begin{pNiceMatrix}
                 1 \\
                 0
-            \end{pNiceMatrix},\q \ket{1}=\begin{pNiceMatrix}
-                                             0 \\
-                                             1
-                                         \end{pNiceMatrix}.
+            \end{pNiceMatrix}, \q \ket{1}=\begin{pNiceMatrix}
+                0 \\
+                1
+            \end{pNiceMatrix}.
 \end{align}
 任意单量子比特纯态都可以写成
 \begin{align}
-    \ket{\psi}=\alpha\ket{0}+\beta\ket{1},\q \abs{\alpha}^2+\abs{\beta}^2=1.
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1}, \q \abs{\alpha}^2+\abs{\beta}^2=1.
 \end{align}
-其中 $\alpha,\beta\in\C$ 为概率振幅. 在计算基中测量时, $\Pr(0)=\abs{\alpha}^2$, $\Pr(1)=\abs{\beta}^2$. 去除不影响物理结果的整体相位后, 纯态可进一步参数化为
+其中 $\alpha, \beta\in\C$ 为概率振幅. 在计算基中测量时, $\Pr(0)=\abs{\alpha}^2$, $\Pr(1)=\abs{\beta}^2$. 去除不影响物理结果的整体相位后, 纯态可进一步参数化为
 \begin{align}
     \ket{\psi}=\cos\frac{\theta}{2}\ket{0}+\e^{\i\varphi}\sin\frac{\theta}{2}\ket{1}.
 \end{align}
-这里 $\theta\in[0,\pi]$, $\varphi\in[0,2\pi)$, 恰好对应球面上的极角和方位角.
+这里 $\theta\in[0, \pi]$, $\varphi\in[0, 2\pi)$, 恰好对应球面上的极角和方位角.
 
 \subsection{混合态与密度矩阵}
 
@@ -66,26 +66,24 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \begin{align}
     \rho=\sum_j p_j\ket{\psi_j}\bra{\psi_j}, \q p_j\ge 0, \q \sum_j p_j=1.
 \end{align}
-根据量子力学的基本假设，系统的任意物理可观测量均由态矢空间（希尔伯特空间）上的一个线性厄米算符$M$描述，根据数学知识， $M$ 可以被对角化，即存在一组正交归一的本征态基底 $\{\ket{m_k}\}$ 及其对应的实数本征值 $m_k$，使得：
-\begin{equation}
-    M = \sum_k m_k \ket{m_k}\bra{m_k}
-\end{equation}
+密度矩阵必须满足厄米性 $\rho^\dagger=\rho$, 半正定性 $\rho\succeq0$ 和归一化 $\tr(\rho)=1$. 纯态还满足 $\rho^2=\rho$ 及 $\tr(\rho^2)=1$; 而混合态则满足 $\tr(\rho^2)<1$. 因而, 混合态不是某个未知纯态的概率振幅叠加, 而是对不同制备过程的经典概率混合.
 
-根据 Born 规则，对处于 $\ket{\psi_j}$ 的系统进行测量，得到结果 $m_k$ 的概率为：
+根据量子力学的基本假设, 系统的任意物理可观测量均由态矢空间 (希尔伯特空间) 上的一个线性厄米算符 $M$ 描述, 而 $M$ 可以被对角化, 即存在一组正交归一的本征态基底 $\{\ket{m_k}\}$ 及其对应的实数本征值 $m_k$, 使得:
 \begin{equation}
-    P(m_k | \psi_j) = \abs{\bra{m_k}\ket{\psi_j}}^2 = \bra{\psi_j}\ket{m_k}\bra{m_k}\ket{\psi_j}
+    M=\sum_k m_k \ket{m_k}\bra{m_k}.
 \end{equation}
-
-因此可观测量 $M$ 在纯态 $\ket{\psi_j}$ 下的期望值为：
+根据 Born 规则, 对处于 $\ket{\psi_j}$ 的系统进行测量, 得到结果 $m_k$ 的概率为:
 \begin{equation}
-    \langle M \rangle_{\psi_j} = \sum_k m_k P(m_k | \psi_j) = \sum_k m_k \bra{\psi_j}\ket{m_k}\bra{m_k}\ket{\psi_j}=\bra{\psi_j}M\ket{\psi_j}
+    \Pr(m_k|\psi_j)=\abs{\braket{m_k|\psi_j}}^2=\braket{\psi_j|m_k}\braket{m_k|\psi_j},
 \end{equation}
-
-再把$\rho$的定义带入，得：
+因此可观测量 $M$ 在纯态 $\ket{\psi_j}$ 下的期望值为:
 \begin{equation}
-    \langle M \rangle = \sum_j p_j \langle M \rangle_{\psi_j} = \sum_j p_j \bra{\psi_j}M\ket{\psi_j}=\sum_j p_j\tr\left(\ket{\psi_j}\bra{\psi_j} M\right) =\tr\left(\rho M\right)
+    \langle M \rangle_{\psi_j}=\sum_k m_k \Pr(m_k|\psi_j)=\sum_k m_k \braket{\psi_j|m_k}\braket{m_k|\psi_j}=\bra{\psi_j}M\ket{\psi_j}.
 \end{equation}
-
+再把 $\rho$ 的定义代入, 可得
+\begin{equation}
+    \langle M \rangle=\sum_j p_j\langle M \rangle_{\psi_j}=\sum_j p_j \bra{\psi_j}M\ket{\psi_j}=\sum_j p_j\tr\left(\ket{\psi_j}\bra{\psi_j} M\right)=\tr\left(\rho M\right).
+\end{equation}
 
 \subsection{Pauli 矩阵及其代数}
 
@@ -94,10 +92,10 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
     \sigma_x=\begin{pNiceMatrix}
                  0 & 1 \\
                  1 & 0
-             \end{pNiceMatrix},\q \sigma_y=\begin{pNiceMatrix}
+             \end{pNiceMatrix}, \q \sigma_y=\begin{pNiceMatrix}
                                                0  & -\i \\
                                                \i & 0
-                                           \end{pNiceMatrix},\q \sigma_z=\begin{pNiceMatrix}
+                                           \end{pNiceMatrix}, \q \sigma_z=\begin{pNiceMatrix}
                                                                              1 & 0  \\
                                                                              0 & -1
                                                                          \end{pNiceMatrix}.
@@ -109,11 +107,11 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \end{align}
 当 $i=j$ 时, $\sigma_i^2=I$; 当 $i\neq j$ 时,
 \begin{align}
-    \sigma_x\sigma_y=\i\sigma_z,\q \sigma_y\sigma_z=\i\sigma_x, \q \sigma_z\sigma_x=\i\sigma_y,
+    \sigma_x\sigma_y=\i\sigma_z, \q \sigma_y\sigma_z=\i\sigma_x, \q \sigma_z\sigma_x=\i\sigma_y,
 \end{align}
 交换乘法顺序会改变符号. 因此
 \begin{align} \label{eq:pauli_algebra}
-    \{\sigma_i,\sigma_j\}=2\delta_{ij}I,\q[\sigma_i,\sigma_j]=2\i\sum_k\eps_{ijk}\sigma_k.
+    \{\sigma_i, \sigma_j\}=2\delta_{ij}I, \q[\sigma_i, \sigma_j]=2\i\sum_k\eps_{ijk}\sigma_k.
 \end{align}
 进一步可得向量恒等式
 \begin{align}
@@ -123,28 +121,34 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 
 \subsection{Bloch 球表示}
 
-任意$2\times2$ 厄米矩阵 H 都可以唯一写成\begin{align}
-    \begin{pNiceMatrix}
-        a    & c-di \\
-        c+di & b
-    \end{pNiceMatrix} \q a,b,c,d \in \mathbf{R} \end{align}
-
-而 $I,\sigma_x,\sigma_y,\sigma_z$ 构成 $2\times2$ 厄米矩阵空间的一组基, 因此任意单量子比特密度矩阵都可以唯一写成
+任意 $2\times2$ 厄米矩阵 $H$ 都可以唯一写成
+\begin{align}
+    H=\begin{pNiceMatrix}
+          a      & c-d\i \\
+          c+d\i  & b
+      \end{pNiceMatrix}, \q a,b,c,d\in\R.
+\end{align}
+由于 $I,\sigma_x,\sigma_y,\sigma_z$ 构成 $2\times2$ 厄米矩阵实向量空间的一组基, 任意单量子比特密度矩阵都可以唯一写成
 \begin{align}
     \rho=a_0I+a_x\sigma_x+a_y\sigma_y+a_z\sigma_z.
 \end{align}
-
-又因为密度矩阵满足归一化条件$\tr(\rho)=1$,所以$a_0=\frac{1}{2}$,
+又因为密度矩阵满足归一化条件 $\tr(\rho)=1$, 所以 $a_0=\frac{1}{2}$, 进而
 \begin{align}
-    \rho=\frac{1}{2}\left(I+\bm{r}\cdot\bm{\sigma}\right), \q \bm{r}=(r_x,r_y,r_z),\q r_x=2a_x,r_y=2a_y,r_z=2a_z.
+    \rho=\frac{1}{2}\left(I+\bm{r}\cdot\bm{\sigma}\right), \q \bm{r}=(r_x,r_y,r_z), \q r_x=2a_x,\q r_y=2a_y,\q r_z=2a_z.
 \end{align}
-
 通过计算可得
 \begin{align}
-    r_x=\tr(\rho\sigma_x),\q r_y=\tr(\rho\sigma_y), \q r_z=\tr(\rho\sigma_z).
+    r_x=\tr(\rho\sigma_x), \q r_y=\tr(\rho\sigma_y), \q r_z=\tr(\rho\sigma_z).
 \end{align}
-
-因此 Bloch 向量的三个分量正是三个 Pauli 测量的期望值.
+因此 Bloch 向量的三个分量正是三个 Pauli 测量的期望值. 又因为
+\begin{align}
+    (\bm r\cdot\bm\sigma)^2=\abs{\bm r}^2I,
+\end{align}
+$\bm r\cdot\bm\sigma$ 的本征值为 $\pm\abs{\bm r}$, 从而 $\rho$ 的两个本征值为
+\begin{align}
+    \lambda_\pm=\frac{1\pm\abs{\bm r}}{2}.
+\end{align}
+密度矩阵的半正定性等价于 $\abs{\bm r}\le1$. 当 $\abs{\bm r}=1$ 时, $\rho$ 为纯态并位于 Bloch 球面; 当 $\abs{\bm r}<1$ 时, $\rho$ 为混合态并位于 Bloch 球内部.
 
 \subsection{单量子比特旋转}
 
@@ -152,15 +156,12 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \begin{align}\label{eq:rotation_op}
     R_{\bm{n}}(\phi)=\e^{-\frac{1}{2}\i\phi\bm{n}\cdot\bm{\sigma}}.
 \end{align}
-
-关于等式 \eqref{eq:rotation_op} 的详细证明过程，请参见附录~\ref{app:proof_rotation}。
-
-特别地,
+关于等式~\eqref{eq:rotation_op} 的详细证明过程, 请参见附录~\ref{app:proof_rotation}. 特别地,
 \begin{align}
     R_y(\phi)=\begin{pNiceMatrix}
                   \cos(\phi/2) & -\sin(\phi/2) \\
                   \sin(\phi/2) & \cos(\phi/2)
-              \end{pNiceMatrix},\q R_z(\phi)=\begin{pNiceMatrix}
+              \end{pNiceMatrix}, \q R_z(\phi)=\begin{pNiceMatrix}
                                                  \e^{-\i\phi/2} & 0             \\
                                                  0              & \e^{\i\phi/2}
                                              \end{pNiceMatrix}.
@@ -168,7 +169,7 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 忽略整体相位后, 任意单量子比特酉门属于 $\te{SU}(2)$, 可以由三个 Euler 角参数化. 我们采用显式形式
 \begin{align}
     U(\bm{\phi})=\begin{pNiceMatrix}
-                     \cos\frac{\phi_1}{2}\e^{\i(\phi_2+\phi_3)/2} & \sin\frac{\phi_1}{2}\e^{-\i(\phi_2-\phi_3)/2} \\
+                     \cos\frac{\phi_1}{2}\e^{\i(\phi_2+\phi_3)/2} & -\sin\frac{\phi_1}{2}\e^{-\i(\phi_2-\phi_3)/2} \\
                      \sin\frac{\phi_1}{2}\e^{\i(\phi_2-\phi_3)/2} & \cos\frac{\phi_1}{2}\e^{-\i(\phi_2+\phi_3)/2}
                  \end{pNiceMatrix}.
     \label{eq:su2-euler}
@@ -184,11 +185,11 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \end{align}
 其中 $U(\bm{x})$ 负责数据编码, $U(\bm{\phi}_i)$ 为可训练旋转. 具有 $N$ 层的总电路为
 \begin{align}
-    \mathcal U(\bm{\phi},\bm{x})=L(N)L(N-1)\cdots L(1),
+    \mathcal U(\bm{\phi}, \bm{x})=L(N)L(N-1)\cdots L(1),
 \end{align}
 输出态为
 \begin{align}
-    \ket{\psi(\bm{x})}=\mathcal U(\bm{\phi},\bm{x})\ket{0}.
+    \ket{\psi(\bm{x})}=\mathcal U(\bm{\phi}, \bm{x})\ket{0}.
 \end{align}
 同一输入 $\bm{x}$ 在电路中被重复使用, 因而称为数据重上传.
 
@@ -198,13 +199,13 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \begin{align}
     L_i(\bm{x})=U(\bm{\theta}_i+\bm{w}_i\circ\bm{x}).
 \end{align}
-其中 $\bm{w}_i\circ\bm{x}=(w_i^1x^1,w_i^2x^2,w_i^3x^3)$ 为逐元素乘积. 旋转角 $\phi_i^j(\bm{x})=\theta_i^j+w_i^j x^j$ 由输入数据与可训练参数共同决定. $\bm{w}_i$ 类似神经网络中的输入权重, $\bm{\theta}_i$ 类似偏置.
+其中 $\bm{w}_i\circ\bm{x}=(w_i^1x^1, w_i^2x^2, w_i^3x^3)$ 为逐元素乘积. 旋转角 $\phi_i^j(\bm{x})=\theta_i^j+w_i^j x^j$ 由输入数据与可训练参数共同决定. $\bm{w}_i$ 类似神经网络中的输入权重, $\bm{\theta}_i$ 类似偏置.
 
 \subsection{重上传产生非线性的机制}
 
 即使旋转角只线性依赖输入, 量子门矩阵中仍包含
 \begin{align}
-    \sin\frac{\theta+wx}{2},\q \cos\frac{\theta+wx}{2},
+    \sin\frac{\theta+wx}{2}, \q \cos\frac{\theta+wx}{2},
 \end{align}
 因此输出对数据是非线性的. 多个绕不同轴的旋转进一步产生三角函数乘积.
 
@@ -212,23 +213,23 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \begin{align}
     \ket{\psi(x)}=R_y(C(x)) R_z(B(x))R_y(A(x))\ket{0},
 \end{align}
-其中 $A,B,C$ 均为 $x$ 的仿射函数. 对应 Bloch 向量的 $z$ 分量为
+其中 $A, B, C$ 均为 $x$ 的仿射函数. 对应 Bloch 向量的 $z$ 分量为
 \begin{align}
     r_z(x)=\cos C(x)\cos A(x)-\sin C(x)\sin A(x)\cos B(x).
 \end{align}
-利用积化和差公式, 这些乘积可以转换为 $A\pm C$, $A\pm B\pm C$ 等组合频率. 因此增加重上传层数会扩大模型可以表示的 Fourier 频率集合, 使决策边界逐步复杂化. 若所有层均绕同一轴旋转, 多层旋转可以合并, 表达能力不会显著提高; 所以不同轴旋转及其非对易性是数据重上传发挥作用的关键.
+利用积化和差公式, 这些乘积可以转换为 $A\pm C$, $A\pm B\pm C$ 等组合频率. 因此, 增加重上传层数可以扩大模型能够表示的 Fourier 频率集合, 使决策边界逐步复杂化. 若所有层均绕同一轴旋转, 多层旋转可以合并, 表达能力不会显著提高; 所以不同轴旋转及其一般情况下的非对易性是数据重上传发挥作用的关键.
 
 \subsection{高维数据编码}
 
 一般单量子比特旋转有三个自由参数, 因而一次最多自然编码三个实数. 对于 $d>3$ 的输入, 可将
 \begin{align}
-    \bm{x}=(\bm{x}^{(1)},\ldots,\bm{x}^{(K)}),\q K=\left\lceil\frac{d}{3}\right\rceil
+    \bm{x}=(\bm{x}^{(1)}, \ldots, \bm{x}^{(K)}), \q K=\left\lceil\frac{d}{3}\right\rceil
 \end{align}
 分成若干个不超过三维的子向量. 第 $i$ 个重上传层写成
 \begin{align}
     L_i(\bm{x})=U(\bm{\theta}_i^{(K)}+\bm{w}_i^{(K)}\circ\bm{x}^{(K)})\cdots U(\bm{\theta}_i^{(1)}+\bm{w}_i^{(1)}\circ\bm{x}^{(1)}).
 \end{align}
-所以输入维数不必等于量子比特数, 但高维数据会增加门数、参数量和电路深度. 对于 $d\le3$, 单量子比特 $N$ 层电路约有 $P=(3+d)N$ 个电路参数. 对于一般 $d$, 参数数目约为 $P=(3K+d)N$.
+所以输入维数不必等于量子比特数, 但高维数据会增加门数, 参数量和电路深度. 对于 $d\le3$, 单量子比特 $N$ 层电路约有 $P=(3+d)N$ 个电路参数. 对于一般 $d$, 参数数目约为 $P=(3K+d)N$.
 
 \section{测量策略与类别标签态}
 
@@ -236,17 +237,17 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 
 二分类可以把两个类别分别对应到正交态 $\ket{0}$ 和 $\ket{1}$. 若输出态为 $\ket{\psi(\bm{x})}$, 则
 \begin{align}
-    \Pr(0|\bm{x})=\abs{\braket{0 | \psi(\bm{x})}}^2,\q \Pr(1|\bm{x})=\abs{\braket{1 | \psi(\bm{x})}}^2.
+    \Pr(0|\bm{x})=\abs{\braket{0 | \psi(\bm{x})}}^2, \q \Pr(1|\bm{x})=\abs{\braket{1 | \psi(\bm{x})}}^2.
 \end{align}
 按照最大概率分类.
 
 \subsection{多分类与 Bloch 球标签点}
 
-二维 Hilbert 空间最多只能容纳两个两两正交的纯态, 因此单量子比特无法为三个以上类别分配完全正交的标签态, 从而改为在 Bloch 球上选择尽可能均匀分离的方向.
+二维希尔伯特空间最多只能容纳两个两两正交的纯态, 因此单量子比特无法为三个以上类别分配完全正交的标签态, 从而改为在 Bloch 球上选择尽可能均匀分离的方向.
 
 对于四分类, 可使用正四面体顶点
 \begin{align}
-    \bm{s}_1=\frac{1}{\sqrt{3}}(1,1,1),\q \bm{s}_2=\frac{1}{\sqrt{3}}(1,-1,-1),\q \bm{s}_3=\frac{1}{\sqrt{3}}(-1,1,-1),\q \bm{s}_4=\frac{1}{\sqrt{3}}(-1,-1,1).
+    \bm{s}_1=\frac{1}{\sqrt{3}}(1, 1, 1), \q \bm{s}_2=\frac{1}{\sqrt{3}}(1, -1, -1), \q \bm{s}_3=\frac{1}{\sqrt{3}}(-1, 1, -1), \q \bm{s}_4=\frac{1}{\sqrt{3}}(-1, -1, 1).
 \end{align}
 任意两个不同顶点满足
 \begin{align}
@@ -262,51 +263,51 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \end{align}
 设对应 Bloch 向量分别为 $\bm{s}_c$ 和 $\bm{r}(\bm{x})$, 则
 \begin{align}
-    \rho_c=\frac{1}{2}(I+\bm{s}_c\cdot\bm{\sigma}),\q \rho(\bm{x})=\frac{1}{2}(I+\bm{r}(\bm{x})\cdot\bm{\sigma}).
+    \rho_c=\frac{1}{2}(I+\bm{s}_c\cdot\bm{\sigma}), \q \rho(\bm{x})=\frac{1}{2}(I+\bm{r}(\bm{x})\cdot\bm{\sigma}).
 \end{align}
 利用 $\tr(\sigma_i)=0$ 和 $\tr(\sigma_i\sigma_j)=2\delta_{ij}$,
 \begin{align}
     F_c(\bm{x})=\tr[\rho_c\rho(\bm{x})]=\frac{1+\bm{s}_c\cdot\bm{r}(\bm{x})}{2}.
 \end{align}
-因此最大化保真度等价于让输出 Bloch 向量接近相应类别标签方向. 对四面体标签态, \eqref{eq:tetrahedron-dot} 给出不同标签态之间的保真度 $F_{cc'}=\frac{1}{2}(1-\frac{1}{3})=\frac{1}{3}$. 所以一个属于类别 $c$ 的理想四分类输出对应目标保真度向量 $(1,\frac{1}{3},\frac{1}{3},\frac{1}{3})$, 其中 $1$ 位于正确类别的位置.
+因此最大化保真度等价于让输出 Bloch 向量接近相应类别标签方向. 对四面体标签态, 式~\eqref{eq:tetrahedron-dot} 给出不同标签态之间的保真度 $F_{cc'}=\frac{1}{2}(1-\frac{1}{3})=\frac{1}{3}$. 所以一个属于类别 $c$ 的理想四分类输出对应目标保真度向量 $(1, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})$, 其中 $1$ 位于正确类别的位置.
 
 \section{损失函数}
 
-\subsection{普通保真度损失}
+\subsection{保真度损失}
 
-设训练集为 $\mathcal D=\{(\bm{x}_\mu,s_\mu)\}_{\mu=1}^M$, 其中 $s_\mu$ 是样本 $\bm{x}_\mu$ 的正确类别. 定义
+设训练集为 $\mathcal D=\{(\bm{x}_\mu, s_\mu)\}_{\mu=1}^M$, 其中 $s_\mu$ 是样本 $\bm{x}_\mu$ 的正确类别. 定义
 \begin{align}
-    \chi_f^2(\bm{\theta},\bm{w})=\sum_{\mu=1}^M\left[1-\abs{\braket{\widetilde{\psi}_{s_\mu}|\psi(\bm{x}_\mu)}}^2\right].
+    \chi_f^2(\bm{\theta}, \bm{w})=\sum_{\mu=1}^M\left[1-\abs{\braket{\widetilde{\psi}_{s_\mu}|\psi(\bm{x}_\mu)}}^2\right].
 \end{align}
-最小化该损失等价于最大化输出态与正确标签态的平均保真度.
+在本文采用的约定下, 纯态保真度就是重叠模的平方 $\abs{\braket{\phi|\psi}}^2$. 因此, 最小化该损失等价于最大化输出态与正确标签态的平均保真度.
 
 \subsection{加权保真度损失}
 
 令 $Y_c(\bm{x}_\mu)$ 表示样本 $\bm{x}_\mu$ 与第 $c$ 个标签态之间的理想保真度. 对四面体四分类, 正确类别的目标值为 $1$, 其他类别为 $1/3$. 定义
 \begin{align}
-    \chi_{wf}^2(\bm{\alpha},\bm{\theta},\bm{w})=\frac{1}{2}\sum_{\mu=1}^M \sum_{c=1}^{\mathcal C}\left[\alpha_c F_c(\bm{x}_\mu)-Y_c(\bm{x}_\mu)\right]^2.
+    \chi_{wf}^2(\bm{\alpha}, \bm{\theta}, \bm{w})=\frac{1}{2}\sum_{\mu=1}^M \sum_{c=1}^{\mathcal C}\left[\alpha_c F_c(\bm{x}_\mu)-Y_c(\bm{x}_\mu)\right]^2.
 \end{align}
-其中 $\alpha_c$ 为额外的可训练类别权重. 普通保真度损失只把输出态拉向正确标签态, 加权保真度损失则同时控制输出态与所有标签态之间的相对位置. 后者通常具有更好的分类效果, 但需要更多经典参数和更多保真度计算.
+其中 $\alpha_c$ 为额外的可训练类别权重. 非加权保真度损失只把输出态拉向正确标签态, 加权保真度损失则同时控制输出态与所有标签态之间的相对位置. 后者在论文及本报告的多数任务中表现更好, 但这种优势并非对所有任务都成立, 且需要更多经典参数和更多保真度计算.
 
-\section{单量子比特分类器的通用性论证}
+\section{单量子比特分类器的表达机制与通用性直觉}
 
 \subsection{经典通用逼近定理}
 
-\begin{theorem}[通用逼近定理]
-    设 $I_m=[0,1]^m$, $f\in C(I_m)$, 且 $\varphi:\R\to\R$ 为非常数、有界、连续函数. 对任意 $\eps>0$, 存在正整数 $N$ 及参数 $\alpha_i,b_i\in\R$, $\bm{w}_i\in\R^m$, 使
+\begin{theorem}[通用逼近定理~\cite{hornik1991}]
+    设 $I_m=[0, 1]^m$, $f\in C(I_m)$, 且 $\varphi: \R\to\R$ 为非常数, 有界, 连续函数. 对任意 $\eps>0$, 存在正整数 $N$ 及参数 $\alpha_i, b_i\in\R$, $\bm{w}_i\in\R^m$, 使
     \begin{align}
         h(\bm{x})=\sum_{i=1}^N\alpha_i\varphi(\bm{w}_i\cdot\bm{x}+b_i)
     \end{align}
-    满足 $\abs{h(\bm{x})-f(\bm{x})}<\eps,\fo \bm{x}\in I_m$.
+    满足 $\abs{h(\bm{x})-f(\bm{x})}<\eps, \fo \bm{x}\in I_m$.
 \end{theorem}
 
 该定理说明单隐层神经网络只要包含足够多隐藏神经元, 就能够逼近紧致区域上的连续函数.
 
 \subsection{SU(2) 的轴角表示}
 
-任意 $\te{SU}(2)$ 矩阵均可写成 $U=a_0 I+\i\bm{a}\cdot\bm{\sigma}$, 其中 $a_0^2+\abs{\bm{a}}^2=1$. 令 $a_0=\cos d$, $\bm{a}=\sin d\,\widehat{\bm{n}}$, 则
+任意 $\te{SU}(2)$ 矩阵均可写成 $U=a_0 I+\i\bm{a}\cdot\bm{\sigma}$, 其中 $a_0^2+\abs{\bm{a}}^2=1$. 令 $a_0=\cos d$, $\bm{a}=\sin d\, \widehat{\bm{n}}$, 则
 \begin{align}
-    U=\cos d\,I+\i\sin d\,\widehat{\bm{n}}\cdot\bm{\sigma}=\e^{\i d\widehat{\bm{n}}\cdot\bm{\sigma}}.
+    U=\cos d\, I+\i\sin d\, \widehat{\bm{n}}\cdot\bm{\sigma}=\e^{\i d\widehat{\bm{n}}\cdot\bm{\sigma}}.
 \end{align}
 因此
 \begin{align}
@@ -317,54 +318,56 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 对于 Euler 角, 可以取
 \begin{align}
     \omega_1(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
-    \omega_2(\bm{\phi}) & =d\mathcal{N}\cos\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
+    \omega_2(\bm{\phi}) & =-d\mathcal{N}\cos\frac{\phi_2-\phi_3}{2}\sin\frac{\phi_1}{2}, \\
     \omega_3(\bm{\phi}) & =d\mathcal{N}\sin\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},
 \end{align}
 其中
 \begin{align}
-    \cos d=\cos\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2},\q \mathcal{N}=\frac{1}{\sqrt{1-\cos^2 d}}.
+    \cos d=\cos\frac{\phi_2+\phi_3}{2}\cos\frac{\phi_1}{2}, \q \mathcal{N}=\frac{1}{\sqrt{1-\cos^2 d}}.
 \end{align}
-这些分量由正弦和余弦构成, 因而本质上是输入角度的有界连续三角函数.
+这里 $\omega_2$ 的负号来自本文采用的 Pauli 矩阵和 Euler 矩阵约定.\footnote{原论文对应公式将该项写为正号, 但把本文式~\eqref{eq:su2-euler} 与 $\sigma_y$ 的定义代入 $U=\cos d\,I+\i\sin d\,\widehat{\bm n}\cdot\bm\sigma$ 可得负号; 本文采用彼此自洽的符号约定.} 这些分量由正弦和余弦构成, 因而是输入角度的有界连续三角函数.
 
 \subsection{Baker-Campbell-Hausdorff 展开}
 
-将数据编码 $\bm{\phi}_i(\bm{x})=\bm{\theta}_i+\bm{w}_i\circ\bm{x}$ 代入 \eqref{eq:axis-angle-su2}, 总电路变成
+将数据编码 $\bm{\phi}_i(\bm{x})=\bm{\theta}_i+\bm{w}_i\circ\bm{x}$ 代入~\eqref{eq:axis-angle-su2}, 总电路变成
 \begin{align}
-    \mathcal{U}(\bm{x})=\prod_{i=1}^N\e^{\i\bm{\omega}_i(\bm{x})\cdot\bm{\sigma}}.
+    \mathcal{U}(\bm{x})=\e^{\i\bm{\omega}_N(\bm{x})\cdot\bm{\sigma}}\cdots\e^{\i\bm{\omega}_1(\bm{x})\cdot\bm{\sigma}}.
 \end{align}
-Baker-Campbell-Hausdorff 公式为
+由 BCH 公式,
 \begin{align}
-    \e^A\e^B=\exp\left(A+B+\frac{1}{2}[A,B]+\frac{1}{12}[A,[A,B]]+\frac{1}{12}[B,[B,A]]+\cdots\right).
+    \e^A\e^B=\exp\left(A+B+\frac{1}{2}[A, B]+\frac{1}{12}[A,[A, B]]+\frac{1}{12}[B,[B, A]]+\cdots\right),
 \end{align}
-对 $A=\i\bm{a}\cdot\bm{\sigma}$, $B=\i\bm{b}\cdot\bm{\sigma}$, 利用 \eqref{eq:pauli-vector-product}, 得到 $[A,B]=-2\i(\bm{a}\times\bm{b})\cdot\bm{\sigma}$. 所有更高阶嵌套对易子仍是 Pauli 矩阵的线性组合, 所以总电路仍可写成
+对 $A=\i\bm{a}\cdot\bm{\sigma}$, $B=\i\bm{b}\cdot\bm{\sigma}$, 利用~\eqref{eq:pauli-vector-product}, 得到 $[A, B]=-2\i(\bm{a}\times\bm{b})\cdot\bm{\sigma}$. 所有更高阶嵌套对易子仍是 Pauli 矩阵的线性组合. 更一般地, 由 $\te{SU}(2)$ 对乘法封闭可知, 总电路仍可写成
 \begin{align}
     \mathcal{U}(\bm{x})=\e^{\i\bm{\xi}(\bm{x})\cdot\bm{\sigma}}.
 \end{align}
-有效函数 $\bm{\xi}(\bm{x})$ 包含各层三角函数的叠加、叉积以及更高阶交互项. 这说明非对易旋转会在不同层的输入特征之间产生复杂耦合.
+有效函数 $\bm{\xi}(\bm{x})$ 包含各层三角函数的叠加, 叉积以及更高阶交互项. 这说明非对易旋转会在不同层的输入特征之间产生复杂耦合.
 
-同时，从这里也可以看出由于 Pauli 矩阵互不对易，$[A,B] \neq 0$，可知\begin{equation}
-    \mathcal{U}(\bm{\theta}_i)\mathcal{U}(\bm{w}_i\circ\bm{x}) \neq \mathcal{U}(\bm{\theta}_i+\bm{w}_i\circ\bm{x})
+若两次旋转的生成元不平行, 则对应 Pauli 线性组合的对易子一般不为零, 因而
+\begin{equation}
+    U(\bm{\theta}_i)U(\bm{w}_i\circ\bm{x})\ne U(\bm{\theta}_i+\bm{w}_i\circ\bm{x})
 \end{equation}
-因此在真实的量子电路中，顺序作用 $L(i)=U(\bm{\theta}_i)U(\bm{w}_i\circ\bm{x})$与论文中的压缩参数 $L_i(\bm{x})=U(\bm{\theta}_i+\bm{w}_i\circ\bm{x})$ 对量子态的影响实际上是不相等的。
+通常成立. 等号只会在特殊参数关系下出现, 例如旋转限制在同一生成元方向并采用相容的角度坐标时. 因此, 论文的压缩层 $L_i(\bm{x})=U(\bm{\theta}_i+\bm{w}_i\circ\bm{x})$ 应理解为新的参数化模型, 而不是把两个一般旋转作代数合并得到的恒等式.
 
 \subsection{与神经网络的对应及理论边界}
 
 经典神经网络与数据重上传电路具有如下形式对应:
 \begin{center}
-    \begin{tabular}{c|c}
-        \hline
-        单隐层神经网络           & 数据重上传量子电路               \\
-        \hline
-        输入权重 $\bm{w}_i$   & 数据缩放参数 $\bm{w}_i$       \\
-        偏置 $b_i$          & 旋转偏置 $\bm{\theta}_i$    \\
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{cc}
+        \toprule
+        单隐层神经网络         & 数据重上传量子电路 \\
+        \midrule
+        输入权重 $\bm{w}_i$   & 数据缩放参数 $\bm{w}_i$ \\
+        偏置 $b_i$          & 旋转偏置 $\bm{\theta}_i$ \\
         激活函数 $\varphi$    & 旋转产生的三角函数 $\bm{\omega}$ \\
-        隐藏神经元数 $N$        & 数据重上传层数 $N$             \\
-        输出组合权重 $\alpha_i$ & 测量及加权损失参数               \\
-        \hline
+        隐藏神经元数 $N$        & 数据重上传层数 $N$ \\
+        输出组合权重 $\alpha_i$ & 测量及加权损失参数 \\
+        \bottomrule
     \end{tabular}
 \end{center}
 
-这一对应解释了为什么需要在每一层重新输入数据, 以及为什么层数增加能够提高表达能力.
+这一对应解释了为什么需要在每一层重新输入数据, 以及为什么层数增加可能提高表达能力. 但上述推导只是机制解释和形式对应, 并未证明本报告采用的有限层线路输出族在连续函数空间中稠密, 也未证明测量与加权损失能够实现经典定理中的任意输出线性组合. 因此, 本节不作为一份独立的严格通用逼近证明.
 
 \section{多量子比特推广}
 
@@ -372,7 +375,7 @@ Baker-Campbell-Hausdorff 公式为
 
 对于 $Q$ 个量子比特, 第 $i$ 层可在各量子比特上并行执行数据重上传:
 \begin{align}
-    V_i(\bm{x})=\bigotimes_{q=1}^Q U_{i,q}(\bm{\theta}_{i,q}+\bm{w}_{i,q}\circ\bm{x}).
+    V_i(\bm{x})=\bigotimes_{q=1}^Q U_{i, q}(\bm{\theta}_{i, q}+\bm{w}_{i, q}\circ\bm{x}).
 \end{align}
 无纠缠模型为
 \begin{align}
@@ -384,7 +387,7 @@ Baker-Campbell-Hausdorff 公式为
 \begin{align}
     \ket{\Psi(\bm{x})}=V_N(\bm{x})E_{N-1}V_{N-1}(\bm{x})\cdots E_1 V_1(\bm{x})\ket{0}^{\otimes Q}.
 \end{align}
-论文采用 CZ 门作为纠缠门. 两量子比特电路在相邻旋转层之间施加 CZ; 四量子比特电路则交替连接 $(1,2),(3,4)$ 和 $(2,3),(1,4)$. 纠缠使一个量子比特的局部输出依赖其他量子比特上的编码和旋转, 从而引入多体相关结构.
+论文采用 CZ 门作为纠缠门. 两量子比特电路在相邻旋转层之间施加 CZ; 四量子比特电路则交替连接 $(1, 2),(3, 4)$ 和 $(2, 3),(1, 4)$. 纠缠使一个量子比特的局部输出依赖其他量子比特上的编码和旋转, 从而引入多体相关结构.
 
 \subsection{多量子比特测量}
 
@@ -392,11 +395,11 @@ Baker-Campbell-Hausdorff 公式为
 \begin{align}
     F_c(\bm{x})=\abs{\braket{\widetilde{\Psi}_c|\Psi(\bm{x})}}^2.
 \end{align}
-计算基提供最多 $2^Q$ 个两两正交标签态, 但完整状态层析的测量开销随量子比特数指数增长.
+计算基提供最多 $2^Q$ 个两两正交标签态. 若标签态就是计算基态, 其保真度等于相应计算基结果的概率, 可直接通过重复测量估计, 并不需要完整状态层析; 只有在重建一般的完整多量子比特状态时, 状态层析开销才会随量子比特数指数增长.
 
-第二种策略只测量某个量子比特的约化态:
+第二种策略只使用第 $q$ 个量子比特的约化态, 即对其余所有子系统取偏迹:
 \begin{align}
-    \rho_q(\bm{x})=\tr_{\ov q}\left[\ket{\Psi(\bm{x})}\bra{\Psi(\bm{x})}\right],
+    \rho_q(\bm{x})=\tr_{\{1, \ldots, Q\}\setminus\{q\}}\left[\ket{\Psi(\bm{x})}\bra{\Psi(\bm{x})}\right],
 \end{align}
 并定义
 \begin{align}
@@ -411,7 +414,7 @@ Baker-Campbell-Hausdorff 公式为
 
 \subsection{优化问题}
 
-将所有旋转偏置、数据权重和类别权重展平为参数向量 $\bm{p}=(\bm{\theta},\bm{w},\bm{\alpha})$, 训练过程就是求解
+将所有旋转偏置, 数据权重以及加权损失中使用的类别权重展平为参数向量 $\bm{p}=(\bm{\theta}, \bm{w}, \bm{\alpha})$, 训练过程就是求解
 \begin{align}
     \bm{p}^\ast=\argmin_{\bm{p}}\chi^2(\bm{p}).
 \end{align}
@@ -419,39 +422,39 @@ Baker-Campbell-Hausdorff 公式为
 
 \subsection{L-BFGS-B 方法}
 
-实验主要采用 SciPy 实现的 L-BFGS-B 算法. BFGS 属于拟 Newton 方法. Newton 方法使用 Hessian 逆矩阵给出方向
+实验主要采用 SciPy 实现的 L-BFGS-B 算法~\cite{byrd1995lbfgsb}. BFGS 属于拟 Newton 方法. Newton 方法使用 Hessian 逆矩阵给出搜索方向
 \begin{align}
     \bm{d}_k=-[\nabla^2\chi^2(\bm{p}_k)]^{-1}\nabla\chi^2(\bm{p}_k),
 \end{align}
 但直接计算和存储 Hessian 代价较高. BFGS 根据连续两步的参数和梯度变化
 \begin{align}
-    \bm{s}_k=\bm{p}_{k+1}-\bm{p}_k,\q \bm{y}_k=\nabla\chi^2(\bm{p}_{k+1})-\nabla\chi^2(\bm{p}_k)
+    \bm{s}_k=\bm{p}_{k+1}-\bm{p}_k, \q \bm{y}_k=\nabla\chi^2(\bm{p}_{k+1})-\nabla\chi^2(\bm{p}_k)
 \end{align}
-逐步近似逆 Hessian. 若 $H_k$ 表示逆 Hessian 近似, 令 $\rho_k=1/\bm{y}_k^\T\bm{s}_k$, 则 BFGS 更新为
+逐步近似逆 Hessian. 若 $H_k$ 表示逆 Hessian 近似, 令 $\rho_k=1/(\bm{y}_k^\T\bm{s}_k)$, 则 BFGS 更新为
 \begin{align}
     H_{k+1}=(I-\rho_k\bm{s}_k\bm{y}_k^\T)H_k(I-\rho_k\bm{y}_k\bm{s}_k^\T)+\rho_k\bm{s}_k\bm{s}_k^\T.
 \end{align}
 搜索方向为 $\bm{d}_k=-H_k\nabla\chi^2(\bm{p}_k)$, 步长由线搜索确定.
 
-L-BFGS 中的 L 表示有限内存. 它不显式保存完整的 $P\times P$ 逆 Hessian 近似, 而只保存最近 $m$ 组 $(\bm{s}_k,\bm{y}_k)$, 将内存开销从 $\O(P^2)$ 降低到 $\O(mP)$. 最后的 B 表示可以处理边界约束 $\ell_j\le p_j \le u_j$.
+L-BFGS 中的 L 表示有限内存. 它不显式保存完整的 $P\times P$ 逆 Hessian 近似, 而只保存最近 $m$ 组 $(\bm{s}_k, \bm{y}_k)$, 将内存开销从 $\O(P^2)$ 降低到 $\O(mP)$. 最后的 B 表示可以处理边界约束 $\ell_j\le p_j \le u_j$.
 
-L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟给出的损失平滑且无有限测量次数噪声, 因而每一步使用完整训练集并估计曲率是可行的.
+L-BFGS-B 适合本实验的主要原因是训练集较小, 状态向量模拟给出的损失平滑且无有限测量次数噪声, 因而每一步使用完整训练集并估计曲率是可行的.
 
 \section{损失函数梯度与随机梯度下降}
 
 \subsection{前向状态与反向状态}
 
-下面对普通保真度损失推导了类似神经网络反向传播的梯度. 定义第 $\ell$ 层后的前向状态
+下面对保真度损失推导类似神经网络反向传播的梯度. 定义第 $\ell$ 层后的前向状态
 \begin{align}
     \ket{\psi_\ell}=L_\ell L_{\ell-1}\cdots L_1\ket{0}, \q \ket{\psi_0}=\ket{0}.
 \end{align}
 从正确标签态反向定义
 \begin{align}
-    \bra{\Delta_\ell}=\bra{\widetilde{\psi}_c}L_N L_{N-1}\cdots L_{\ell+1},\q\bra{\Delta_N}=\bra{\widetilde{\psi}_c}.
+    \bra{\Delta_\ell}=\bra{\widetilde{\psi}_c}L_N L_{N-1}\cdots L_{\ell+1}, \q\bra{\Delta_N}=\bra{\widetilde{\psi}_c}.
 \end{align}
 于是最终重叠可以在任意一层切开:
 \begin{align}
-    \braket{\widetilde{\psi}_c|\psi_N}=\braket{\Delta_\ell|\psi_\ell}=\bra{\Delta_l}L_\ell\ket{\psi_{\ell-1}}.
+    \braket{\widetilde{\psi}_c|\psi_N}=\braket{\Delta_\ell|\psi_\ell}=\bra{\Delta_\ell}L_\ell\ket{\psi_{\ell-1}}.
 \end{align}
 
 \subsection{梯度推导}
@@ -473,85 +476,259 @@ L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟�
 \begin{align}
     \frac{\p L_\ell}{\p w_\ell^j}=x^j\frac{\p L_\ell}{\p\theta_\ell^j}.
 \end{align}
-对 \eqref{eq:su2-euler} 的参数化, 利用
+对~\eqref{eq:su2-euler} 的参数化, 利用
 \begin{align}
     \frac{\p L_\ell}{\p\theta_\ell^j}=\frac{1}{2} U\left(\bm{\phi}_\ell+\pi\bm{e}_j\right),
 \end{align}
 其中 $\bm{e}_j$ 只有第 $j$ 个分量为 $1$. 参数更新为
 \begin{align}
-    \theta_\ell^j \leftarrow \theta_\ell^j-\eta \frac{\p\chi_f^2}{\p\theta_\ell^j},\q w_\ell^j\leftarrow w_\ell^j-\eta \frac{\p\chi_f^2}{\p w_\ell^j}.
+    \theta_\ell^j \leftarrow \theta_\ell^j-\eta \frac{\p\chi_f^2}{\p\theta_\ell^j}, \q w_\ell^j\leftarrow w_\ell^j-\eta \frac{\p\chi_f^2}{\p w_\ell^j}.
 \end{align}
 
-\subsection{批量 SGD 与理论局限}
+\subsection{小批量 SGD 与理论局限}
 
-若每处理一个样本就更新一次参数, 梯度波动较大; 若每次对完整训练集梯度取平均, 又可能在小数据集上较早停留于局部区域. 我们采用小批量思想, 将训练集划分为若干批次, 对每个批次的平均梯度进行更新, 每轮重新打乱数据. 然而 \eqref{eq:loss-gradient} 需要访问中间前向状态 $\ket{\psi_\ell}$ 和反向状态 $\bra{\Delta_\ell}$, 在经典状态向量模拟中容易实现, 在真实量子硬件上则不够直接. 数值结果比较表明, 对其规模较小的训练集, L-BFGS-B 比 SGD 更准确且更快, 因而实验最终采用 L-BFGS-B.
+若每处理一个样本就更新一次参数, 梯度波动较大; 若每次对完整训练集梯度取平均, 又可能在小数据集上较早停留于局部区域. 小批量 SGD 可以在两者之间折中, 但~\eqref{eq:loss-gradient} 需要访问中间前向状态 $\ket{\psi_\ell}$ 和反向状态 $\bra{\Delta_\ell}$, 在经典状态向量模拟中容易实现, 在真实量子硬件上则不够直接.
 
-% BEGIN AUTO-GENERATED APPENDIX EXPERIMENT RESULTS
-% This file is generated by experiments/export_appendix_report.py.
-% Do not edit table values by hand; regenerate them from the result summaries.
-\section{论文附录部分实验复现}
-\label{sec:appendix-reproduction}
+\section{第一组实验: 实验 1--4}
 
-\subsection{实验协议与统计口径}
-我们复现了原论文附录 B 中的五类分类任务,代码选取的重上传层数为
-$\{1,2,3,4,5,6,8,10\}$，共 8 种。
-对于普通保真度损失 $\chi_f^2$，实验包含
-1 量子比特无纠缠、2 量子比特无纠缠和 2 量子比特有纠缠三类电路；
-前两类各有 8 种层数，而有纠缠电路只有 7 种，因为代码中的 CZ 门只插入相邻重上传层之间，
-当层数为 1 时不存在可插入纠缠门的位置，故共有
-$8+8+7=23$ 组。
-对于加权保真度损失 $\chi_{wf}^2$，除上述 23 组外，还加入
-4 量子比特无纠缠的 8 组和 4 量子比特有纠缠的 7 组，故共有
-$23+8+7=38$ 组。
-因此每个任务的实验总数为 $23+38=61$，共 305 实验。
+\subsection{实验目的}
 
-4 量子比特实验中只使用 $\chi_{wf}^2$：
-普通保真度代码令标签态量子比特数等于分类器量子比特数，并直接计算完整输出态与全局标签态的保真度，
-但当前 \texttt{representatives} 函数只实现了 1 和 2 量子比特标签态，没有实现 4 量子比特标签态；
-若直接运行 4 量子比特的 $\chi_f^2$，会得到未定义的全零标签向量。
-相比之下，加权保真度固定使用单量子比特标签态，先从每个物理量子比特的约化密度矩阵计算局部保真度，
-再通过可训练权重将各量子比特的结果组合起来，因此可以直接推广到 4 量子比特。
-这属于当前代码实现和论文复现实验网格的限制，并不意味着普通保真度在理论上不能用于 4 量子比特分类器。
+第一批实验以圆形二分类任务(circle)为统一基线, 依次研究四个问题: 论文保真度损失与作者实现的重叠模损失是否等价; 减少层数, 增加量子比特或加入 CZ 能否保持分类性能; 删除一个数据重上传层能否降低资源消耗; 自适应测量能否在基本保持准确率的同时减少测量次数.
 
-其中二维任务使用 200 个训练点和 4000 个测试点, 三维球任务使用 500 个训练点和 4000 个测试点; 优化器均为 L-BFGS-B. 每个配置只使用随机种子 30 训练一次。
+\subsection{实验内容与配置}
+
+实验使用 circle 二分类: $x_1,x_2\in[-1,1]$, 当 $x_1^2+x_2^2<2/\pi$ 时标签为 1. \cref{tab:m1-m2-protocol} 汇总共享配置. 实验 1 比较损失函数定义和层数趋势; 实验 2 比较量子比特数, 层数及纠缠结构; 实验 3 比较原模型, 两种剪层模型和独立训练的浅层模型; 实验 4 固定模型参数, 只比较固定测量次数与自适应测量次数.
 
 \begin{table}[H]
     \centering
-    \caption{五类任务的最佳配置及固定测试集 Wilson 区间}
-    \label{tab:appendix-best-summary}
-    \small
-    \begin{tabular}{lcccccc}
+    \caption{实验 1--4 的统一设置}
+    \label{tab:m1-m2-protocol}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
         \toprule
-        任务       & 最高准确率   & 损失            & 比特数 & 纠缠 & 层数 \\
+        项目 & 固定设置 \\
         \midrule
-        非凸边界问题   & 97.75\% & $\chi_{wf}^2$ & 2   & 无  & 8  \\
-        二分类圆环问题  & 97.25\% & $\chi_{wf}^2$ & 2   & 无  & 5  \\
-        三维球问题    & 96.17\% & $\chi_{wf}^2$ & 4   & 有  & 2  \\
-        四分类方块问题  & 98.58\% & $\chi_f^2$    & 2   & 有  & 5  \\
-        四分类波浪线问题 & 93.90\% & $\chi_{wf}^2$ & 4   & 有  & 8  \\
+        数据与随机性 & 训练/测试各使用 $200/4000$ 个点; 数据随机种子为 30; 参数初始化随机种子为 30--34 \\
+        优化设置 & L-BFGS-B; 默认迭代或函数评价上限为 15000, L3 独立训练模型为 30000; 实验 4 不重新训练 \\
+        损失函数 & 实验 1 比较重叠模损失与保真度损失; 实验 2--4 统一使用保真度损失 \\
+        对照方式 & 相同任务共享数据划分; 成对比较尽量使用相同初值; 实验 3--4 沿用对应模型参数 \\
+        评价指标 & 测试准确率, 损失函数值, 目标函数评价次数和编译深度; 实验 4 另统计平均测量次数与标签翻转率 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\subsection{完整准确率网格}
-表~\ref{tab:appendix-all-results} 给出全部 305 组准确率. 非凸边界任务由 $x_2=-2x_1+1.5\sin(\pi x_1)$ 划分类别; 圆环任务要求识别两个同心圆之间的不连通区域; 三维球任务检验三维输入编码; 方块任务是四象限线性边界; 波浪线任务同时包含四分类、非凸边界和面积较小的局部区域. 一层电路未插入 CZ 门.
+\subsection{实验结果}
 
-\begin{table}[htbp]
+\subsubsection{实验 1: 层数趋势与损失函数定义}
+
+采用作者原始设置后, 单量子比特模型从 1 层到 8 层的终态准确率总体随层数提高(\cref{tab:m1-author-trend}).
+
+\begin{table}[H]
     \centering
-    \scriptsize
-    \caption{不同测试问题的模型准确率对比}
-    \label{tab:appendix-all-results}
-    \setlength{\tabcolsep}{4pt}
-    \renewcommand{\arraystretch}{0.85}
-    \begin{tabular}{c*{8}{c}}
+    \caption{单量子比特模型的层数趋势(随机种子 30)}
+    \label{tab:m1-author-trend}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}rrrrl@{}}
         \toprule
-        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$}                                           \\
-        \cmidrule(lr){2-4}\cmidrule(lr){5-9}
-                            & 1q                             & \shortstack{2q                                                              \\无纠缠} & \shortstack{2q\\有纠缠}
-                            & 1q                             & \shortstack{2q                                                              \\无纠缠} & \shortstack{2q\\有纠缠}
-                            & \shortstack{4q                                                                                               \\无纠缠} & \shortstack{4q\\有纠缠} \\
+        层数 & 测试准确率 & 最终损失 & 函数评价次数 & 优化器状态 \\
         \midrule
-        \multicolumn{9}{c}{\textbf{(a) 非凸边界问题}}                                                                                            \\
+        1 & 0.50 & 0.24 & 184   & 收敛, status 0 \\
+        2 & 0.94 & 0.09 & 676   & 收敛, status 0 \\
+        4 & 0.94 & 0.07 & 4945  & 收敛, status 0 \\
+        8 & 0.97 & 0.03 & 15007 & 未收敛, status 1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+8 层模型达到函数评价上限时仍未收敛, 因而其 0.97 只能视为该次优化终止时的结果, 不能与其余收敛结果等同解释. 作为参考, 独立运行的单量子比特 4 层重叠模模型测试准确率为 0.90. 作者实现的重叠模损失实际最小化正确标签态重叠模的负均值, 等价于最大化平均重叠模. 实验在相同的单量子比特 4 层初始参数上比较重叠模损失与保真度损失; 两组各采用五个参数初始化随机种子, 均收敛.
+
+\begin{table}[H]
+    \centering
+    \caption{单量子比特 4 层模型的损失函数对照}
+    \label{tab:m1-controlled-loss}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}lrrrr@{}}
+        \toprule
+        损失函数 & 收敛数 & 测试准确率均值 & 测试准确率标准差 & 平均函数评价次数 \\
+        \midrule
+        重叠模 & 5/5 & 0.88 & 0.03 & 2520.0 \\
+        保真度 & 5/5 & 0.84 & 0.03 & 3045.0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+五组结果见\cref{tab:m1-controlled-loss}. 以``保真度损失结果减重叠模损失结果''定义逐随机种子准确率差, 其均值为 $-0.048$, 样本标准差为 $0.045$. 差值绝对值超过本实验采用的 $0.005$ 阈值, 说明两种目标在当前设置下不能互换. 后续实验统一使用保真度损失.
+
+\subsubsection{实验 2: 量子比特数, 层数与纠缠结构}
+\label{subsec:m2-resource}
+
+实验 2 检验增加量子比特, 减少重上传层或加入 CZ 能否替代较深的单量子比特模型. 主要对照为 1Q-L4, 2Q-L2 无纠缠和 2Q-L2 CZ 模型, 三者均有 20 个参数; 1Q-L2 模型(10 个参数)作为层数对照. 每种配置使用五个参数初始化随机种子.
+
+\begin{table}[H]
+    \centering
+    \caption{实验 2 的模型训练结果}
+    \small
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+        \toprule
+        模型 & 量子比特 & 层数 & 参数量 & 模板 CZ &
+        \shortstack{测试准确率\\(均值 $\pm$ 标准差)} & \shortstack{平均函数\\评价次数} \\
+        \midrule
+        1Q-L4 & 1 & 4 & 20 & 0 & $0.84\pm0.03$ & 3045.0 \\
+        1Q-L2 & 1 & 2 & 10 & 0 & $0.79\pm0.02$ & 288.2 \\
+        2Q-L2 无纠缠 & 2 & 2 & 20 & 0 & $0.52\pm0.00$ & 315.0 \\
+        2Q-L2 CZ & 2 & 2 & 20 & 1 & $0.60\pm0.12$ & 714.0 \\
+        \bottomrule
+    \end{tabular*}
+\end{table}
+
+以``候选模型准确率减 1Q-L4 准确率''定义逐随机种子差值时, 1Q-L2, 2Q-L2 无纠缠和 2Q-L2 CZ 模型的均值分别为 $-0.049$, $-0.320$ 和 $-0.231$, 都没有落入本实验采用的 $\pm0.005$ 区间. 2Q-L2 CZ 减 2Q-L2 无纠缠的均值为 $+0.089$, 但仅 2/5 个随机种子的差值为正, 其余 3/5 为零; 因此, 两种 2Q-L2 配置均未保持 1Q-L4 的准确率, CZ 也未显示稳定收益.
+
+四种模型在相同门集和编译条件下比较优化级别 0/3 的线路深度与门数, 线路深度不计测量层. 资源指标报告五个随机种子的中位数; 编译前后概率的最大绝对误差阈值设为 $10^{-10}$.
+
+\begin{table}[H]
+    \centering
+    \caption{实验 2 的编译资源与概率/标签一致性检查}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+        \toprule
+        模型 & L0 深度 & \shortstack{L0 门数\\RZ/SX/CZ} &
+        L3 深度 & \shortstack{L3 门数\\RZ/SX/CZ} & \shortstack{概率/标签\\一致性} \\
+        \midrule
+        1Q-L4 & 20 & 12/8/0 & 5 & 3/2/0 & 通过/通过 \\
+        1Q-L2 & 10 & 6/4/0 & 5 & 3/2/0 & 通过/通过 \\
+        2Q-L2 无纠缠 & 10 & 12/8/0 & 5 & 6/4/0 & 通过/通过 \\
+        2Q-L2 CZ & 11 & 12/8/1 & 10 & 10/8/1 & 未通过/通过 \\
+        \bottomrule
+    \end{tabular*}
+\end{table}
+
+优化级别 0 的四种模型都通过了检查. 优化级别 3 的 2Q-L2 CZ 最大概率误差为 $4.6520\times10^{-10}$, 略高于设定阈值, 但编译前后的预测标签仍完全一致. 1Q-L4 与 1Q-L2 在优化级别 3 下的线路深度同为 5; 2Q-L2 CZ 的线路深度则由无纠缠模型的 5 增至 10.
+
+\subsubsection{实验 3: 数据重上传层剪枝}
+
+本实验检验四层单量子比特分类器能否在保持性能的同时删除一个完整的数据重上传层. 对每个随机种子, 依次尝试删除一层, 选择训练损失增量最小的方案, 再微调剩余 15 个参数. 测试集不参与删层选择.
+
+比较包含 L4 基准模型和三种 L3 模型: 按规则剪层并微调的剪枝模型, 固定删除末层并微调的截断模型, 以及独立训练模型. 五个随机种子选中的层(从 1 开始编号)依次为 2, 2, 3, 4, 3, 说明删层位置随初始化变化, 不能依据单个随机种子的事后表现固定. L3 独立训练模型使用更大的优化预算; 其余设置见\cref{tab:m1-m2-protocol}. 表中的层数/参数量按模型自身统计; 对剪枝模型, 端到端函数评价次数还计入原始 L4 模型的训练成本.
+
+\begin{table}[H]
+    \centering
+    \caption{实验 3 的模型训练结果与资源汇总}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+        \toprule
+        模型 & \shortstack{层数/\\参数量} & 测试准确率 & 最终损失 & \shortstack{自身函数\\评价次数} & \shortstack{端到端函数\\评价次数} & \shortstack{线路深度\\L0/L3} \\
+        \midrule
+        L4 基准 & 4/20 & $0.84\pm0.03$ & 0.23 & 3045.0 & 3045.0 & 20/5 \\
+        L4$\to$L3 剪枝 & 3/15 & $0.82\pm0.03$ & 0.25 & 412.8 & 3457.8 & 15/5 \\
+        L4$\to$L3 截断 & 3/15 & $0.82\pm0.02$ & 0.24 & 476.8 & 3521.8 & 15/5 \\
+        L3 独立训练 & 3/15 & $0.80\pm0.03$ & 0.26 & 838.4 & 838.4 & 15/5 \\
+        \bottomrule
+    \end{tabular*}
+\end{table}
+
+剪层微调阶段平均使用 412.8 次目标函数评价. 计入原始 L4 模型的训练后, 端到端函数评价次数为 3457.8, 高于 L3 独立训练模型的 838.4. 因此, 较少的微调开销没有转化为较少的端到端函数评价次数.
+
+编译方式和统计口径沿用实验 2. 所有模型的预测标签在编译前后保持一致, 最大概率误差为 $2.44\times10^{-15}$. 在优化级别 0 下, RZ/SX 门数中位数由 L4 的 12/8 降为 L3 的 9/6, 线路深度由 20 降至 15; 在优化级别 3 下, 门数均为 3/2, 线路深度均为 5. 也就是说, 删层减少了模型规模和未优化线路的深度, 但没有降低优化编译后的目标门集深度.
+
+L4$\to$L3 剪枝模型相对 L4 基准模型的逐随机种子准确率差依次为 $+0.00075$, $+0.00025$, $-0.00050$, $-0.06225$, $+0.00025$, 均值为 $-0.01230$; 平均准确率下降了 1.23 个百分点, 超过本实验采用的 0.5 个百分点上限. 因此, 剪枝方案没有通过准确率判据. 它相对 L4$\to$L3 截断模型的平均差值只有 $+0.00110$, 也没有达到 0.005 的实际影响阈值.
+
+\subsubsection{实验 4: 自适应测量次数}
+
+实验 4 固定 L4 基准模型和 L4$\to$L3 剪枝模型的参数, 从测试集中分层抽取 1000 个样本, 每组参数重复评价 100 次. 固定 128/512/2048 次测量与自适应测量使用配对随机样本, 以减小独立抽样噪声对比较的干扰.
+
+自适应方案在累计 128, 512 和 2048 次测量时检查 Clopper--Pearson 区间并作 Bonferroni 修正~\cite{clopper1934}. 区间完全位于分类阈值一侧时提前停止, 否则继续增加测量次数, 上限为 2048.
+
+标签翻转率表示有限测量标签相对精确概率标签的翻转比例. 统计量先在同一参数初始化随机种子内对 100 次重复取均值, 再跨五个随机种子报告均值与样本标准差. 实验 3 使用完整 4000 点的精确概率评估, 实验 4 使用 1000 点有限测量评估, 二者准确率不可直接相减.
+
+\begin{table}[H]
+    \centering
+    \caption{实验 4 中固定测量与自适应测量的准确率和测量成本}
+    \label{tab:m4-shot-summary}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llccc@{}}
+        \toprule
+        模型 & 方法 & 评价准确率 & 标签翻转率 & 平均测量次数 \\
+        \midrule
+        \multirow{4}{*}{L4 基准}
+            & 固定 128  & $0.82\pm0.04$ & 0.027 & 128.0 \\
+            & 固定 512  & $0.82\pm0.03$ & 0.013 & 512.0 \\
+            & 固定 2048 & $0.82\pm0.03$ & 0.007 & 2048.0 \\
+            & 自适应    & $0.82\pm0.03$ & 0.007 & 315.2 \\
+        \midrule
+        \multirow{4}{*}{L4$\to$L3 剪枝}
+            & 固定 128  & $0.80\pm0.02$ & 0.028 & 128.0 \\
+            & 固定 512  & $0.81\pm0.02$ & 0.014 & 512.0 \\
+            & 固定 2048 & $0.81\pm0.02$ & 0.007 & 2048.0 \\
+            & 自适应    & $0.81\pm0.02$ & 0.007 & 329.8 \\
+        \bottomrule
+    \end{tabular*}
+\end{table}
+
+从\cref{tab:m4-shot-summary} 可以看到, 两个自适应方案的平均测量次数分别为 315.2 和 329.8, 相比固定 2048 次测量减少 $84.61\%$ 和 $83.90\%$; 准确率差均小于 $0.005$. 两个模型的标签翻转率也与固定 2048 次测量相同, 均为 $0.007$. 因此, 在本次数值模拟中, 自适应方案以约六分之一的平均测量次数取得了接近固定 2048 次测量的分类结果.
+
+\subsection{结果分析}
+
+实验 1 表明, 作者实现中的重叠模目标与论文公式中的保真度目标不是同一个优化问题. 在五组相同初值下, 两种损失函数得到的终态结果存在明显差异. 为保证后续比较采用同一目标, 实验 2--4 统一使用论文公式对应的保真度损失.
+
+在此基础上, 实验 2 分别考察减少层数, 增加量子比特和加入 CZ 三种变化. 1Q-L2, 2Q-L2 无纠缠和 2Q-L2 CZ 都没有在 $\pm0.005$ 范围内保持 1Q-L4 的准确率. CZ 模型相对无纠缠模型的平均值虽较高, 但五个随机种子中只有两个出现正差值. 实验 3 将层数, 参数量和优化级别 0 的线路深度均减少 $25\%$, 但没有通过准确率判据, 优化级别 3 的线路深度也未下降. 因此, 在当前设置下, 缩小模型或模板线路没有自动转化为完整编译流程中的资源收益.
+
+实验 4 在不改动模型参数的条件下, 仅在推断阶段自适应调整测量次数. 两个模型均以约 315--330 次平均测量取得接近固定 2048 次测量的准确率, 并通过预先设定的阈值. 这一结果说明有限测量模拟中存在减少测量次数的空间, 但它不是统计等价检验, 也不能直接换算为真机运行时间.
+
+\subsection{实验局限}
+
+实验 1--4 均在理想状态向量模拟器上完成, 未加入设备噪声, 真机运行或同一数据设置下的经典基线. 实验只考察 circle 数据和五个参数初始化随机种子, 因而不能据此主张硬件加速, 量子优势或总体统计显著性. 此外, 实验 4 的准确率阈值只是预先设定的工程判据, 不能替代正式的统计等价检验.
+
+\section{第二组实验: 五类任务扩展复现}
+
+\subsection{实验目的与内容}
+
+本组实验复现原论文附录 B 的非凸边界, 二分类圆环, 三维球, 四分类方块和四分类波浪线五类任务. 实验系统改变损失函数, 量子比特数, 纠缠结构和数据重上传层数, 以检验模型对不同边界形状和输入维数的适应能力, 并分析层数, 加权保真度及纠缠结构对分类性能的影响.
+
+\subsection{实验配置}
+
+重上传层数取 $\{1,2,3,4,5,6,8,10\}$. 对非加权保真度损失 $\chi_f^2$, 实验包含 1 量子比特无纠缠, 2 量子比特无纠缠和 2 量子比特有纠缠三类电路. 前两类各有 8 种层数; 有纠缠电路在 1 层时没有相邻层可插入 CZ 门, 因而只有 7 种层数, 合计 $8+8+7=23$ 个配置. 对加权保真度损失 $\chi_{wf}^2$, 在上述配置之外增加 4 量子比特无纠缠的 8 个配置和有纠缠的 7 个配置, 合计 38 个配置. 因此, 每个任务包含 61 个配置, 五类任务共得到 305 次训练结果.
+
+本次 4 量子比特实验仅考察 $\chi_{wf}^2$; 因此, 两种损失函数的严格配对比较限定在 1 量子比特和 2 量子比特的共享配置上.
+
+二维任务使用 200 个训练点和 4000 个测试点, 三维球任务使用 500 个训练点和 4000 个测试点. 所有配置均采用 L-BFGS-B 优化器, 且仅以随机种子 30 训练一次. 因此, 下文比较只用于描述本次实验网格中的结构性趋势, 不作为跨随机初始化的统计推断.
+
+\subsection{实验结果}
+
+\subsubsection{各任务最佳配置}
+
+\begin{table}[H]
+    \centering
+    \caption{五类任务的最佳配置及固定测试集上的二项比例 95\% 区间}
+    \label{tab:appendix-best-summary}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+        \toprule
+        任务 & 最高准确率 & 95\% 区间 & 损失 & 比特数 & 纠缠 & 层数 \\
+        \midrule
+        非凸边界问题 & 97.75\% & $[97.24\%, 98.17\%]$ & $\chi_{wf}^2$ & 2 & 无 & 8 \\
+        二分类圆环问题 & 97.25\% & $[96.70\%, 97.71\%]$ & $\chi_{wf}^2$ & 2 & 无 & 5 \\
+        三维球问题 & 96.17\% & $[95.53\%, 96.73\%]$ & $\chi_{wf}^2$ & 4 & 有 & 2 \\
+        四分类方块问题 & 98.58\% & $[98.16\%, 98.90\%]$ & $\chi_f^2$ & 2 & 有 & 5 \\
+        四分类波浪线问题 & 93.90\% & $[93.12\%, 94.60\%]$ & $\chi_{wf}^2$ & 4 & 有 & 8 \\
+        \bottomrule
+    \end{tabular*}
+\end{table}
+
+\subsubsection{完整准确率网格}
+表~\ref{tab:appendix-results-nonconv}--\ref{tab:appendix-results-wavy} 按任务和模型配置给出所有测试准确率, 每项数值保留两位小数. 非凸边界任务由 $x_2=-2x_1+1.5\sin(\pi x_1)$ 划分类别; 圆环任务要求识别两个同心圆之间的环形区域; 三维球任务检验三维输入编码; 方块任务采用四象限线性边界; 波浪线任务同时包含四分类, 非凸边界和面积较小的局部区域. 1 层配置不插入 CZ 门.
+
+\begin{table}[H]
+    \centering
+    \caption{非凸边界任务的配置准确率}
+    \label{tab:appendix-results-nonconv}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c*{8}{c}@{}}
+        \toprule
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \cmidrule(lr){2-4}\cmidrule(lr){5-9}
+        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.49                           & 0.55                              & --   & 0.49 & 0.76 & --   & 0.76 & --   \\
         2                   & 0.82                           & 0.75                              & 0.75 & 0.86 & 0.95 & 0.85 & 0.96 & 0.96 \\
@@ -561,9 +738,19 @@ $23+8+7=38$ 组。
         6                   & 0.95                           & 0.94                              & 0.93 & 0.97 & 0.96 & 0.97 & 0.95 & 0.97 \\
         8                   & 0.95                           & 0.96                              & 0.95 & 0.97 & 0.98 & 0.97 & 0.96 & 0.97 \\
         10                  & 0.95                           & 0.93                              & 0.95 & 0.96 & 0.96 & 0.96 & 0.96 & 0.97 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-        \midrule
-        \multicolumn{9}{c}{\textbf{(b) 二分类圆环问题}}                                                                                           \\
+\begin{table}[H]
+    \centering
+    \caption{二分类圆环任务的配置准确率}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c*{8}{c}@{}}
+        \toprule
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \cmidrule(lr){2-4}\cmidrule(lr){5-9}
+        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.44                           & 0.50                              & --   & 0.44 & 0.57 & --   & 0.66 & --   \\
         2                   & 0.48                           & 0.50                              & 0.51 & 0.53 & 0.72 & 0.71 & 0.70 & 0.96 \\
@@ -573,9 +760,19 @@ $23+8+7=38$ 组。
         6                   & 0.90                           & 0.93                              & 0.93 & 0.93 & 0.94 & 0.95 & 0.95 & 0.93 \\
         8                   & 0.91                           & 0.93                              & 0.94 & 0.93 & 0.94 & 0.93 & 0.96 & 0.94 \\
         10                  & 0.90                           & 0.92                              & 0.91 & 0.92 & 0.95 & 0.93 & 0.96 & 0.93 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-        \midrule
-        \multicolumn{9}{c}{\textbf{(c) 三维球问题}}                                                                                             \\
+\begin{table}[H]
+    \centering
+    \caption{三维球任务的配置准确率}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c*{8}{c}@{}}
+        \toprule
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \cmidrule(lr){2-4}\cmidrule(lr){5-9}
+        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.53                           & 0.70                              & --   & 0.53 & 0.70 & --   & 0.70 & --   \\
         2                   & 0.77                           & 0.73                              & 0.53 & 0.78 & 0.94 & 0.96 & 0.96 & 0.96 \\
@@ -585,9 +782,19 @@ $23+8+7=38$ 组。
         6                   & 0.90                           & 0.87                              & 0.88 & 0.92 & 0.94 & 0.93 & 0.93 & 0.94 \\
         8                   & 0.89                           & 0.88                              & 0.90 & 0.94 & 0.91 & 0.94 & 0.94 & 0.93 \\
         10                  & 0.93                           & 0.91                              & 0.90 & 0.93 & 0.94 & 0.92 & 0.92 & 0.92 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-        \midrule
-        \multicolumn{9}{c}{\textbf{(d) 四分类方块问题}}                                                                                           \\
+\begin{table}[H]
+    \centering
+    \caption{四分类方块任务的配置准确率}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c*{8}{c}@{}}
+        \toprule
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \cmidrule(lr){2-4}\cmidrule(lr){5-9}
+        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.58                           & 0.48                              & --   & 0.71 & 0.92 & --   & 0.90 & --   \\
         2                   & 0.76                           & 0.96                              & 0.96 & 0.74 & 0.91 & 0.94 & 0.94 & 0.95 \\
@@ -597,9 +804,20 @@ $23+8+7=38$ 组。
         6                   & 0.92                           & 0.98                              & 0.94 & 0.93 & 0.94 & 0.95 & 0.94 & 0.94 \\
         8                   & 0.94                           & 0.98                              & 0.94 & 0.93 & 0.94 & 0.95 & 0.95 & 0.94 \\
         10                  & 0.95                           & 0.97                              & 0.93 & 0.94 & 0.93 & 0.94 & 0.94 & 0.93 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-        \midrule
-        \multicolumn{9}{c}{\textbf{(e) 四分类波浪线问题}}                                                                                          \\
+\begin{table}[H]
+    \centering
+    \caption{四分类波浪线任务的配置准确率}
+    \label{tab:appendix-results-wavy}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c*{8}{c}@{}}
+        \toprule
+        \multirow{2}{*}{层数} & \multicolumn{3}{c}{$\chi_f^2$} & \multicolumn{5}{c}{$\chi_{wf}^2$} \\
+        \cmidrule(lr){2-4}\cmidrule(lr){5-9}
+        & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & 1Q & \shortstack{2Q\\无纠缠} & \shortstack{2Q\\有纠缠} & \shortstack{4Q\\无纠缠} & \shortstack{4Q\\有纠缠} \\
         \midrule
         1                   & 0.70                           & 0.52                              & --   & 0.76 & 0.75 & --   & 0.89 & --   \\
         2                   & 0.86                           & 0.75                              & 0.80 & 0.84 & 0.89 & 0.88 & 0.91 & 0.92 \\
@@ -613,79 +831,83 @@ $23+8+7=38$ 组。
     \end{tabular}
 \end{table}
 
-\subsection{层数效应与饱和区间}
-图~\ref{fig:appendix-layer-trends} (a)左图只比较普通与加权损失共同拥有的1q、2q 无纠缠和 2q 有纠缠配置, 在这些架构上,统计平均值 普通保真度平均准确率从一层的 55.01\%上升到十层的 92.63\%, 加权保真度则从 66.25\% 上升到 93.56\%. (a)右图统计相同层数所有架构,  达到 90\% 的比例从一层的 4\% 增至五层的70\%, 六层和八层均为 90\%, 十层为 95\%. 与此同时, 全配置平均准确率在五、六、八、十层分别为 91.98\%、93.27\%、93.56\% 和 93.28\%, 这在一定程度上可以说明主要增益集中在前五至六层, 此后总体进入平台区.
+\subsection{结果分析}
 
-\begin{figure}[htbp]
+\subsubsection{层数效应与饱和区间}
+\cref{fig:appendix-layer-trends} 左图只比较两种损失共同拥有的 1 量子比特无纠缠, 2 量子比特无纠缠和 2 量子比特有纠缠配置. 在这些匹配配置上, 非加权保真度损失的平均准确率由 1 层的 55.01\% 提高到 10 层的 92.63\%, 加权保真度损失则由 66.25\% 提高到 93.56\%. 右图汇总同一层数下的全部可用配置: 准确率不低于 90\% 的配置比例由 1 层的 4\% 增至 5 层的 70\%, 6 层和 8 层均为 90\%, 10 层为 95\%. 全配置平均准确率在 5, 6, 8, 10 层分别为 91.98\%, 93.27\%, 93.56\% 和 93.28\%. 就本次单随机种子网格而言, 主要平均增益集中在前 5--6 层, 之后总体进入平台区.
+
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.57\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/layer_trends.png}
-        \caption{架构平均准确率与达到 90\% 的配置比例}
+        \includegraphics[width=\linewidth]{images/layer_trends.png}
+        \caption{电路配置的平均准确率与达到 90\% 的配置比例}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[t]{0.40\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/sphere_best.png}
+        \includegraphics[width=\linewidth]{images/sphere_best.png}
         \caption{三维球最佳模型的 $xy$ 投影, 准确率 96.17\%}
     \end{subfigure}
     \caption{层数总体趋势与此前未展示的三维球结果}
     \label{fig:appendix-layer-trends}
 \end{figure}
 
-此外,统计还得出, 40 条层数序列中有 38 条至少出现一次随层数增加而下降; 全部 265 个相邻层数转换中有 100 个下降, 最大单步下降为 14.75 个百分点. 最大下降实例出现在非凸边界问题的 $\chi_f^2$、1q、无纠缠架构: 从 3 层的 89.33\% 降至 4 层的 74.58\%. 图~\ref{fig:appendix-worst-depth-drop} 显示, 较深模型并非缺少表达该边界的能力, 而是本次独立优化得到的决策区域退化为近似水平分割, 在正弦边界的弯曲区域产生大量错误. 因而“更深通常更好”只在总体平均意义上成立, 不能作为单个训练实例的单调性结论. 该现象与非凸优化陷入较差局部极小值相符, 但仅凭单随机种子仍不能把下降唯一归因于局部极小值; 还需要多随机种子和优化轨迹验证.
+层数增加并不保证单次训练结果单调改善. 40 条层数序列中有 38 条至少出现一次准确率下降; 265 个相邻层数转换中有 100 个下降, 最大单步下降为 14.75 个百分点. 该实例来自非凸边界任务的 $\chi_f^2$, 1 量子比特无纠缠配置, 准确率由 3 层的 89.33\% 降至 4 层的 74.58\%. \Cref{fig:appendix-worst-depth-drop} 显示, 4 层模型在本次优化中形成近似水平分割, 因而在正弦边界的弯曲区域产生较多错误. 所以``更深通常更好''只描述配置平均趋势, 不能解释为单次训练的单调规律.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/worst_depth_drop_before.png}
+        \includegraphics[width=\linewidth]{images/worst_depth_drop_before.png}
         \caption{3 层: 89.33\%}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/worst_depth_drop_after.png}
+        \includegraphics[width=\linewidth]{images/worst_depth_drop_after.png}
         \caption{4 层: 74.58\%}
     \end{subfigure}
-    \caption{最大相邻层数下降实例: 非凸边界问题, $\chi_f^2$, 1q, 无纠缠; 增加一层后下降 14.75 个百分点}
+    \caption{最大相邻层数下降实例: 非凸边界问题, $\chi_f^2$, 1Q, 无纠缠; 增加一层后下降 14.75 个百分点.}
     \label{fig:appendix-worst-depth-drop}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/nonconv_depth_l1.png}
+        \includegraphics[width=\linewidth]{images/nonconv_depth_l1.png}
         \caption{1 层: 75.58\%}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/nonconv_depth_l3.png}
+        \includegraphics[width=\linewidth]{images/nonconv_depth_l3.png}
         \caption{3 层: 94.93\%}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/nonconv_depth_l8.png}
+        \includegraphics[width=\linewidth]{images/nonconv_depth_l8.png}
         \caption{8 层: 97.75\%}
     \end{subfigure}
-    \caption{同一 $\chi_{wf}^2$、2q 无纠缠架构随重上传层数增加的决策区域}
+    \caption{同一 $\chi_{wf}^2$, 2Q 无纠缠配置随重上传层数增加的决策区域}
     \label{fig:appendix-depth-progression}
 \end{figure}
 
-\subsection{损失函数的配对比较}
-为避免 4q 配置只存在于加权损失一侧造成结构混杂, 表~\ref{tab:appendix-objective-pairs} 仅在相同任务、比特数、层数和纠缠设置下比较两种损失, 每个任务含 23 对, 总计 115 对. 加权保真度的平均增益为 6.34 个百分点, 中位增益为 2.45 个百分点, 并在 92/115 个配对中占优. 但方块任务的平均增益只有 0.77 个百分点, 且仅 8/23 个配对占优, 说明加权损失并非对所有几何边界都稳定更好.
+\subsubsection{损失函数的配对比较}
+为避免只存在于加权损失一侧的 4 量子比特配置造成结构混杂, \cref{tab:appendix-objective-pairs} 只在任务, 量子比特数, 层数和纠缠设置完全相同的条件下比较两种损失. 每个任务含 23 对, 总计 115 对. 加权保真度损失的平均准确率差为 $+6.34$ 个百分点, 中位差为 $+2.45$ 个百分点, 并在 92/115 个配对中取得更高准确率. 但方块任务的平均差仅为 $+0.77$ 个百分点, 且加权损失只在 8/23 个配对中占优. 因此, 本次网格支持``加权损失总体占优'', 但不支持``它对每类边界都稳定更好''.
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
-    \caption{共享架构上加权保真度相对普通保真度的配对差值}
+    \caption{共享配置上加权保真度损失相对非加权保真度损失的配对准确率差值}
     \label{tab:appendix-objective-pairs}
-    \small
-    \begin{tabular}{lrrrr}
+    \normalsize
+    \setlength{\tabcolsep}{3.5pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lrrrr@{}}
         \toprule
-        任务       & 平均差值/百分点 & 中位差值/百分点 & 加权胜出   & 普通胜出   \\
+        任务 & 平均差值/百分点 & 中位差值/百分点 & 加权胜出 & 非加权胜出 \\
         \midrule
         非凸边界问题   & +7.29    & +3.48    & 21/23  & 2/23   \\
         二分类圆环问题  & +10.50   & +4.60    & 21/23  & 2/23   \\
@@ -694,226 +916,181 @@ $23+8+7=38$ 组。
         四分类波浪线问题 & +4.46    & +2.50    & 19/23  & 4/23   \\
         总体       & +6.34    & +2.45    & 92/115 & 23/115 \\
         \bottomrule
-    \end{tabular}
+    \end{tabular*}
 \end{table}
-
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/squares_l5_ordinary.png}
-        \caption{$\chi_f^2$: 98.58\%}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/squares_l5_weighted.png}
-        \caption{$\chi_{wf}^2$: 93.60\%}
-    \end{subfigure}
-    \caption{方块任务中同为 2q、有纠缠、5 层时两种损失的结果对照}
-    \label{fig:appendix-loss-comparison}
-\end{figure}
-
-\subsection{纠缠效应的异质性}
-在固定任务、损失、比特数和层数后, 共得到 105 对有纠缠与无纠缠结果. 有纠缠模型平均只提高 0.53 个百分点, 中位数为 0.25 个百分点; 59 对提高, 46 对下降, 差值范围为 -20.60 至 25.55 个百分点. 因此不能仅凭平均值断言纠缠必然改善分类. 图~\ref{fig:appendix-entanglement-comparison} 展示收益最大的圆环实例: 4q、2 层加权模型加入 CZ 后由 70.45\% 提升至 96.00\%, 说明纠缠的价值主要取决于任务结构与当前深度.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/crown_4q_l2_separable.png}
+        \includegraphics[width=\linewidth]{images/squares_l5_ordinary.png}
+        \caption{$\chi_f^2$: 98.58\%}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/squares_l5_weighted.png}
+        \caption{$\chi_{wf}^2$: 93.60\%}
+    \end{subfigure}
+    \caption{方块任务中同为 2Q, 有纠缠, 5 层时两种损失的结果对照}
+    \label{fig:appendix-loss-comparison}
+\end{figure}
+
+\subsubsection{纠缠效应的异质性}
+固定任务, 损失函数, 量子比特数和层数后, 共得到 105 对有纠缠与无纠缠结果. 加入纠缠后的平均准确率差为 $+0.53$ 个百分点, 中位差为 $+0.25$ 个百分点; 59 对提高, 46 对下降, 差值范围为 $-20.60$ 至 $+25.55$ 个百分点. 这一分布表明纠缠效应具有明显异质性, 不能仅凭总体均值断言 CZ 必然改善分类. \Cref{fig:appendix-entanglement-comparison} 展示增益最大的圆环实例: 4 量子比特 2 层加权模型加入 CZ 后由 70.45\% 提高到 96.00\%. 该实例说明纠缠可能在特定任务和深度下提供有效表达能力, 但不能代表所有配置.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/crown_4q_l2_separable.png}
         \caption{无纠缠: 70.45\%}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/crown_4q_l2_entangled.png}
+        \includegraphics[width=\linewidth]{images/crown_4q_l2_entangled.png}
         \caption{有纠缠: 96.00\%}
     \end{subfigure}
-    \caption{圆环任务中同为 $\chi_{wf}^2$、4q、2 层时的纠缠对照}
+    \caption{圆环任务中同为 $\chi_{wf}^2$, 4Q, 2 层时的纠缠对照}
     \label{fig:appendix-entanglement-comparison}
 \end{figure}
 
-\subsection{各二维任务的最佳决策区域}
-图~\ref{fig:appendix-best-results} 汇总四个二维任务的最佳结果. 每幅图左侧为预测类别, 右侧以绿色和红色标记正确与错误测试点. 这些图用于展示最佳可达边界, 而图~\ref{fig:appendix-depth-progression}--\ref{fig:appendix-entanglement-comparison} 则补充了原论文未集中展示的深度、损失与纠缠对照.
+\subsubsection{各二维任务的最佳决策区域}
+\cref{fig:appendix-best-results} 汇总四个二维任务在本次网格中的最佳结果. 每幅图左侧显示预测类别, 右侧以绿色和红色标记正确与错误测试点. 这些图展示单次训练达到的最佳决策边界; \cref{fig:appendix-depth-progression,fig:appendix-loss-comparison,fig:appendix-entanglement-comparison} 则分别给出层数, 损失函数和纠缠结构的控制变量对照. 由于各配置只训练一次, ``最佳''仅指 305 条现有记录中的最大测试准确率.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/non_convex.png}
+        \includegraphics[width=\linewidth]{images/non_convex.png}
         \caption{非凸边界问题: $\chi_{wf}^2$, 2 量子比特, 无纠缠, 8 层, 准确率 97.75\%}
         \label{fig:appendix-non_convex-best}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/crown.png}
+        \includegraphics[width=\linewidth]{images/crown.png}
         \caption{二分类圆环问题: $\chi_{wf}^2$, 2 量子比特, 无纠缠, 5 层, 准确率 97.25\%}
         \label{fig:appendix-crown-best}
     \end{subfigure}
     \par\medskip
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/squares.png}
+        \includegraphics[width=\linewidth]{images/squares.png}
         \caption{四分类方块问题: $\chi_f^2$, 2 量子比特, 有纠缠, 5 层, 准确率 98.58\%}
         \label{fig:appendix-squares-best}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/appendix_results/wavy_lines.png}
+        \includegraphics[width=\linewidth]{images/wavy_lines.png}
         \caption{四分类波浪线问题: $\chi_{wf}^2$, 4 量子比特, 有纠缠, 8 层, 准确率 93.90\%}
         \label{fig:appendix-wavy_lines-best}
     \end{subfigure}
     \par\medskip
-    \caption{附录四个二维任务的最佳复现实验结果}
+    \caption{四个二维任务的最佳复现实验结果}
     \label{fig:appendix-best-results}
 \end{figure}
 
-\enlargethispage{2\baselineskip}
-\subsection{结论与限制}
-305 组结果支持三个有限结论. 第一, 重上传层数是最稳定的容量来源, 平均性能在五至六层后趋于饱和, 但单次训练结果高度非单调. 第二, 在严格匹配的共享架构上, 加权保真度总体优于普通保真度, 但优势在方块任务上明显减弱, 最佳方块模型反而来自普通保真度. 第三, 纠缠的总体平均收益很小且正负并存, 其作用更接近任务相关的表达能力补充, 而不是普遍增益. 以上结果均来自单一训练种子; 若要作统计推断, 仍需对每个配置使用多个独立初始化, 报告均值、标准差或置信区间, 并对同一测试集上的配对差值采用配对重采样或 McNemar 检验.
-% END AUTO-GENERATED APPENDIX EXPERIMENT RESULTS
+\subsection{实验结论与局限}
 
-\clearpage
-\begin{thebibliography}{9}
+五类任务的 305 个配置给出三点描述性结果. 第一, 重上传层数是本次网格中最稳定的平均容量来源, 总体性能在 5--6 层后趋于饱和, 但单次训练结果并不随层数单调提高. 第二, 在严格匹配的 115 对共享配置上, 加权保真度损失的平均准确率比非加权保真度损失高 6.34 个百分点, 但方块任务上的优势很弱, 且该任务的最佳模型来自非加权保真度损失. 第三, 105 对纠缠比较的平均准确率差只有 $+0.53$ 个百分点且正负并存, 因而 CZ 更适合被理解为任务相关的表达能力补充, 而不是普遍增益.
 
+本批实验全部来自理想数值模拟, 且每个配置只使用随机种子 30 训练一次. 表中的二项比例区间只刻画固定模型在有限测试样本上的抽样不确定性, 不包含训练初始化差异, 也没有校正从 305 个配置中按测试准确率选择``最佳''模型所产生的选择偏差. 因此, 这些最佳准确率和配置比较只能作描述性结论; 更严格的评估应使用独立验证集选择配置, 保留测试集作最终评价, 并对每个配置重复多个独立随机种子.
+
+\begin{thebibliography}{99}
     \bibitem{paper}
     A. Pérez-Salinas, A. Cervera-Lierta, E. Gil-Fuster, and J. I. Latorre,
     \textit{Data re-uploading for a universal quantum classifier},
-    Quantum \textbf{4}, 226 (2020).
+    Quantum \tb{4}, 226 (2020).
+
+    \bibitem{hornik1991}
+    K. Hornik,
+    \textit{Approximation capabilities of multilayer feedforward networks},
+    Neural Networks \tb{4}, 251--257 (1991).
+
+    \bibitem{byrd1995lbfgsb}
+    R. H. Byrd, P. Lu, J. Nocedal, and C. Zhu,
+    \textit{A limited memory algorithm for bound constrained optimization},
+    SIAM J. Sci. Comput. \tb{16}, 1190--1208 (1995).
+
+    \bibitem{clopper1934}
+    C. J. Clopper and E. S. Pearson,
+    \textit{The use of confidence or fiducial limits illustrated in the case of the binomial},
+    Biometrika \tb{26}, 404--413 (1934).
 
     \bibitem{zhao2008quantum}
     赵凯华, 罗蔚茵,
-    \textit{新概念物理教程：量子物理} (第二版),
+    \textit{新概念物理教程: 量子物理} (第二版),
     高等教育出版社, 2008.
-
 \end{thebibliography}
 
 \appendix
 
-\section{正文中等式 \eqref{eq:rotation_op} 的证明} \label{app:proof_rotation}
+\section{正文中旋转算符等式的证明} \label{app:proof_rotation}
 
-假设 $\bm{n}$ 为三维空间中的单位向量，且 $\bm{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ 为 Pauli 矩阵，则有：
-\begin{equation*}
-    R_{\bm{n}}(\phi) = \e^{-\frac{1}{2}\i\phi\bm{n}\cdot\bm{\sigma}}. \tag{\ref{eq:rotation_op}}
-\end{equation*}
+假设 $\bm{n}$ 为三维空间中的单位向量, 且 $\bm{\sigma}=(\sigma_x,\sigma_y,\sigma_z)$ 为 Pauli 矩阵, 则有:
+\begin{equation}
+    R_{\bm{n}}(\phi)=\e^{-\frac{1}{2}\i\phi\bm{n}\cdot\bm{\sigma}}.
+\end{equation}
 
-我们希望证明 $R_{\bm{n}}$确实是对于 Bloch 球绕单位方向 $\bm{n}$ 旋转角度 $\phi$
+我们希望证明 $R_{\bm{n}}$ 确实是对于 Bloch 球绕单位方向 $\bm{n}$ 旋转角度 $\phi$.
 
 \begin{proof}
     利用式~\eqref{eq:pauli-vector-product} 可得
     \begin{align}
-        (\bm{n}\cdot\bm{\sigma})^2
-         & = (\bm{n}\cdot\bm{n})I
-        +\i(\bm{n}\times\bm{n})\cdot\bm{\sigma}
-        = I.
+        (\bm{n}\cdot\bm{\sigma})^2=(\bm{n}\cdot\bm{n})I+\i(\bm{n}\times\bm{n})\cdot\bm{\sigma}=I.
     \end{align}
-
     因此
     \begin{align}
-        (\bm{n}\cdot\bm{\sigma})^{2k}=I,\qquad
-        (\bm{n}\cdot\bm{\sigma})^{2k+1}
-        =\bm{n}\cdot\bm{\sigma}.
+        (\bm{n}\cdot\bm{\sigma})^{2k}=I, \q (\bm{n}\cdot\bm{\sigma})^{2k+1}=\bm{n}\cdot\bm{\sigma}.
     \end{align}
-
-    将矩阵指数展开为幂级数，并分别对偶数次幂与奇数次幂求和，有
+    将矩阵指数展开为幂级数, 并分别对偶数次幂与奇数次幂求和, 有
     \begin{align}
-        R_{\bm{n}}(\phi)
-         & =\exp\left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right) \\
-         & =\sum_{m=0}^{\infty}
-        \frac{1}{m!}
-        \left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right)^m       \\
-         & =\sum_{k=0}^{\infty}
-        \frac{(-1)^k}{(2k)!}
-        \left(\frac{\phi}{2}\right)^{2k}I
-        -\i
-        \sum_{k=0}^{\infty}
-        \frac{(-1)^k}{(2k+1)!}
-        \left(\frac{\phi}{2}\right)^{2k+1}
-        \bm{n}\cdot\bm{\sigma}                                       \\
-         & =\cos\frac{\phi}{2}\,I
-        -\i\sin\frac{\phi}{2}\,\bm{n}\cdot\bm{\sigma}.
+        R_{\bm{n}}(\phi)&=\e^{-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}} \\
+        &=\sum_{k=0}^{\infty}\frac{1}{k!}\left(-\frac{\i\phi}{2}\bm{n}\cdot\bm{\sigma}\right)^k \\
+        &=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}\left(\frac{\phi}{2}\right)^{2k}I-\i\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}\left(\frac{\phi}{2}\right)^{2k+1}\bm{n}\cdot\bm{\sigma} \\
+        &=\cos\frac{\phi}{2}I-\i\sin\frac{\phi}{2}\bm{n}\cdot\bm{\sigma}.
     \end{align}
 
     我们考虑 Bloch 向量为 $\bm r$ 的单量子比特状态
     \begin{align}
         \rho=\frac{1}{2}\left(I+\bm r\cdot\bm\sigma\right).
     \end{align}
-
     经过旋转算符
     \begin{align}
-        U=R_{\bm n}(\phi)
-        =\cos\frac{\phi}{2}I
-        -\i\sin\frac{\phi}{2}\bm n\cdot\bm\sigma
+        U=R_{\bm n}(\phi)=\cos\frac{\phi}{2}I-\i\sin\frac{\phi}{2}\bm n\cdot\bm\sigma
     \end{align}
-
-    作用后，密度矩阵变为
+    作用后, 密度矩阵变为 $\rho'=U\rho U^\dagger$. 由于
     \begin{align}
-        \rho'=U\rho U^\dagger.
+        U(\bm r\cdot\bm\sigma)U^\dagger&=\left(\cos\frac{\phi}{2}I-\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma\right)(\bm r\cdot\bm\sigma)\left(\cos\frac{\phi}{2}I+\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma\right) \\
+        &=\left(\cos\frac{\phi}{2}\right)^2\bm r\cdot\bm\sigma +\i \cos\frac{\phi}{2}\sin\frac{\phi}{2}[(\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma-\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)]+\left(\sin\frac{\phi}{2}\right)^2(\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma).
     \end{align}
-
-    显然$U I U^\dagger  = I $，而
-    \begin{align}
-        U(\bm r\cdot\bm\sigma)U^\dagger
-         & =(\cos\frac{\phi}{2}I-\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\cos\frac{\phi}{2}I+\i \sin\frac{\phi}{2}\bm n\cdot\bm\sigma) \\
-         & =(\cos\frac{\phi}{2})^2\bm r\cdot\bm\sigma
-        +\i \cos\frac{\phi}{2}\sin\frac{\phi}{2}\left[
-            (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma
-            -\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)
-            \right]
-        +(\sin\frac{\phi}{2})^2(\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma).
-    \end{align}
-
     利用式~\eqref{eq:pauli-vector-product} 可得
     \begin{align}
-        (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma
-        -\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)
-        =-2\i(\bm n\times\bm r)\cdot\bm\sigma, \\
-        (\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma)
-        =
-        \left[
-            2(\bm n\cdot\bm r)\bm n-\bm r
-            \right]\cdot\bm\sigma.
+        (\bm r\cdot\bm\sigma)\bm n\cdot\bm\sigma-\bm n\cdot\bm\sigma(\bm r\cdot\bm\sigma)&=-2\i(\bm n\times\bm r)\cdot\bm\sigma, \\
+        (\bm n\cdot\bm\sigma)(\bm r\cdot\bm\sigma)(\bm n\cdot\bm\sigma)&=[2(\bm n\cdot\bm r)\bm n-\bm r]\cdot\bm\sigma.
     \end{align}
-
     因此
     \begin{align}
-        U(\bm r\cdot\bm\sigma)U^\dagger
-         & =
-        \Big[
-            ((\cos\frac{\phi}{2})^2-(\sin\frac{\phi}{2})^2)\bm r
-            +2\cos\frac{\phi}{2}\sin\frac{\phi}{2}(\bm n\times\bm r)
-            +2(\sin\frac{\phi}{2})^2(\bm n\cdot\bm r)\bm n
-        \Big]\cdot\bm\sigma.                                 \\
-         & =\Big[\bm r\cos\phi
-            +(\bm n\times\bm r)\sin\phi
-        +\bm n(\bm n\cdot\bm r)(1-\cos\phi)]\cdot\bm\sigma . \\
-         & = \bm r'\cdot\bm\sigma
+        U(\bm r\cdot\bm\sigma)U^\dagger&=\left[\left(\left(\cos\frac{\phi}{2}\right)^2-(\sin\frac{\phi}{2})^2\right)\bm r+2\cos\frac{\phi}{2}\sin\frac{\phi}{2}(\bm n\times\bm r)+2(\sin\frac{\phi}{2})^2(\bm n\cdot\bm r)\bm n\right]\cdot\bm\sigma \\
+        &=[\bm r\cos\phi+(\bm n\times\bm r)\sin\phi+\bm n(\bm n\cdot\bm r)(1-\cos\phi)]\cdot\bm\sigma \\
+        &=\bm r'\cdot\bm\sigma
     \end{align}
-
     其中
-    \begin{align}
-        \bm r'
-        =
-        \bm r\cos\phi
-        +(\bm n\times\bm r)\sin\phi
-        +\bm n(\bm n\cdot\bm r)(1-\cos\phi).
-        \label{eq:bloch-rotation}
+    \begin{align}\label{eq:bloch-rotation}
+        \bm r'=\bm r\cos\phi+(\bm n\times\bm r)\sin\phi+\bm n(\bm n\cdot\bm r)(1-\cos\phi).
     \end{align}
-
     于是旋转后的密度矩阵为
     \begin{align}
-        \rho'
-        =\frac{1}{2}\left(I+\bm r'\cdot\bm\sigma\right).
+        \rho'=\frac{1}{2}\left(I+\bm r'\cdot\bm\sigma\right).
     \end{align}
-    式~\eqref{eq:bloch-rotation} 正是三维空间中绕单位轴 $\bm n$ 旋转角度 $\phi$ 的 Rodrigues 旋转公式。因此，
+    式~\eqref{eq:bloch-rotation} 正是三维空间中绕单位轴 $\bm n$ 旋转角度 $\phi$ 的 Rodrigues 旋转公式. 因此,
     \begin{align}
-        R_{\bm n}(\phi)
-        =\e^{-\frac{1}{2}\i\phi\bm n\cdot\bm\sigma}
+        R_{\bm n}(\phi)=\e^{-\frac{1}{2}\i\phi\bm n\cdot\bm\sigma}
     \end{align}
-    确实使量子态对应的 Bloch 向量绕 $\bm n$ 轴旋转角度 $\phi$。
+    确实使量子态对应的 Bloch 向量绕 $\bm n$ 轴旋转角度 $\phi$.
 \end{proof}
 
 \end{document}
