@@ -272,13 +272,15 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 
 \section{损失函数}
 
-\subsection{普通保真度损失}
+\subsection{论文式平方保真度损失}
 
 设训练集为 $\mathcal D=\{(\bm{x}_\mu,s_\mu)\}_{\mu=1}^M$, 其中 $s_\mu$ 是样本 $\bm{x}_\mu$ 的正确类别. 定义
 \begin{align}
     \chi_f^2(\bm{\theta},\bm{w})=\sum_{\mu=1}^M\left[1-\abs{\braket{\widetilde{\psi}_{s_\mu}|\psi(\bm{x}_\mu)}}^2\right].
 \end{align}
-最小化该损失等价于最大化输出态与正确标签态的平均保真度.
+最小化该损失等价于最大化输出态与正确标签态的平均平方保真度.
+后文用字段值 \texttt{paper\_squared} 表示该目标.
+它与作者代码中的幅值目标 \texttt{legacy\_amplitude} 明确区分.
 
 \subsection{加权保真度损失}
 
@@ -286,9 +288,9 @@ Pérez-Salinas 等人提出的数据重上传方法通过在电路中多次重�
 \begin{align}
     \chi_{wf}^2(\bm{\alpha},\bm{\theta},\bm{w})=\frac{1}{2}\sum_{\mu=1}^M \sum_{c=1}^{\mathcal C}\left[\alpha_c F_c(\bm{x}_\mu)-Y_c(\bm{x}_\mu)\right]^2.
 \end{align}
-其中 $\alpha_c$ 为额外的可训练类别权重. 普通保真度损失只把输出态拉向正确标签态, 加权保真度损失则同时控制输出态与所有标签态之间的相对位置. 后者通常具有更好的分类效果, 但需要更多经典参数和更多保真度计算.
+其中 $\alpha_c$ 为额外的可训练类别权重. 平方保真度损失只把输出态拉向正确标签态, 加权保真度损失则同时控制输出态与所有标签态之间的相对位置. 后者通常具有更好的分类效果, 但需要更多经典参数和更多保真度计算.
 
-\section{单量子比特分类器的通用性论证}
+\section{单量子比特分类器的表达机制与通用性直觉}
 
 \subsection{经典通用逼近定理}
 
@@ -364,7 +366,11 @@ Baker-Campbell-Hausdorff 公式为
     \end{tabular}
 \end{center}
 
-这一对应解释了为什么需要在每一层重新输入数据, 以及为什么层数增加能够提高表达能力.
+这一对应解释了为什么需要在每一层重新输入数据, 以及为什么层数增加可能提高
+表达能力. 但上述推导只是机制解释和形式对应，并未证明本报告采用的有限层线路
+输出族在连续函数空间中稠密，也未证明测量与加权损失能够实现经典定理中的任意
+输出线性组合。因此，本节不作为一份独立的严格通用逼近证明；相关严格结果与
+Fourier 表示分析分别见原论文和后续工作~\cite{paper,schuld2021encoding}.
 
 \section{多量子比特推广}
 
@@ -394,9 +400,11 @@ Baker-Campbell-Hausdorff 公式为
 \end{align}
 计算基提供最多 $2^Q$ 个两两正交标签态, 但完整状态层析的测量开销随量子比特数指数增长.
 
-第二种策略只测量某个量子比特的约化态:
+第二种策略只测量某个量子比特的约化态，即对除第 $q$ 个量子比特之外的所有
+子系统取偏迹:
 \begin{align}
-    \rho_q(\bm{x})=\tr_{\ov q}\left[\ket{\Psi(\bm{x})}\bra{\Psi(\bm{x})}\right],
+    \rho_q(\bm{x})=\tr_{\{1,\ldots,Q\}\setminus\{q\}}
+    \left[\ket{\Psi(\bm{x})}\bra{\Psi(\bm{x})}\right],
 \end{align}
 并定义
 \begin{align}
@@ -419,7 +427,7 @@ Baker-Campbell-Hausdorff 公式为
 
 \subsection{L-BFGS-B 方法}
 
-实验主要采用 SciPy 实现的 L-BFGS-B 算法. BFGS 属于拟 Newton 方法. Newton 方法使用 Hessian 逆矩阵给出方向
+实验主要采用 SciPy 实现的 L-BFGS-B 算法~\cite{byrd1995lbfgsb}. BFGS 属于拟 Newton 方法. Newton 方法使用 Hessian 逆矩阵给出方向
 \begin{align}
     \bm{d}_k=-[\nabla^2\chi^2(\bm{p}_k)]^{-1}\nabla\chi^2(\bm{p}_k),
 \end{align}
@@ -441,7 +449,7 @@ L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟�
 
 \subsection{前向状态与反向状态}
 
-下面对普通保真度损失推导了类似神经网络反向传播的梯度. 定义第 $\ell$ 层后的前向状态
+下面对论文式平方保真度损失推导类似神经网络反向传播的梯度. 定义第 $\ell$ 层后的前向状态
 \begin{align}
     \ket{\psi_\ell}=L_\ell L_{\ell-1}\cdots L_1\ket{0}, \q \ket{\psi_0}=\ket{0}.
 \end{align}
@@ -484,9 +492,15 @@ L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟�
 
 \subsection{批量 SGD 与理论局限}
 
-若每处理一个样本就更新一次参数, 梯度波动较大; 若每次对完整训练集梯度取平均, 又可能在小数据集上较早停留于局部区域. 我们采用小批量思想, 将训练集划分为若干批次, 对每个批次的平均梯度进行更新, 每轮重新打乱数据. 然而 \eqref{eq:loss-gradient} 需要访问中间前向状态 $\ket{\psi_\ell}$ 和反向状态 $\bra{\Delta_\ell}$, 在经典状态向量模拟中容易实现, 在真实量子硬件上则不够直接. 数值结果比较表明, 对其规模较小的训练集, L-BFGS-B 比 SGD 更准确且更快, 因而实验最终采用 L-BFGS-B.
+若每处理一个样本就更新一次参数, 梯度波动较大; 若每次对完整训练集梯度取平均, 又可能在小数据集上较早停留于局部区域. 小批量 SGD 可以在两者之间折中, 但 \eqref{eq:loss-gradient} 需要访问中间前向状态 $\ket{\psi_\ell}$ 和反向状态 $\bra{\Delta_\ell}$, 在经典状态向量模拟中容易实现, 在真实量子硬件上则不够直接. 本项目的固定实验矩阵未包含 SGD 对照, 因而不对其与 L-BFGS-B 的相对准确率或速度作数值结论; 所有正式训练统一使用作者代码所采用的 L-BFGS-B, 以保持不同模型之间的优化协议一致.
 
-\begin{thebibliography}{9}
+\input{sections/experiments_setup_m1_m2}
+\input{sections/experiments_m3_m4}
+\input{sections/experiments_discussion}
+
+\input{sections/appendix_experiment_reproduction}
+
+\begin{thebibliography}{99}
 
     \bibitem{paper}
     A. Pérez-Salinas, A. Cervera-Lierta, E. Gil-Fuster, and J. I. Latorre,
@@ -498,11 +512,56 @@ L-BFGS-B 适合本实验的主要原因是训练集较小、状态向量模拟�
     \textit{新概念物理教程：量子物理} (第二版),
     高等教育出版社, 2008.
 
+    \bibitem{schuld2021encoding}
+    M. Schuld, R. Sweke, and J. J. Meyer,
+    \textit{Effect of data encoding on the expressive power of variational
+    quantum-machine-learning models},
+    Phys. Rev. A \textbf{103}, 032430 (2021).
+
+    \bibitem{cerezo2021vqa}
+    M. Cerezo, A. Arrasmith, R. Babbush, et al.,
+    \textit{Variational quantum algorithms},
+    Nat. Rev. Phys. \textbf{3}, 625--644 (2021).
+
+    \bibitem{mcclean2018barren}
+    J. R. McClean, S. Boixo, V. N. Smelyanskiy, R. Babbush, and H. Neven,
+    \textit{Barren plateaus in quantum neural network training landscapes},
+    Nat. Commun. \textbf{9}, 4812 (2018).
+
+    \bibitem{hu2022compvqc}
+    Z. Hu, P. Dong, Z. Wang, Y. Lin, Y. Wang, and W. Jiang,
+    \textit{Quantum neural network compression},
+    Proc. IEEE/ACM ICCAD, 1--11 (2022),
+    doi:10.1145/3508352.3549382.
+
+    \bibitem{kubler2020adaptive}
+    J. M. Kübler, A. Arrasmith, L. Cincio, and P. J. Coles,
+    \textit{An adaptive optimizer for measurement-frugal variational algorithms},
+    Quantum \textbf{4}, 263 (2020).
+
+    \bibitem{gonthier2022measurements}
+    J. F. Gonthier, M. D. Radin, C. Buda, E. J. Doskocil,
+    C. M. Abuan, and J. Romero,
+    \textit{Measurements as a roadblock to near-term practical quantum advantage
+    in chemistry: Resource analysis},
+    Phys. Rev. Research \textbf{4}, 033154 (2022).
+
+    \bibitem{clopper1934}
+    C. J. Clopper and E. S. Pearson,
+    \textit{The use of confidence or fiducial limits illustrated in the case of
+    the binomial},
+    Biometrika \textbf{26}, 404--413 (1934).
+
+    \bibitem{byrd1995lbfgsb}
+    R. H. Byrd, P. Lu, J. Nocedal, and C. Zhu,
+    \textit{A limited memory algorithm for bound constrained optimization},
+    SIAM J. Sci. Comput. \textbf{16}, 1190--1208 (1995).
+
 \end{thebibliography}
 
 \appendix
 
-\section{正文中等式 \eqref{eq:rotation_op} 的证明} \label{app:proof_rotation}
+\section{正文中旋转算符等式的证明} \label{app:proof_rotation}
 
 假设 $\bm{n}$ 为三维空间中的单位向量，且 $\bm{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ 为 Pauli 矩阵，则有：
 \begin{equation*}

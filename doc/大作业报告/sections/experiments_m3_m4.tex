@@ -1,0 +1,205 @@
+\section{M3：数据重上传层剪枝}
+\label{sec:m3-pruning}
+
+\subsection{删层选择与四模型对照}
+
+本实验检验四层单量子比特分类器能否在保持性能的同时删除一个完整的数据重上传
+层。L4-base 直接使用 M1 保存的五个 \texttt{paper\_squared} checkpoint，不重新
+训练。对于参数初始化 seed 30--34，我们依次临时删除四层中的一层，只在训练集上
+计算未微调 loss 的增量，并选择增量最小者；并列时删除编号较小的层。随后微调
+剩余 15 个参数。模型确定后才在测试集上评价，因此测试结果不参与删层或参数
+选择。
+
+比较包含 L4-base 和三种 L3 模型：按规则剪层并微调的 pruned、固定删除末层并
+微调的 truncate-last，以及独立训练的 scratch。五个 seed 选中的层（从 1 开始
+编号）依次为 $2,2,3,4,3$，说明删层位置随初始化变化，不能依据单个 seed 的
+事后表现固定。L3-scratch 使用
+\texttt{maxfun=maxiter=30000}；其余设置见\cref{tab:m1-m2-protocol}。
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \caption{M3 四模型的五 seed 汇总。$\pm$ 表示跨 seed 的样本标准差；
+    L/P 为层数/参数量，depth 为 level 0/3 中位数。端到端
+    \texttt{nfev} 对剪层模型计入父 checkpoint 训练。}
+    \label{tab:m3-model-summary}
+    \resizebox{\linewidth}{!}{
+        \begin{tabular}{lrrrrrr}
+            \toprule
+            模型 & L/P & 测试准确率 & 最终 loss
+                 & 自身 nfev & 端到端 nfev & depth L0/L3 \\
+            \midrule
+            L4-base
+                & 4/20 & $0.83630\pm0.03265$ & 0.23181
+                & 3045.0 & 3045.0 & 20/5 \\
+            L4$\to$L3-pruned
+                & 3/15 & $0.82400\pm0.02571$ & 0.24517
+                & 412.8 & 3457.8 & 15/5 \\
+            L4-truncate-last
+                & 3/15 & $0.82290\pm0.02326$ & 0.24132
+                & 476.8 & 3521.8 & 15/5 \\
+            L3-scratch
+                & 3/15 & $0.79915\pm0.02985$ & 0.26045
+                & 838.4 & 838.4 & 15/5 \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{table}
+
+剪层微调阶段平均使用 412.8 次目标函数评价。计入原始 L4 模型的训练后，
+端到端 \texttt{nfev} 为 3457.8，高于
+L3-scratch 的 838.4。较少的微调阶段 \texttt{nfev} 因而没有转化为较少的
+端到端函数评价次数。
+
+\subsection{编译资源与成功判定}
+
+编译方式和两阶段中位数的统计方法沿用 M2。四种模型各含五个参数快照；每个
+checkpoint 在 level 0 和 level 3 上各编译 100 个分层测试点，共
+$4\times5\times2\times100=4000$ 行。所有记录的概率和预测标签在编译前后
+一致，最大概率误差为 $2.44\times10^{-15}$。Level 0 的
+RZ/SX 中位数由 L4 的 12/8 降为 L3 的 9/6，depth 由 20 降至 15；level 3
+则均为 3/2 和 depth 5。也就是说，删层减少了模型规模和 level-0 线路深度，
+但没有降低优化编译后的目标门集深度。
+
+L4$\to$L3-pruned 相对 L4-base 的逐 seed 准确率差依次为 $+0.00075$、
+$+0.00025$、$-0.00050$、$-0.06225$、$+0.00025$，均值为 $-0.01230$；
+平均准确率下降了 1.23 个百分点，超过本实验采用的 0.5 个百分点上限。因此，剪枝
+方案没有通过准确率判据（状态记录为 \texttt{failed}）。它相对
+L4-truncate-last 的平均差值只有 $+0.00110$，也没有达到 0.005 的实际影响
+阈值。
+
+\section{M4：自适应测量 shots}
+\label{sec:m4-shots}
+
+\subsection{固定模型参数与共享随机序列}
+
+M4 直接使用五个 L4-base 和五个 L4$\to$L3-pruned 参数快照，不再训练、微调或
+重新选择模型，所以新增优化运行和 \texttt{nfev} 均为 0。我们用
+\texttt{eval\_seed=2026} 分层、无放回地抽取 1000 个测试点（每类 500 点）；
+每组参数重复 100 次。每次重复都为每个评价点生成一条 2048-shot Bernoulli
+随机序列；fixed 128/512/2048 与 adaptive 使用同一序列的相同前缀，以免独立
+抽样噪声干扰比较。PCG64 随机流由总种子、模型、参数初始化 seed 和
+重复编号唯一确定，完整映射记录在实验配置中。
+
+Adaptive 在累计 128、512、2048 shots 时检查 Clopper--Pearson 区间，每尾概率
+$q=\alpha/(2K)=0.05/6$~\cite{clopper1934}。该 Bonferroni 修正只覆盖单个评价点
+的三次累计检查，不声称同时覆盖 1000 点或 100 次重复。区间完全位于 $0.5$
+一侧时停止，否则增加 shots；到 2048 仍未分离则按 counts 判类，并将计数平局
+判为 class 0，同时标记 \texttt{cap\_hit}。
+
+Label-flip rate 表示有限 shots 标签相对 exact-probability 标签的翻转比例。
+统计量先在同一参数初始化 seed 内对 100 次重复取均值，再跨五个 seed 报告均值
+与样本标准差。M3 使用完整 4000 点的精确概率评估，M4 使用 1000 点有限 shots
+评估，二者准确率不可直接相减。
+
+\subsection{测量结果与判定}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \caption{M4 fixed 与 adaptive 结果。每个模型含五组参数，每组参数
+    重复 100 次并共享随机前缀；$\pm$ 表示跨 seed 的样本标准差，
+    flip 以 exact 标签为参照。}
+    \label{tab:m4-shot-summary}
+    \resizebox{\linewidth}{!}{
+        \begin{tabular}{llrrr}
+            \toprule
+            模型 & 方法 & 评价准确率 & label-flip rate & mean shots \\
+            \midrule
+            \multirow{4}{*}{L4-base}
+                & fixed 128  & $0.819440\pm0.035172$ & 0.026896 & 128.000 \\
+                & fixed 512  & $0.821110\pm0.034850$ & 0.013390 & 512.000 \\
+                & fixed 2048 & $0.821892\pm0.034409$ & 0.006704 & 2048.000 \\
+                & adaptive   & $0.821848\pm0.034451$ & 0.006748 & 315.228 \\
+            \midrule
+            \multirow{4}{*}{L4$\to$L3-pruned}
+                & fixed 128  & $0.804662\pm0.023724$ & 0.028470 & 128.000 \\
+                & fixed 512  & $0.805934\pm0.023617$ & 0.014418 & 512.000 \\
+                & fixed 2048 & $0.806382\pm0.022910$ & 0.007002 & 2048.000 \\
+                & adaptive   & $0.806396\pm0.022919$ & 0.007060 & 329.777 \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.90\linewidth,
+            height=6.0cm,
+            xmode=log,
+            log basis x=2,
+            xmin=110,
+            xmax=2300,
+            ymin=0.77,
+            ymax=0.87,
+            xlabel={每个评价点的平均 shots（横轴为 $\log_2$ 刻度）},
+            ylabel={评价准确率},
+            xtick={128,256,512,1024,2048},
+            xticklabels={128,256,512,1024,2048},
+            grid=major,
+            scaled y ticks=false,
+            yticklabel style={
+                /pgf/number format/fixed,
+                /pgf/number format/precision=3
+            },
+            legend style={
+                font=\small,
+                at={(0.5,-0.25)},
+                anchor=north,
+                legend columns=2
+            }
+        ]
+            \addplot+[blue, very thick, mark=*,
+                error bars/.cd, y dir=both, y explicit]
+                coordinates {
+                    (128,0.819440) +- (0,0.035172)
+                    (512,0.821110) +- (0,0.034850)
+                    (2048,0.821892) +- (0,0.034409)
+                };
+            \addlegendentry{L4 fixed}
+
+            \addplot+[blue, only marks, mark=star, mark size=4pt,
+                error bars/.cd, y dir=both, y explicit]
+                coordinates {(315.227648,0.821848) +- (0,0.034451)};
+            \addlegendentry{L4 adaptive}
+
+            \addplot+[OrangeRed, very thick, mark=square*,
+                error bars/.cd, y dir=both, y explicit]
+                coordinates {
+                    (128,0.804662) +- (0,0.023724)
+                    (512,0.805934) +- (0,0.023617)
+                    (2048,0.806382) +- (0,0.022910)
+                };
+            \addlegendentry{L4-to-L3 fixed}
+
+            \addplot+[OrangeRed, only marks, mark=star, mark size=4pt,
+                error bars/.cd, y dir=both, y explicit]
+                coordinates {(329.777408,0.806396) +- (0,0.022919)};
+            \addlegendentry{L4-to-L3 adaptive}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{M4 的准确率--shots 对照。点表示五个参数初始化 seed 的均值，
+    误差条为一个样本标准差；星形点为 adaptive，折线为三个 fixed baseline。
+    扩展的纵轴范围避免放大远小于跨 seed 离散度的均值差。}
+    \label{fig:m4-accuracy-shots}
+\end{figure}
+
+从表~\ref{tab:m4-shot-summary}和图~\ref{fig:m4-accuracy-shots}可以看到，L4-base 与
+L4$\to$L3-pruned 的 adaptive 相对 fixed 2048 准确率差分别为
+$-0.000044$ 与 $+0.000014$；平均 shots 分别为 315.228 与 329.777，减少
+$84.61\%$ 与 $83.90\%$。按“评价点 $\times$ 重复实验”汇总，二者的
+stop@128 比例分别为 $83.17\%$ 与 $81.98\%$，\texttt{cap\_hit} 比例为
+$3.91\%$ 与 $4.33\%$。每次重复先计算 shots 分位数，再在同一参数
+初始化 seed 内对 100 次重复取均值，最后跨五个 seed 取均值。按此口径，两种
+模型的 shots 中位数均为 128，P95 均为 2048；L4-base 与 pruned 的 P90
+分别为 512.307 和 512。
+
+若某个 fixed baseline 的准确率不低于 adaptive、shots 不高于 adaptive，并且
+至少一项严格更好，我们就说它支配 adaptive。五个 seed 的汇总结果中，没有
+fixed baseline 支配任一 adaptive 方案。两种 adaptive 的平均 shots 都低于
+2048，相对 fixed 2048 的平均准确率下降也不超过 0.005，而且五个 seed 均满足
+这两个阈值。因此，两种模型都通过了上述测试（状态记录为
+\texttt{passed}）。这里的“通过”只是按照上述阈值作出的结果判断，不是统计
+等价检验。

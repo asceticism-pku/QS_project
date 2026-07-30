@@ -75,17 +75,3 @@
 
 \allowdisplaybreaks
 \sisetup{separate-uncertainty=true}
-
-\ifdefined\kaishu
-    \RequirePackage{xeCJK}
-    \setCJKfamilyfont{mymain}{SimSun}[
-        AutoFakeBold=2,
-        ItalicFont=KaiTi
-    ]
-    \renewcommand{\CJKrmdefault}{mymain}
-
-    \setCJKfamilyfont{mykai}{KaiTi}[
-        AutoFakeBold=2
-    ]
-    \renewcommand{\kaishu}{\CJKfamily{mykai}}
-\fi

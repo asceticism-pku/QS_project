@@ -1,0 +1,168 @@
+\section{实验设置与资源基线}
+\label{sec:experiments-setup-m1-m2}
+
+\subsection{统一实验设置与评价方式}
+\label{subsec:experiment-protocol}
+
+状态向量演化和数据生成沿用作者代码，我们只在外围加入可控的训练入口、结果
+汇总、编译检查和有限 shots 评价。正文统一使用 circle 二分类：
+$x_1,x_2\in[-1,1]$，当 $x_1^2+x_2^2<2/\pi$ 时标签为 1。
+\Cref{tab:m1-m2-protocol}汇总了 M1--M4 共享的数据、随机性和评价规则。
+
+\begin{table}[htbp]
+    \centering
+    \caption{M1--M4 的统一实验设置。}
+    \label{tab:m1-m2-protocol}
+    \begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+        \toprule
+        项目 & 固定设置 \\
+        \midrule
+        数据与随机性 & 训练/测试 $200/4000$ 点；数据 seed 30；参数初始化 seed $30$--$34$ \\
+        优化预算 & L-BFGS-B；默认 \texttt{maxfun=maxiter=15000}；L3-scratch 为 30000；M4 不再优化；\texttt{ftol=2.22e-9}；\texttt{gtol=1e-5} \\
+        配对方式 & M1 的两种 loss 使用相同初值；M2 对参数量相同的架构核对初值；M3--M4 沿用父模型的参数，scratch 独立初始化 \\
+        评价原则 & M2--M4 使用 \texttt{paper\_squared}；测试前固定参数和结构选择；报告逐 seed 原始值、均值、样本标准差与配对差值 \\
+        结果记录 & 保存配置、命令、数据哈希、参数快照、优化状态、\texttt{nfev} 和代码版本 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+下文将训练结束后保存的参数称为 checkpoint（参数快照）。\texttt{nfev} 是
+目标函数的评价次数，不能当作量子硬件运行时间。P0（circle、1Q-L1、seed 30）
+只用于确认完整流程可以运行，不计入正文的 45 次优化。M2 的 1Q-L4 和 M3 的
+L4-base 都直接使用 M1 保存的五组参数。软件版本见
+\path{requirements-project.txt}；各组配置、哈希、命令和逐 seed 结果见
+\path{PROJECT_EXPERIMENTS.md}。
+
+\subsection{M1：作者趋势复现与 loss 语义对照}
+\label{subsec:m1-loss}
+
+\paragraph{作者层数趋势。}
+保留作者的加权约化密度矩阵目标和 \texttt{legacy\_exact} 随机行为后，1Q 模型
+从 L1 到 L8 的已保存终态准确率随层数提高（\cref{tab:m1-author-trend}）。
+该目标与后面的 loss 对照不同，这里只看作者设置下的层数趋势，不与平方保真度
+结果混用。由于这一组只有 seed 30，它只能说明本次运行中的趋势，不能据此估计
+一般性的层数效应。
+
+\begin{table}[htbp]
+    \centering
+    \caption{作者式 weighted 1Q 层数趋势（seed 30）。}
+    \label{tab:m1-author-trend}
+    \begin{tabular}{@{}rrrrl@{}}
+        \toprule
+        层数 & 测试准确率 & 最终 loss & \texttt{nfev} & 优化器状态 \\
+        \midrule
+        1 & 0.50325 & 0.242816 & 184   & 收敛，status 0 \\
+        2 & 0.93500 & 0.088463 & 676   & 收敛，status 0 \\
+        4 & 0.94450 & 0.067388 & 4945  & 收敛，status 0 \\
+        8 & 0.96750 & 0.025926 & 15007 & 未收敛，status 1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+L8 在目标函数评价上限处以
+\texttt{success=false, status=1, nfev=15007} 停止，因此 $0.96750$ 只是当时
+保存参数的终态指标。独立运行的 1Q-L4 amplitude 参考（seed 30）正常收敛，
+测试准确率为 $0.89600$，\texttt{nfev=2163}。
+
+\paragraph{五 seed loss 语义对照。}
+
+作者的 \texttt{legacy\_amplitude} 实际最小化正确标签态重叠模的负均值，
+等价于最大化平均重叠模；原论文式~(7)则最小化 1 减平方保真度~\cite{paper}。
+通过固定态数值单元核验后，我们在相同 1Q-L4 初始参数上比较
+\texttt{legacy\_amplitude} 与 \texttt{paper\_squared}；两组各五个参数初始化
+seed，均收敛。
+
+\begin{table}[htbp]
+    \centering
+    \caption{1Q-L4 的五 seed loss 对照；SD 为五个参数初始化 seed 之间的
+    样本标准差。}
+    \label{tab:m1-controlled-loss}
+    \begin{tabular}{@{}lrrrr@{}}
+        \toprule
+        Loss & 收敛数 & 测试准确率均值 & 测试准确率 SD & 平均 \texttt{nfev} \\
+        \midrule
+        \texttt{legacy\_amplitude} & 5/5 & 0.88440 & 0.02787 & 2520.0 \\
+        \texttt{paper\_squared} & 5/5 & 0.83630 & 0.03265 & 3045.0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+五组结果见\cref{tab:m1-controlled-loss}。以
+\texttt{paper\_squared}$-\,$\texttt{legacy\_amplitude} 定义逐 seed 差值，
+其均值为 $-0.04810$，样本标准差为 $0.04537$。差值绝对值超过本实验采用的
+$0.005$ 阈值，说明两种目标在当前设置下不能互换。后续实验按论文公式统一使用
+\texttt{paper\_squared}。这里的五个 seed 只用于描述结果差异，不足以支持总体
+显著性或因果推断。
+
+\subsection{M2：量子比特、层数与 CZ 资源对照}
+\label{subsec:m2-resource}
+
+\paragraph{训练结果。}
+M2 检验增加 qubit、减少重上传层或加入 CZ 能否替代较深的单量子比特模型。
+主资源对照为 1Q-L4、2Q-L2 separable 和 2Q-L2 CZ，三者均有 20 个参数；
+1Q-L2（10 个参数）作为层数对照。除复用的 1Q-L4 外，其余三组各训练五个
+参数初始化 seed，共新增 15 次优化运行。
+
+\begin{table}[htbp]
+    \centering
+    \caption{M2 架构训练结果；准确率的 $\pm$ 项表示五个参数初始化 seed 之间的
+    样本标准差。}
+    \label{tab:m2-training}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{@{}lrrrrrr@{}}
+            \toprule
+            模型 & Qubit & Layer & 参数 & Template CZ & 测试准确率（均值 $\pm$ SD） & 平均 \texttt{nfev} \\
+            \midrule
+            1Q-L4 & 1 & 4 & 20 & 0 & $0.83630\pm0.03265$ & 3045.0 \\
+            1Q-L2 & 1 & 2 & 10 & 0 & $0.78695\pm0.02303$ & 288.2 \\
+            2Q-L2 separable & 2 & 2 & 20 & 0 & $0.51600\pm0.00000$ & 315.0 \\
+            2Q-L2 CZ & 2 & 2 & 20 & 1 & $0.60485\pm0.12178$ & 714.0 \\
+            \bottomrule
+        \end{tabular}%
+    }
+\end{table}
+
+以“候选模型准确率减 1Q-L4 准确率”定义逐 seed 差值时，1Q-L2、2Q-L2
+separable 和 2Q-L2 CZ 的均值分别为 $-0.04935$、$-0.32030$ 和
+$-0.23145$，都没有落入本实验采用的 $\pm0.005$ 区间。CZ 减 separable
+的均值为 $+0.08885$，但仅 2/5 个参数初始化 seed 为正，其余 3/5 为零；
+因此 2Q-L2 两种配置均未保持 1Q-L4 的准确率，CZ 也未显示稳定收益。
+
+\paragraph{编译资源与一致性检查。}
+
+绑定参数后，线路使用 Qiskit 2.3.0，transpiler seed 固定为 30，并统一编译到
+由 \texttt{RZ}、\texttt{SX}、\texttt{X}、\texttt{CZ} 和
+\texttt{Measure} 构成的模拟目标；2Q 目标使用双向
+$0\leftrightarrow1$ coupling map。Level 0 用于观察未优化结构，level 3 用于优化编译，
+depth 不计测量层。四种模型各含五个 checkpoint；每个 checkpoint 在两个
+optimization level 上各编译 100 个分层测试点（每类 50 点），共得到
+$4\times5\times2\times100=4000$ 行 logical/compiled 对照。Depth 与门数先在
+每个 seed 的 100 点内取中位数，再对五个 seed 取中位数。编译前后的概率一致性
+要求最大绝对误差严格小于 $10^{-10}$。
+
+\begin{table}[htbp]
+    \centering
+    \caption{M2 编译资源。每个模型和 level 含 $5\times100$ 个样本；depth
+    与门数报告跨 seed 中位数，最大误差报告全体样本最大值。门数依次为
+    RZ/SX/CZ，$X$ 中位数均为 0。}
+    \label{tab:m2-compile}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{@{}lrrrrrl@{}}
+            \toprule
+            模型 & L0 depth & L0 门数 & L3 depth & L3 门数 & 最大概率误差 & 概率/标签一致 \\
+            \midrule
+            1Q-L4 & 20 & 12/8/0 & 5 & 3/2/0 & $2.44\times10^{-15}$ & 通过/通过 \\
+            1Q-L2 & 10 & 6/4/0 & 5 & 3/2/0 & $1.33\times10^{-15}$ & 通过/通过 \\
+            2Q-L2 separable & 10 & 12/8/0 & 5 & 6/4/0 & $1.33\times10^{-15}$ & 通过/通过 \\
+            2Q-L2 CZ & 11 & 12/8/1 & 10 & 10/8/1 & $4.6520\times10^{-10}$ & 未通过/通过 \\
+            \bottomrule
+        \end{tabular}%
+    }
+\end{table}
+
+Level 0 的四种模型都通过了检查。Level 3 的 2Q-L2 CZ 在 seed 31 有 13 行
+超过 $10^{-10}$ 的阈值，最大误差为 $4.6520\times10^{-10}$，不过 4000 行
+记录的预测标签全部一致。因此，这一配置没有通过 level-3 概率一致性检查，
+但标签一致性和结果文件完整性没有问题。
+1Q-L4 与 1Q-L2 的 level-3 depth 同为 5；2Q-L2 CZ 的 depth 则由 separable
+的 5 增至 10。
