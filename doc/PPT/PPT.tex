@@ -118,7 +118,7 @@
 
 \section{第一组实验}
 
-\begin{frame}{第一组实验检验模型结构与测量成本}
+\begin{frame}{实验 1--3 依次检验损失, 电路结构与剪枝}
     \framesubtitle{第一组实验 · 张扬皓}
     \begin{columns}[T]
         \begin{column}{0.46\textwidth}
@@ -135,46 +135,81 @@
             \end{itemize}
         \end{column}
         \begin{column}{0.50\textwidth}
-            \textbf{四个问题}
+            \textbf{三个问题}
             \begin{enumerate}
-                \setlength{\itemsep}{1.0ex}
+                \setlength{\itemsep}{1.3ex}
                 \item 重叠模损失与保真度损失是否等价?
-                \item 增加量子比特或加入 CZ 能否替代较深电路?
-                \item 删除一个重上传层能否降低资源消耗?
-                \item 自适应测量能否减少测量次数?
+                \item 减少层数, 增加量子比特或加入 CZ 能否保持性能?
+                \item 删除一个完整的重上传层能否真正降低资源消耗?
             \end{enumerate}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{结构简化未稳定保真, 自适应测量明显节省成本}
+\begin{frame}{实验 1--3: 改变目标或结构都会影响性能}
+    \framesubtitle{第一组实验 · 张扬皓}
+    \begin{itemize}
+        \setlength{\itemsep}{1.2ex}
+        \item \textbf{实验 1: 损失函数.} 相同初值下, 重叠模损失与保真度损失的平均准确率分别为 $0.88$ 和 $0.84$. 两者对应不同优化目标, 不能直接互换.
+        \item \textbf{实验 2: 电路结构.} 1Q-L4 基准准确率为 $0.84$; 1Q-L2, 2Q-L2 无纠缠和 2Q-L2 CZ 分别为 $0.79$, $0.52$ 和 $0.60$, 均未保持基准性能.
+        \item \textbf{实验 3: 层剪枝.} L4$\to$L3 后准确率由 $0.84$ 降至 $0.82$; 未优化线路深度由 $20$ 降至 $15$, 但优化编译后的深度仍为 $5$.
+    \end{itemize}
+    \vspace{0.5em}
+    \begin{center}
+        \textcolor{blue}{减少参数或增加量子比特, 都不会自动转化为精度与编译资源收益.}
+    \end{center}
+\end{frame}
+
+\begin{frame}{实验 4: 大多数样本在 128 shots 后即可停止}
     \framesubtitle{第一组实验 · 张扬皓}
     \begin{columns}[T]
-        \begin{column}{0.54\textwidth}
-            \textbf{模型结构}
-            \begin{itemize}
-                \setlength{\itemsep}{0.9ex}
-                \item 相同初值下, 重叠模损失与保真度损失的平均准确率分别为 $0.88$ 和 $0.84$, 两个目标不能互换.
-                \item 1Q-L4 基准准确率为 $0.84$; 2Q-L2 无纠缠和 CZ 模型分别为 $0.52$ 和 $0.60$, 均未保持基准性能.
-                \item L4$\to$L3 剪枝准确率由 $0.84$ 降至 $0.82$; 优化编译后的线路深度仍为 $5$.
-            \end{itemize}
+        \begin{column}{0.55\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=\linewidth,
+                    height=0.58\textheight,
+                    ybar,
+                    bar width=9pt,
+                    ymin=0,
+                    ymax=100,
+                    ylabel={停止比例/\%},
+                    symbolic x coords={128,512,2048},
+                    xtick=data,
+                    xlabel={停止时累计 shots},
+                    legend style={at={(0.98,0.98)},anchor=north east,font=\scriptsize,draw=none},
+                    tick label style={font=\scriptsize},
+                    label style={font=\scriptsize},
+                    enlarge x limits=0.20
+                ]
+                    \addplot[fill=blue!65,draw=blue!80,nodes near coords={\pgfmathprintnumber[fixed,precision=1,fixed zerofill]{\pgfplotspointmeta}},every node near coord/.append style={font=\tiny,xshift=-3pt}] coordinates {(128,83.17) (512,8.85) (2048,7.98)};
+                    \addlegendentry{L4 基准}
+                    \addplot[fill=orange!75,draw=orange!90!black,nodes near coords={\pgfmathprintnumber[fixed,precision=1,fixed zerofill]{\pgfplotspointmeta}},every node near coord/.append style={font=\tiny,xshift=3pt}] coordinates {(128,81.98) (512,9.39) (2048,8.63)};
+                    \addlegendentry{L4--L3 剪枝}
+                \end{axis}
+            \end{tikzpicture}
         \end{column}
-        \begin{column}{0.42\textwidth}
-            \textbf{有限测量}
+        \begin{column}{0.41\textwidth}
+            \textbf{准确率与平均 shots}
             \vspace{0.4em}
-            \[
-                2048\ \text{次}
-                \quad\longrightarrow\quad
-                315\text{--}330\ \text{次}
-            \]
-            \[
-                \textcolor{blue}{\text{平均测量次数减少约 }84\%}
-            \]
+            \begin{table}
+                \centering
+                \small
+                \renewcommand{\arraystretch}{1.25}
+                \begin{tabular}{lcc}
+                    \toprule
+                    模型 & 准确率 & shots \\
+                    \midrule
+                    L4 & $0.82\pm0.03$ & 315.2 \\
+                    剪枝 L3 & $0.81\pm0.02$ & 329.8 \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
             \begin{itemize}
                 \setlength{\itemsep}{0.9ex}
-                \item 准确率差小于 $0.005$.
-                \item 标签翻转率保持为 $0.007$.
-                \item 结果来自理想模拟, 不能直接等同于真机加速.
+                \item 与固定 2048 shots 的准确率差小于 $0.005$.
+                \item 平均测量成本减少约 $84\%$.
+                \item 结果来自理想有限测量模拟.
             \end{itemize}
         \end{column}
     \end{columns}
@@ -223,6 +258,30 @@
         \item 平均性能主要在前 $5$--$6$ 层提升, 随后进入平台区.
         \item 在 $115$ 对共享配置上, 加权损失平均提高 $6.34$ 个百分点, 但并非每类任务都占优.
         \item 在 $105$ 对纠缠比较中, CZ 的平均增益仅为 $0.53$ 个百分点且正负并存.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{一个典型案例: CZ 将圆环准确率提高到 96\%}
+    \framesubtitle{第二组实验 · 张译夫}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{crown_4q_l2_separable.png}
+
+            {\small 无 CZ: 70.45\%}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{crown_4q_l2_entangled.png}
+
+            {\small 加入 CZ: 96.00\%}
+        \end{column}
+    \end{columns}
+    \vspace{0.5em}
+    \begin{itemize}
+        \setlength{\itemsep}{0.7ex}
+        \item 两者均为 4 量子比特, 2 层, 加权保真度模型, 只改变是否加入纠缠门.
+        \item 这是纠缠收益最大的实例; 在全部 105 对比较中, CZ 的平均增益仅为 $0.53$ 个百分点, 因而不能推广为普遍结论.
     \end{itemize}
 \end{frame}
 
