@@ -44,22 +44,15 @@ BibTeX:
 
 ```
 
-## Course project extension
+## Course project experiments
 
-This repository also contains the team's reproducible circle-dataset experiments
-for the course project. The extension keeps the original simulator files
-unchanged and adds thin wrappers, tests, raw artifacts, summaries, compilation
-audits, layer pruning, and adaptive-shot evaluation.
+The original code remains in the repository root. Our experiments are organized
+in two separate folders:
 
-- [Experiment contract, commands, and verified results](PROJECT_EXPERIMENTS.md)
-- [`experiments/`](experiments/): command-line runners and artifact verifiers
-- [`src/qs_project/`](src/qs_project/): project-specific adapters and evaluation
-  logic
-- [`tests/`](tests/): regression and contract tests
-- [`results/`](results/): immutable raw artifacts and derived CSV/JSON summaries
-- [`doc/大作业报告/`](doc/大作业报告/): collaborative LaTeX report
+- [`appendix_experiment/`](appendix_experiment/README.md): appendix experiments
+  and results.
+- [`main_circle_experiment/`](main_circle_experiment/README.md): elainafan's
+  circle experiments and results.
 
-The formal training matrix contains exactly 45 optimizer runs. The M4
-fixed/adaptive-shot comparison reuses ten frozen checkpoints and performs no
-additional optimization.
-
+The course report is in [`doc/大作业报告/`](doc/大作业报告/). See the README in
+each experiment folder for requirements and commands.
